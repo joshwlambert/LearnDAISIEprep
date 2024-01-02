@@ -1,0 +1,294 @@
+---
+title: "3. DAISIE_Galapagos"
+format: html
+editor: visual
+author: Luis Valente
+---
+
+### Course: Island Biology 2024
+
+## 2 - Fitting DAISIE models using the Galápagos birds as example
+
+![Phylogenies of Galápagos birds](images/Galapagos_picture.png)
+
+##### In this practical we are going to fit the `DAISIE` model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*). We will use software `DAISIE` to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated rates to see how species diversity has varied through time in the Galápagos.
+
+Prepare the R environment to run the practical. Empty workspace of existing previous objects.
+
+```{r}
+rm(list=ls())
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+```
+
+Load required packages [DAISIE](https://cran.r-project.org/web/packages/DAISIE/index.html) and [ape](https://cran.r-project.org/web/packages/ape/ape.pdf)
+
+```{r}
+library(DAISIE)
+library(ape)
+```
+
+### 2.1 - Load, format and visualise Galapágos bird data
+
+The dataset of Galápagos birds includes colonisation and branching times for a total of 27 species of terrestrial birds of the Galápagos islands, distributed across 8 lineages. Some of the lineages have only 1 species, whereas some have radiated (including the Darwin's finch radiation, 16 species). **Note**: the dataset we will use is slightly different from the example dataset that is included as data in the `DAISIE` R package.
+
+#### Load Datatable
+
+```{r }
+galapagos_table<-read.table(file='/Users/luis/Desktop/IRIOMOTE/LECTURES:PRACTICALS:COURSES/RUG_Evolutionary_Processes_Mar2022/Galapagos_practical/BACK_UP_FILES/Galapagos_datatable.txt',header=T)
+```
+
+#### View Galápagos datable
+
+```{r, eval = F }
+View(galapagos_table)
+```
+
+Each row in the table corresponds to a different colonisation event. The first element of the "branching times" column is the time of colonisation of that lineage. When there is more than one value in that column this indicates the branching times (speciation events within that lineage that have taken place on the island).
+
+#### Create DAISIE datalist from the datatable
+
+We will use the DAISIE function `DAISIE_dataprep` to create a datalist that can be used in subsequent DAISIE analyses. We will set an island age of 4 million years for the Galápagos archipelago and a mainland pool size of 1000.
+
+```{r}
+galapagos_datalist<-DAISIE_dataprep(
+        datatable = galapagos_table,
+        island_age = 4,
+        M = 1000)
+```
+
+As you can see, the age of the *Mimus* lineage is older than the age of 4 million years we have set for age of the Galápagos. The age of *Mimus* in the datatable is based on the stem age of the genus in the phylogeny, and we know that the stem age may be an overestimate for the colonisation time because there may have been extinctions along that branch that are no longer visible in the data. What `DAISIE_dataprep` does in this case is to set the age of *Mimus* as a maximum age, where the colonisation could have happened any time between the island age of 4 My and the present.
+
+#### View Galápagos datalist
+
+Just type:
+
+```{r datalist, results='hide'}
+galapagos_datalist
+```
+
+View your Galápagos datalist by scrolling up and down in R. You can find detailed information using the R documentation file:
+
+```{r, results='hide'}
+? Galapagos_datalist 
+```
+
+Or to view just the *Mimus* colonisation:
+
+```{r mimus}
+galapagos_datalist[[4]]
+```
+
+The first element of the `$branching_times` item is the island age, followed by the colonisation time and the branching times (if any). The `$stac` item is a code that tells DAISIE whether the lineage is endemic, non-endemic, and whether or not max-age should be used.
+
+Or to view just the Darwin's finches lineage:
+
+```{r finches}
+galapagos_datalist[[3]]
+```
+
+As you can see, there is 1 missing species in the Darwin's finch lineage - this species was not sampled in the phylogeny, so does not have a corresponding branching time in the `$branching_times` item. However, `$missing_species` item tells DAISIE that it needs to consider one extra species in its computations.
+
+#### Visualise Galápagos data
+
+You can visualize the data in a different way using:
+
+```{r, echo=TRUE}
+DAISIE_plot_island(galapagos_datalist)
+```
+
+The above plot shows the 8 colonisation events (independent lineages), the time of colonisation, number of species sampled in each lineage (n), number of missing species (m) and the times of cladogenetic speciation events (horizontal lines). The dashed horizontal line is the island age. Unfilled symbols indicate that the time of colonisation was set as "max-age", that is, the colonisation time could have happened any time between the time plotted and the present. This applies for instance to lineages with stem ages older than the island age, whose max-age is then set to be the age of the island (as was the cases of genus *Mimus*, whose stem age in the `galapagos_table` was older than the island age of 4 million years).
+
+#### Plot age versus diversity
+
+To visualise the diversity of each lineage according to their age:
+
+```{r , echo=TRUE}
+DAISIE_plot_age_diversity(galapagos_datalist)
+```
+
+The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage - Darwin's finches - stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages. One of the lineages, *Mimus*, is not plotted, because it's age is set as max-age.\
+
+\
+
+### 2.2 -- Fitting DAISIE models
+
+We will now fit three different DAISIE models using maximum likelihood, using the function `DAISIE_ML`. The DAISIE function searches for the parameters that maximise the likelihood of the data given the specified model. We will then compare the likelihoods of the 3 different models to see which one is preferred
+
+We will fit the 3 different DAISIE models to the phylogenetic data contained in the object `galapagos_datalist`.
+
+\
+
+#### Fit a full DAISIE model (M1)
+
+The first model (M1) we will fit is a full DAISIE model with 5 parameters. The parameters in DAISIE are always placed in this order:
+
+1.  Cladogenesis (lambda_c)
+2.  Extinction (mu)
+3.  Carrying capacity (K)
+4.  Colonisation (gamma)
+5.  Anagenesis (lambda_a)
+
+Important settings of the `DAISIE_ML` function:
+
+-   `initparsopt` refers to the starting parameters of the maximum likelihood optimisation (the search for the optimal parameters). 1.5 is the starting cladogenesis rate, 1.1 is the starting extinction rate, 20 is the initial carrying capacity (20 species), 0.009 is the colonisation rate; 1.1 is the initial anagenesis rate.
+
+-   `idparsopt` shows the parameters to optimise, in this case all 5, so 1:5
+
+-   `parsfix` and `idparsfix` are set to NULL because we are not fixing any parameters this time.
+
+**The code below takes a while to run.**
+
+```{r ML_DAISIE_M1, warning=TRUE, cache= TRUE}
+DAISIE_ML(
+  datalist = galapagos_datalist,
+  initparsopt = c(1.5,1.1,20,0.009,1.1),
+  ddmodel = 11,
+  idparsopt = 1:5,
+  parsfix = NULL,
+  idparsfix = NULL
+)
+```
+
+The output gives the ML parameters values, the loglikelihood, and the number of parameters (df).\
+
+#### Fit model with no carrying-capacity (M2)
+
+As you can see above, the value of K in M1 is very high (hundreds of thousands of species). This suggest that there may be no upper bound to diversity (so K is in fact infinite). So let's try a model without K as a free parameter.
+
+The second model (M2) is just like M1, but we will fix K to be infinite. In comparison to M1, we now remove the 3rd parameter (carrying capacity) from the `initparsopt` and `idparsopt` settings. So we now have only parameters 1,2,4 and 5. We fix the parameter number 3 to `Inf` (carrying capacity K fixed to infinite):
+
+```{r ML_DAISIE_M2, warning=TRUE, cache = TRUE}
+DAISIE_ML(
+  datalist = galapagos_datalist,
+  initparsopt = c(1.5,1.1,0.009,1.1),
+  idparsopt = c(1,2,4,5),
+  parsfix = Inf,
+  idparsfix = 3,
+  ddmodel=0
+)
+```
+
+\
+
+#### Fit model with no carrying capacity AND no anagenesis (M3)
+
+Now, it appears that the parameter of anagenesis is close to 0 in M2 (see above). Perhaps a model without anagenesis will perform well.
+
+The third model (M3) is like M2, but with no carrying-capacity and no anagenesis. This time we switch off the 3rd and 5th parameters (carrying-capacity and anagenesis). We fix the 3rd parameter (K) to infinite; and the 5th parameter (anagenesis) to zero:
+
+```{r ML_DAISIE_M3, warning=TRUE, cache = TRUE}
+DAISIE_ML(
+  datalist = galapagos_datalist,
+  initparsopt = c(1.5,1.1,0.009),
+  idparsopt = c(1,2,4),
+  parsfix = c(Inf,0),
+  idparsfix = c(3,5),
+  ddmodel=0
+)
+```
+
+\
+
+#### Select the best model using AIC
+
+Now compare the log-likelihoods of the 3 models. They all have similar likelihoods, but one has fewer parameters, so it is preferred. Which model is it?
+
+A more proper way to compare the models is using AIC (or other information criteria), which takes into account the number of parameters and the loglikelihood.
+
+Create new function to compute AIC values base on the likelihood values and number of parameters for each model.
+
+```{r AICfunction, warning=TRUE}
+
+AIC_compare<- function(LogLik,k){
+  aic <- (2*k)-(2*LogLik)
+  return(aic)
+}
+```
+
+Fill in the values from your data in this format:
+
+`AIC_compare(c(likelihood_M1,likelihood_M2,likelihood_M3), c(n_parameters_M1,n_parameters_M2,n_parameters_M3))`.
+
+```{r AICcompare, warning=TRUE}
+AICs<-AIC_compare(c(-84.78145 ,-84.78088, -84.78082),c(5,4,3))
+
+names(AICs)<-c('M1','M2','M3')
+AICs
+
+```
+
+The model with the **lowest** AIC value is the preferred model. (In this case, M3)
+
+\
+
+### 2.3 - Simulate islands
+
+Now let's use the ML parameters we estimated from the Galápagos bird data to simulate islands. Choose the parameters of the best model. We will simulate for 4 million years (time = 4). M is the mainland pool (keep it at 1000).
+
+#### Simulate islands with the parameters estimated from the best model for the Galápagos bird data (takes a while to run, you can reduce number of replicates if you want)
+
+```{r DAISIE_sim, message=FALSE, warning=FALSE, cache=TRUE}
+Galapagos_sims<-DAISIE_sim(
+  time=4,
+  M=1000,
+  pars=c(1.26, 1.146, Inf, 0.005,0),
+  replicates= 100,
+  plot_sims = FALSE)
+```
+
+#### Plot the species-through-time plots resulting from the simulations
+
+```{r, echo=TRUE}
+DAISIE_plot_sims(Galapagos_sims)
+```
+
+#### Play with different simulations settings
+
+Play with different parameter settings in `DAISIE_sim` (e.g. changing extinction rate, colonisation rate, island age, mainland pool size, replicates). Is equilibrium reached?
+
+\
+
+#### Comparison with bird data from the Azores islands
+
+Now let's brielfy compare with simulatiosn for a completely different dataset, of birds from the Azores archipelago (Atlantic Ocean). Load datatable containing Azores bird data from Valente et al 2017 (*Current Biology*)
+
+```{r}
+data(Macaronesia_datalist)
+Azores<-Macaronesia_datalist[[1]]
+```
+
+##### Visualise Azores data
+
+```{r, echo=TRUE}
+DAISIE_plot_island(Azores)
+```
+
+Three of the species are extinct and only known from fossils.
+
+##### Simulate Azores with pre-identified ML parameters
+
+```{r DAISIE_sim_Azores, message=FALSE, warning=FALSE, cache=TRUE}
+Azores_sims<-DAISIE_sim(
+  time=6.3,
+  M=300,
+  pars=c(0,1.053151832,Inf,0.052148979,0.512939011),
+  replicates= 100,
+  plot_sims=FALSE)
+```
+
+\
+
+##### Plot the species-through-time plot for the Azores from the resulting from the simulations
+
+```{r, echo=TRUE}
+DAISIE_plot_sims(Azores_sims)
+```
+
+How does the Azores plot differ from that of the Galápagos?
+
+\
+The end of part 2. Well done!

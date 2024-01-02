@@ -1,0 +1,242 @@
+---
+title: "4.Insula_DAISIE"
+format: html
+editor: visual
+author: Luis Valente
+---
+
+# Example of how to extract data for Hispaniola species from the *Insula* tree, add missing species, fit DAISIE models and run simulations.
+
+### Load required packages
+
+```{r}
+rm(list=ls())
+library(ape)
+library(DAISIEprep)
+library(DAISIE)
+```
+
+### Load tree
+
+```{r}
+Insula_tree<-read.nexus("/Users/Luis/Desktop/RUG_IslandBiology_MScCourse/Practicals/DAISIE_Insula_frogs/0.Insula_frog_data/Insula.tre")
+```
+
+Visualise tree
+
+```{r}
+plot(Insula_tree)
+```
+
+## Prepare data using `DAISIEprep`
+
+Specify tips corresponding to Hispaniola species by specifying that they are endemic and/or non-endemic to the island:
+
+```{r}
+island_species <- data.frame(
+  tip_labels = c("Spec_29",
+                 "Spec_48",
+                 "Spec_47",
+                 "Spec_38",
+                 "Spec_43",
+                 "Spec_42",
+                 "Spec_39",
+                 "Spec_33",
+                 "Spec_26",
+                 "Spec_19",
+                 "Spec_41",
+                 "Spec_40",
+                 "Spec_25",
+                 "Spec_9",
+                 "Spec_24")
+  ,
+  tip_endemicity_status = c(rep("endemic",14),"nonendemic"))
+```
+
+Assign island endemicity status to all species in the dataset (including the non-Hispaniola species)
+
+```{r}
+endemicity_status <- create_endemicity_status(
+  phylo = Insula_tree,
+  island_species = island_species
+)
+```
+
+Add endemicity status to the phylogeny
+
+```{r}
+phylod <- phylobase::phylo4d(Insula_tree, endemicity_status)
+```
+
+Visualize this on the tree
+
+```{r}
+plot_phylod(phylod = phylod)
+```
+
+Extract data from the phylogeny using the min algorithm
+
+```{r}
+island_tbl_min <- extract_island_species(
+  phylod = phylod,
+  extraction_method = "min"
+)
+island_tbl_min
+```
+
+Extract data from the phylogeny using the ancestral state algorithm
+
+```{r}
+phylod <- add_asr_node_states(phylod = phylod, asr_method = "mk")
+plot_phylod(phylod = phylod)
+island_tbl_asr <- extract_island_species(
+  phylod = phylod,
+  extraction_method = "asr"
+)
+island_tbl_asr
+```
+
+Compare 2 options:
+
+```{r}
+identical(island_tbl_min,island_tbl_asr)
+```
+
+As you can see, the results of the 2 extractions (min and asr) are exactly the same in this case, so we can use either for the subsequent analyses.
+
+### Add missing species
+
+Add missing species "Spec_51", which is not closely related to any species
+
+```{r}
+island_tbl<-island_tbl_min
+island_tbl <- add_island_colonist(
+  island_tbl = island_tbl,
+  clade_name = "Spec_51",
+  status = "endemic",
+  missing_species = 0,
+  col_time = NA_real_,
+  col_max_age = FALSE,
+  branching_times = NA_real_,
+  min_age = NA_real_,
+  clade_type = 1,
+  species = "Spec_51"
+)
+```
+
+Add missing species Spec_52, closely related to Spec_42
+
+```{r}
+island_tbl <- add_missing_species(
+  island_tbl = island_tbl,
+  num_missing_species = 1, 
+  species_to_add_to = "Spec_42"
+)
+
+```
+
+Create DAISIE datalist
+
+```{r}
+insula_data_list <- create_daisie_data(
+  data = island_tbl,
+  island_age = 4,
+  num_mainland_species = 1000,
+  precise_col_time = TRUE
+)
+
+```
+
+## Fit DAISIE models to data
+
+Fit model with 5 parameters
+
+```{r M1, message=FALSE, warning=FALSE, cache=TRUE}
+
+M1<-DAISIE_ML(
+  datalist = insula_data_list,
+  initparsopt = c(1.5,1.1,20,0.009,1.1),
+  ddmodel = 11,
+  idparsopt = 1:5,
+  parsfix = NULL,
+  idparsfix = NULL
+)
+M1
+```
+
+Fit model with no carrying capacity
+
+```{r M2, message=FALSE, warning=FALSE, cache=TRUE}
+
+M2<-DAISIE_ML(
+  datalist = insula_data_list,
+  initparsopt = c(1.5,1.1,0.009,1.1),
+  idparsopt = c(1,2,4,5),
+  parsfix = Inf,
+  idparsfix = 3,
+  ddmodel=0
+)
+M2
+```
+
+Fit model with no anagenesis
+
+```{r M3, message=FALSE, warning=FALSE, cache=TRUE}
+M3<-DAISIE_ML(
+  datalist = insula_data_list,
+  initparsopt = c(1.5,1.1,0.009),
+  idparsopt = c(1,2,4),
+  parsfix = c(Inf,0),
+  idparsfix = c(3,5),
+  ddmodel=0
+)
+M3
+```
+
+Save model results in a table
+
+```{r}
+model_results<-rbind(M1,M2,M3)
+model_results
+```
+
+Create AIC function for model comparison
+
+```{r}
+
+AIC_compare<- function(LogLik,k){
+  aic <- (2*k)-(2*LogLik)
+  return(aic)
+}
+```
+
+Compute AIC for all the models
+
+```{r}
+AICs<-AIC_compare(c(M1$loglik ,M2$loglik, M3$loglik),c(M1$df,M2$df,M3$df))
+names(AICs)<-c('M1','M2','M3')
+AICs
+```
+
+In this case, the preferred model is M3.
+
+## Simulate islands based on parameters from preferred model
+
+Run simulations
+
+```{r Simulations, message=FALSE, warning=FALSE, cache=TRUE}
+Insula_sims<-DAISIE_sim(
+  time=4,
+  M=1000,
+  pars=as.numeric(M3[1:5]),
+  replicates= 100,
+  plot_sims = FALSE)
+```
+
+Plot simulations
+
+```{r}
+DAISIE_plot_sims(Insula_sims)
+```
+
+It looks like *Insula* diversity in the island of Hispaniola is at a dynamic equilibrium.
