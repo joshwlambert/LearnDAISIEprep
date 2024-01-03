@@ -242,6 +242,17 @@ The new island table now has missing species added to the lineage we wanted to:
 island_tbl@island_tbl$missing_species
 ```
 
+With the new missing species added to the `island_tbl` we can repeat the conversion steps above using `create_daisie_data()` to produce data accepted by the DAISIE model.
+
+```{r}
+data_list <- create_daisie_data(
+  data = island_tbl,
+  island_age = 12,
+  num_mainland_species = 100,
+  precise_col_time = TRUE
+)
+```
+
 ### 2.2 Adding an entire lineage when a phylogeny is not available for the lineage.
 
 For cases when the missing species belong to a lineage that has not been sampled in the phylogeny. Assuming we did not have any phylogenetic data or colonisation time estimate for the island clade, we can insert species as missing and specify them as a separate lineage. Because not colonisation and branching times are known for this lineage, when this lineage later gets processed by the DAISIE inference model it will be assumed it colonised the island any time between the island's formation and the present.
@@ -277,12 +288,12 @@ island_tbl <- add_island_colonist(
 )
 ```
 
-Example for adding lineage with 5 species ("Plant_a", "Plant_b", "Plant_c", "Plant_d", "Plant_e").
+Example for adding lineage with 5 species ("Plant_a", "Plant_b", "Plant_c", "Plant_d", "Plant_e") to a lineage called "Plant_radiation"
 
 ```{r}
 island_tbl <- add_island_colonist(
   island_tbl = island_tbl,
-  clade_name = "Bird_f",
+  clade_name = "Plant_radiation",
   status = "endemic",
   # the total species is 5 and all are missing
   # but we add missing_species = 4 because
@@ -308,3 +319,5 @@ data_list <- create_daisie_data(
   precise_col_time = TRUE
 )
 ```
+
+End of the DAISIEprep tutorial!

@@ -324,75 +324,98 @@ Sidenote: if you are wondering what the probabilities are at each node and wheth
 <p>For this section, as with the previous section, the core data structure we are going to work with is the <code>island_tbl</code>. We will use the <code>island_tbl</code> for the example plant dataset produced in the last section.</p>
 <section id="adding-missing-species-to-an-island-clade-that-has-been-sampled-in-the-phylogeny" class="level3">
 <h3 class="anchored" data-anchor-id="adding-missing-species-to-an-island-clade-that-has-been-sampled-in-the-phylogeny">2.1 Adding missing species to an island clade that has been sampled in the phylogeny</h3>
-<p>This option is for cases in which a clade has been sampled in the phylogeny, and at least 1 colonisation or 1 branching time is available in the datalist, but 1 or more species from that clade were not sampled. For this example, we imagine that 2 species have not been sampled, and that we want to add them as missing species to the lineage containing species Plant_e that is sampled in the phylogeny. To assign two missing species to this clade we use following code:</p>
+<p>This option is for cases in which a clade has been sampled in the phylogeny, and at least 1 colonisation or 1 branching time is available in the datalist, but 1 or more species from that clade were not sampled. For this example, we imagine that 2 species have not been sampled, and that we want to add them as missing species to the lineage containing species “Plant_e” that is sampled in the phylogeny. To assign two missing species to this clade we use the function <code>add_missing_species()</code> The argument <code>species_to_add_to</code> uses a representative sampled species from that island clade to work out which colonist in the <code>island_tbl</code> to assign the specified number of missing species (<code>num_missing_species</code>) to. You can find out which species are already sampled in each lineage using:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_missing_species</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># num_missing_species equals total species missing</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_missing_species =</span> <span class="dv">2</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># name of a sampled species you want to "add" the missing to</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it can be any in the clade</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">species_to_add_to =</span> <span class="st">"Plant_e"</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>island_tbl<span class="sc">@</span>island_tbl<span class="sc">$</span>species</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_e" "Plant_f"</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_h"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The argument <code>species_name</code> uses a representative sampled species from that island clade to work out which colonist in the <code>island_tbl</code> to assign the specified number of missing species (<code>num_missing_species</code>) to. In this case we used the species in the clade name, however, this could also have been any sampled species from the clade, which include:</p>
+<p>Now run the code:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>island_tbl<span class="sc">@</span>island_tbl<span class="sc">$</span>species[[<span class="dv">1</span>]]</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_e" "Plant_f"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_missing_species</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># num_missing_species equals total species missing</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_missing_species =</span> <span class="dv">2</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># name of a sampled species you want to "add" the missing to</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it can be any in the clade</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">species_to_add_to =</span> <span class="st">"Plant_e"</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The new island table now has missing species added to the lineage we wanted to:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>island_tbl<span class="sc">@</span>island_tbl<span class="sc">$</span>missing_species</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With the new missing species added to the <code>island_tbl</code> we can repeat the conversion steps above using <code>create_daisie_data()</code> to produce data accepted by the DAISIE model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">create_daisie_data</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> island_tbl,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_age =</span> <span class="dv">12</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_mainland_species =</span> <span class="dv">100</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">precise_col_time =</span> <span class="cn">TRUE</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="adding-a-lineage-when-a-phylogeny-is-not-available-for-the-lineage-and-no-colonisation-estimate-is-available." class="level3">
-<h3 class="anchored" data-anchor-id="adding-a-lineage-when-a-phylogeny-is-not-available-for-the-lineage-and-no-colonisation-estimate-is-available.">2.2 Adding a lineage when a phylogeny is not available for the lineage, and no colonisation estimate is available.</h3>
-<p>Taking the examples above in <code>3.2</code> and <code>3.3</code> but assuming we did not have any phylogenetic data or colonisation time estimate for the island clade, we could again insert the species as missing but this time not give the colonisation time. When this colonist later gets processed by the DAISIE inference model it will be assumed it colonised the island any time between the island’s formation (in the case of the Galápagos four million years ago) and the present.</p>
+<section id="adding-an-entire-lineage-when-a-phylogeny-is-not-available-for-the-lineage." class="level3">
+<h3 class="anchored" data-anchor-id="adding-an-entire-lineage-when-a-phylogeny-is-not-available-for-the-lineage.">2.2 Adding an entire lineage when a phylogeny is not available for the lineage.</h3>
+<p>For cases when the missing species belong to a lineage that has not been sampled in the phylogeny. Assuming we did not have any phylogenetic data or colonisation time estimate for the island clade, we can insert species as missing and specify them as a separate lineage. Because not colonisation and branching times are known for this lineage, when this lineage later gets processed by the DAISIE inference model it will be assumed it colonised the island any time between the island’s formation and the present.</p>
+<p>The input needed are:</p>
 <ul>
-<li><code>missing_species</code> <strong>In the case of a lineage with just 1 species (i.e.&nbsp;not an island radiation) the number of missing species is zero, as by adding the colonist it already counts as one automatically. In the case of an island clade of more than one species, the number of missing species in this case should be <code>n-1</code>.</strong></li>
+<li><p><code>island_tbl</code> to add to an existing <code>island_tbl</code></p></li>
+<li><p><code>clade_name</code> a name to represent the new clade addeed, can either be a specific species from the clade or a genus name, or another name that represent those species</p></li>
+<li><p><code>status</code> either "endemic" or "nonendemic"</p></li>
+<li><p><code>species</code> a vector of species names contained within colonist (if applicable)</p></li>
+<li><p><code>missing_species</code> <strong>In the case of a lineage with just 1 species (i.e.&nbsp;not an island radiation) the number of missing species is zero, as by adding the colonist it already counts as one automatically. In the case of an island clade of more than one species, the number of missing species in this case should be <code>n-1</code>.</strong></p></li>
 </ul>
 <p>Example for adding lineage with 1 species:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Bird_e"</span>,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clade with just 1 species, missing_species = 0</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because adding the lineage already counts as 1</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">0</span>,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="st">"Bird_e"</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Plant_y"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clade with just 1 species, missing_species = 0</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because adding the lineage already counts as 1</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">0</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="st">"Plant_a"</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Example for adding lineage with 5 species:</p>
+<p>Example for adding lineage with 5 species (“Plant_a”, “Plant_b”, “Plant_c”, “Plant_d”, “Plant_e”) to a lineage called “Plant_radiation”</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Bird_f"</span>,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the total species is 5 and all are missing</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># but we add missing_species = 4 because</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adding the lineage already counts as 1</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">4</span>,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Bird_f"</span>, <span class="st">"Bird_g"</span>, <span class="st">"Bird_h"</span>,</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Bird_i"</span>, <span class="st">"Bird_j"</span>)</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Plant_radiation"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the total species is 5 and all are missing</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># but we add missing_species = 4 because</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adding the lineage already counts as 1</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">4</span>,</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Plant_a"</span>, <span class="st">"Plant_b"</span>, <span class="st">"Plant_c"</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Plant_d"</span>, <span class="st">"Plant_e"</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With the new missing species added to the <code>island_tbl</code> we can repeat the conversion steps above using <code>create_daisie_data()</code> to produce data accepted by the DAISIE model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">create_daisie_data</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> island_tbl,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_age =</span> <span class="dv">4</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_mainland_species =</span> <span class="dv">100</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">precise_col_time =</span> <span class="cn">TRUE</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">create_daisie_data</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> island_tbl,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_age =</span> <span class="dv">12</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_mainland_species =</span> <span class="dv">100</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">precise_col_time =</span> <span class="cn">TRUE</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>End of the DAISIEprep tutorial!</p>
 </section>
 </section>
 

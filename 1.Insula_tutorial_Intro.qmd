@@ -9,19 +9,49 @@ author: Luis Valente
 
 # Evolutionary island biogeography using DAISIE
 
-In this practical we will estimate rates of colonisation, speciation and extinction for an (imaginary) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages `DAISIE` and `DAISIEprep`. We will learn how to interpret and prepare data for analyses using `DAISIE`, how to fit `DAISIE` models to phylogenetic data, and how to simulate phylogenies of island communities.
+In this practical we will estimate rates of colonisation, speciation and extinction for an (imaginary) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
 
 The practical is divided into 3 main parts:
 
-1.  [Learn how to use `DAISIEprep`](#sec-1.-daisieprep) to prepare and extract data (1-2 hours). `DAISIEprep` is an R package that allows users to format phylogenetic data for subsequent analyses in `DAISIE`.
+1.  [Learn how to use DAISIEprep](#sec-1.-daisieprep) to prepare and extract data (1-2 hours). DAISIEprep is an R package that allows users to format phylogenetic data for subsequent analyses in DAISIE.
 
-2.  [Learn how to use `DAISIE`](#sec-2.-daisie) to estimate parameters and simulate islands (1-2 hours). DAISIE is an R package that allows fitting island biogeography models and simulating islands.
+2.  [Learn how to use DAISIE](#sec-2.-daisie) to estimate parameters and simulate islands (1-2 hours). DAISIE is an R package that allows fitting island biogeography models and simulating islands.
 
-3.  [Apply the above approaches to a dataset of frogs from the Caribbean](#sec-insula). Writing up this part is the **graded** **assignment**.
+3.  [Apply the above approaches to a dataset of frogs from the Caribbean](#sec-insula). Writing up this part is the graded assignment.
 
 **Before you start with the DAISIEprep and DAISIE tutorials, please read the introduction to the graded assignment below.**
 
-# Assignment
+# Before you begin:
+
+## Install Software required:
+
+-   [FigTree](https://github.com/rambaut/figtree/releases)
+
+-   [R](https://www.r-project.org)
+
+-   [Rstudio](https://rstudio.com/products/rstudio/download/) with packages
+
+-   Open the program RStudio. Open the file "DAISIE_setup.R" and run that code in Rstudio. This should install all required R packages (**may take a while!**).
+
+## Tutorial files
+
+You will need to follow the instructions of the tutorials, which are in both in HTML format (.html, open on your internet browser) or in quarto format (.qmd, open in Rstudio). Both versions are exactly the same. The HTML is file easy to view and the quarto file is more interactive as you can run the scripts directly in Rstudio.
+
+## 1. DAISIEprep {#sec-1.-daisieprep}
+
+[DAISIEprep tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd) 
+
+[DAISIEprep tutorial HTML](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.html) 
+
+## 2. DAISIE {#sec-2.-daisie}
+
+[DAISIE tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.qmd) 
+
+[DAISIE tutorial HTML](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.html) 
+
+#### After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the *Insula* dataset.
+
+## 3. *Insula* assignment {#sec-insula}
 
 The frog genus *Insula* (imaginary genus, does not exist in reality), is a large genus of frogs of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.
 
@@ -29,7 +59,7 @@ One of the most diverse islands for the genus *Insula* is Hispaniola, a large Ca
 
 A very well-sampled time-calibrated phylogeny for the genus has recently been published, covering all the island where *Insula* occurs. A few species have been recently discovered and were not sampled in the phylogeny. There is no evidence of recently extinct species. The authors of the study performed an ancestral range reconstruction, so it is possible to infer the ancestral areas and number of colonisation events.
 
-Making use of the knowledge you gathered from `DAISIEprep` and `DAISIE`, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Hispaniola and fit DAISIE to the data.
+Making use of the knowledge you gathered from DAISIEprep and DAISIE, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Hispaniola and fit DAISIE to the data.
 
 #### The aim is to be able to answer the following questions: {#sec-4.-questions}
 
@@ -47,35 +77,9 @@ F. Is there evidence for equilibrium dynamics on the island of Hispaniola?
 
 G. How has the diversity of *Insula* on Hispaniola changed through time (according to DAISIE simulations)?
 
-**Assignment: run analyses using `DAISIE` to answer all of the above questions in an individually written report (Word/Google Doc, maximum 3 pages, minimum font size 11) where you briefly describe the methodology used for the analyses of *Insula*, your main results, and limitations of the analyses. Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 3 page limit. Do not include code in the assignment (unless you want to point out something specific with the script). Focus on the interpretation of the results from a biological perspective.**
+**Assignment: run analyses using DAISIE to answer all of the above questions in an individually written report (Word/Google Doc, maximum 3 pages, minimum font size 11) where you briefly describe the methodology used for the analyses of *Insula*, your main results, and limitations of the analyses. Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 3 page limit. Do not include code in the assignment (unless you want to point out something specific with the script). Focus on the interpretation of the results from a biological perspective.**
 
-In sum, you need to load the phylogeny into R, use `DAISIEprep` to extract the `DAISIE` datalist. Then, fit `DAISIE` to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the *Insula* tree, tables and figures provided. With these analyses you will be able to answer all the [questions](#sec-4.-questions).
-
-After the practical, a file with an example of how to run the *Insula* analyses will be provided.
-
-# Before you begin:
-
-## Install Software required:
-
--   [FigTree](https://github.com/rambaut/figtree/releases)
-
--   [R](https://www.r-project.org)
-
--   [Rstudio](https://rstudio.com/products/rstudio/download/) with packages
-
--   Open the program RStudio. Open the file "DAISIE_setup.R" and run that code in Rstudio. This should install all required R packages (**may take a while!**).
-
-## Tutorial files
-
-You will need to follow the instructions of the tutorials, which are in both in html format (.html, open on your internet browser) or in quarto format (.qmd, open in Rstudio). Both versions are exactly the same. The html is file easy to view and the quarto file is more interactive as you can run the scripts directly in Rstudio.
-
-## 1. [`DAISIEprep`](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd) {#sec-1.-daisieprep}
-
-## 2. [`DAISIE`](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE_Galapagos.qmd) {#sec-2.-daisie}
-
-## 3. *Insula* assignment {#sec-insula}
-
-### After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the *Insula* dataset.
+In sum, you need to load the phylogeny into R, use DAISIEprep to extract the DAISIE datalist. Then, fit DAISIE to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the *Insula* tree, tables and figures provided. With these analyses you will be able to answer all the [questions](#sec-4.-questions).
 
 ### In the practical folder you will find all the relevant data:
 
@@ -105,3 +109,6 @@ For the DAISIE analyses use:
 [Mainland pool size]{.underline}: 100 species
 
 Don't forget to add the missing species.
+
+**After the practical, a file with an example of how to run the *Insula* analyses will be provided.**
+
