@@ -1,5 +1,5 @@
 ---
-title: "3. DAISIE_Galapagos"
+title: "3. DAISIE"
 format: html
 editor: visual
 author: Luis Valente

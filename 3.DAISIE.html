@@ -8,7 +8,7 @@
 
 <meta name="author" content="Luis Valente">
 
-<title>3. DAISIE_Galapagos</title>
+<title>3. DAISIE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,16 +58,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="3.DAISIE_Galapagos_files/libs/clipboard/clipboard.min.js"></script>
-<script src="3.DAISIE_Galapagos_files/libs/quarto-html/quarto.js"></script>
-<script src="3.DAISIE_Galapagos_files/libs/quarto-html/popper.min.js"></script>
-<script src="3.DAISIE_Galapagos_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="3.DAISIE_Galapagos_files/libs/quarto-html/anchor.min.js"></script>
-<link href="3.DAISIE_Galapagos_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="3.DAISIE_Galapagos_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="3.DAISIE_Galapagos_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="3.DAISIE_Galapagos_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="3.DAISIE_Galapagos_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="3.DAISIE_files/libs/clipboard/clipboard.min.js"></script>
+<script src="3.DAISIE_files/libs/quarto-html/quarto.js"></script>
+<script src="3.DAISIE_files/libs/quarto-html/popper.min.js"></script>
+<script src="3.DAISIE_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="3.DAISIE_files/libs/quarto-html/anchor.min.js"></script>
+<link href="3.DAISIE_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="3.DAISIE_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="3.DAISIE_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="3.DAISIE_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="3.DAISIE_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">3. DAISIE_Galapagos</h1>
+<h1 class="title">3. DAISIE</h1>
 </div>
 
 
@@ -214,7 +214,7 @@ $type1or2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_plot_island</span>(galapagos_datalist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="3.DAISIE_Galapagos_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="3.DAISIE_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The above plot shows the 8 colonisation events (independent lineages), the time of colonisation, number of species sampled in each lineage (n), number of missing species (m) and the times of cladogenetic speciation events (horizontal lines). The dashed horizontal line is the island age. Unfilled symbols indicate that the time of colonisation was set as “max-age”, that is, the colonisation time could have happened any time between the time plotted and the present. This applies for instance to lineages with stem ages older than the island age, whose max-age is then set to be the age of the island (as was the cases of genus <em>Mimus</em>, whose stem age in the <code>galapagos_table</code> was older than the island age of 4 million years).</p>
@@ -225,7 +225,7 @@ $type1or2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_plot_age_diversity</span>(galapagos_datalist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="3.DAISIE_Galapagos_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="3.DAISIE_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage - Darwin’s finches - stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages. One of the lineages, <em>Mimus</em>, is not plotted, because it’s age is set as max-age.<br>
@@ -257,7 +257,7 @@ $type1or2
 <li><p><code>parsfix</code> and <code>idparsfix</code> are set to NULL because we are not fixing any parameters this time.</p></li>
 </ul>
 <p><strong>The code below takes a while to run.</strong></p>
-<div class="cell" data-hash="3.DAISIE_Galapagos_cache/html/ML_DAISIE_M1_20e2317b82211356676dff3b37e6396b">
+<div class="cell" data-hash="3.DAISIE_cache/html/ML_DAISIE_M1_02811a9d28b6b68565f44c4ddac8f18f">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_ML</span>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datalist =</span> galapagos_datalist,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,<span class="fl">1.1</span>,<span class="dv">20</span>,<span class="fl">0.009</span>,<span class="fl">1.1</span>),</span>
@@ -278,7 +278,7 @@ $type1or2
 <h4 class="anchored" data-anchor-id="fit-model-with-no-carrying-capacity-m2">Fit model with no carrying-capacity (M2)</h4>
 <p>As you can see above, the value of K in M1 is very high (hundreds of thousands of species). This suggest that there may be no upper bound to diversity (so K is in fact infinite). So let’s try a model without K as a free parameter.</p>
 <p>The second model (M2) is just like M1, but we will fix K to be infinite. In comparison to M1, we now remove the 3rd parameter (carrying capacity) from the <code>initparsopt</code> and <code>idparsopt</code> settings. So we now have only parameters 1,2,4 and 5. We fix the parameter number 3 to <code>Inf</code> (carrying capacity K fixed to infinite):</p>
-<div class="cell" data-hash="3.DAISIE_Galapagos_cache/html/ML_DAISIE_M2_e9e776873377b23dc3f195c8520c7f58">
+<div class="cell" data-hash="3.DAISIE_cache/html/ML_DAISIE_M2_0271deb677491ad804f46c0b6eebb096">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_ML</span>(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datalist =</span> galapagos_datalist,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,<span class="fl">1.1</span>,<span class="fl">0.009</span>,<span class="fl">1.1</span>),</span>
@@ -299,7 +299,7 @@ $type1or2
 <h4 class="anchored" data-anchor-id="fit-model-with-no-carrying-capacity-and-no-anagenesis-m3">Fit model with no carrying capacity AND no anagenesis (M3)</h4>
 <p>Now, it appears that the parameter of anagenesis is close to 0 in M2 (see above). Perhaps a model without anagenesis will perform well.</p>
 <p>The third model (M3) is like M2, but with no carrying-capacity and no anagenesis. This time we switch off the 3rd and 5th parameters (carrying-capacity and anagenesis). We fix the 3rd parameter (K) to infinite; and the 5th parameter (anagenesis) to zero:</p>
-<div class="cell" data-hash="3.DAISIE_Galapagos_cache/html/ML_DAISIE_M3_65dfe2dbf1998e5ed8315524f33dc85e">
+<div class="cell" data-hash="3.DAISIE_cache/html/ML_DAISIE_M3_4c2894716232c7e44dc71d64cf708e54">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_ML</span>(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datalist =</span> galapagos_datalist,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,<span class="fl">1.1</span>,<span class="fl">0.009</span>),</span>
@@ -349,7 +349,7 @@ $type1or2
 <p>Now let’s use the ML parameters we estimated from the Galápagos bird data to simulate islands. Choose the parameters of the best model. We will simulate for 4 million years (time = 4). M is the mainland pool (keep it at 1000).</p>
 <section id="simulate-islands-with-the-parameters-estimated-from-the-best-model-for-the-galápagos-bird-data-takes-a-while-to-run-you-can-reduce-number-of-replicates-if-you-want" class="level4">
 <h4 class="anchored" data-anchor-id="simulate-islands-with-the-parameters-estimated-from-the-best-model-for-the-galápagos-bird-data-takes-a-while-to-run-you-can-reduce-number-of-replicates-if-you-want">Simulate islands with the parameters estimated from the best model for the Galápagos bird data (takes a while to run, you can reduce number of replicates if you want)</h4>
-<div class="cell" data-hash="3.DAISIE_Galapagos_cache/html/DAISIE_sim_dac45b49dbc7092df2812610b47b439d">
+<div class="cell" data-hash="3.DAISIE_cache/html/DAISIE_sim_a885e65834c0b5211a17015a8c35bfeb">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Galapagos_sims<span class="ot">&lt;-</span><span class="fu">DAISIE_sim</span>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time=</span><span class="dv">4</span>,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">M=</span><span class="dv">1000</span>,</span>
@@ -363,7 +363,7 @@ $type1or2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_plot_sims</span>(Galapagos_sims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="3.DAISIE_Galapagos_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="3.DAISIE_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -385,14 +385,14 @@ $type1or2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_plot_island</span>(Azores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="3.DAISIE_Galapagos_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="3.DAISIE_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Three of the species are extinct and only known from fossils.</p>
 </section>
 <section id="simulate-azores-with-pre-identified-ml-parameters" class="level5">
 <h5 class="anchored" data-anchor-id="simulate-azores-with-pre-identified-ml-parameters">Simulate Azores with pre-identified ML parameters</h5>
-<div class="cell" data-hash="3.DAISIE_Galapagos_cache/html/DAISIE_sim_Azores_361681c5407db8d4f3e0c5908cd28545">
+<div class="cell" data-hash="3.DAISIE_cache/html/DAISIE_sim_Azores_d3c258a6d1cabbe22ba39652d704a464">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Azores_sims<span class="ot">&lt;-</span><span class="fu">DAISIE_sim</span>(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time=</span><span class="fl">6.3</span>,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">M=</span><span class="dv">300</span>,</span>
@@ -408,7 +408,7 @@ $type1or2
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_plot_sims</span>(Azores_sims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="3.DAISIE_Galapagos_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="3.DAISIE_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>How does the Azores plot differ from that of the Galápagos?</p>

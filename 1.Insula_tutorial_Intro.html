@@ -111,34 +111,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p><a href="#sec-1.-daisieprep">Learn how to use <code>DAISIEprep</code></a> to prepare and extract data.</p></li>
 <li><p><a href="#sec-2.-daisie">Learn how to use <code>DAISIE</code></a> to estimate parameters and simulate islands.</p></li>
-<li><p>Apply the above approaches to a dataset of frogs from the Caribbean. Writing up this part is the <a href="#sec-3.-applying-daisie"><strong>graded</strong> <strong>assignment</strong></a>.</p></li>
+<li><p>Apply the above approaches to a dataset of frogs from the Caribbean. Writing up this part is the <strong>graded</strong> <strong>assignment</strong>.</p></li>
 </ol>
-<section id="before-you-begin" class="level3">
-<h3 class="anchored" data-anchor-id="before-you-begin">Before you begin:</h3>
-<section id="software-required" class="level5">
-<h5 class="anchored" data-anchor-id="software-required">Software required:</h5>
-<ul>
-<li><p><a href="https://github.com/rambaut/figtree/releases">FigTree</a></p></li>
-<li><p><a href="https://www.r-project.org">R</a></p></li>
-<li><p><a href="https://rstudio.com/products/rstudio/download/">Rstudio</a> with packages</p></li>
-<li><p>Open the program RStudio. Open the file “DAISIE_setup.R” and run that code in Rstudio. This should install all required R packages (<strong>may take a while!</strong>).</p></li>
-</ul>
+<p><strong>Before you start with the DAISIEprep and DAISIE tutorials, please read the introduction to the graded assignment below.</strong></p>
 </section>
-</section>
-<section id="sec-1.-daisieprep" class="level2">
-<h2 class="anchored" data-anchor-id="sec-1.-daisieprep">1. <code>DAISIEprep</code></h2>
-</section>
-<section id="sec-2.-daisie" class="level2">
-<h2 class="anchored" data-anchor-id="sec-2.-daisie">2. <code>DAISIE</code></h2>
-</section>
-<section id="sec-3.-applying-daisie" class="level2">
-<h2 class="anchored" data-anchor-id="sec-3.-applying-daisie">3. Applying <code>DAISIE</code> to Caribbean frog dataset</h2>
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
 <p>The frog genus <em>Insula</em> (imaginary genus, does not exist in reality), is a large genus of frogs of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.</p>
 <p>One of the most diverse islands for the genus <em>Insula</em> is Hispaniola, a large Caribbean island with a complex geological history. It is thought that Hispaniola has a continental origin, but has been isolated from other landmasses for approximately 40 million years. The mainland pool of closely related species of frogs in the continent (i.e.&nbsp;species that could have colonised the islands) has been estimated to be approximately 100 species. More than 15 species of <em>Insula</em> are thought to be endemic to Hispaniola, with a few species being only recently described or discovered. However, the evolutionary island biogeography of <em>Insula</em> on Hispaniola remains unknown.</p>
 <p>A very well-sampled time-calibrated phylogeny for the genus has recently been published, covering all the island where <em>Insula</em> occurs. A few species have been recently discovered and were not sampled in the phylogeny. There is no evidence of recently extinct species. The authors of the study performed an ancestral range reconstruction, so it is possible to infer the ancestral areas and number of colonisation events.</p>
 <p>Making use of the knowledge you gathered from <code>DAISIEprep</code> and <code>DAISIE</code>, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Hispaniola and fit DAISIE to the data.</p>
-<section id="sec-4.-questions" class="level3">
-<h3 class="anchored" data-anchor-id="sec-4.-questions">The aim is to be able to answer the following questions:</h3>
+<section id="sec-4.-questions" class="level4">
+<h4 class="anchored" data-anchor-id="sec-4.-questions">The aim is to be able to answer the following questions:</h4>
 <p>A. How many times has <em>Insula</em> colonised the Caribbean islands?</p>
 <p>B. How many times has <em>Insula</em> colonised Hispaniola?</p>
 <p>C. How many radiations have occured on Hispaniola?</p>
@@ -147,6 +131,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>F. Is there evidence for equilibrium dynamics on the island of Hispaniola?</p>
 <p>G. How has the diversity of <em>Insula</em> on Hispaniola changed through time (according to DAISIE simulations)?</p>
 <p><strong>Assignment: run analyses using <code>DAISIE</code> to answer all of the above questions in an individually written report (Word/Google Doc, maximum 3 pages, minimum font size 11) where you briefly describe the methodology used for the analyses of <em>Insula</em>, your main results, and limitations of the analyses. Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 3 page limit. Do not include code in the assignment (unless you want to point out something specific with the script). Focus on the interpretation of the results from a biological perspective.</strong></p>
+<p>In sum, you need to load the phylogeny into R, use <code>DAISIEprep</code> to extract the <code>DAISIE</code> datalist. Then, fit <code>DAISIE</code> to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the <em>Insula</em> tree, tables and figures provided. With these analyses you will be able to answer all the <a href="#sec-4.-questions">questions</a>.</p>
+<p>After the practical, a file with an example of how to run the <em>Insula</em> analyses will be provided.</p>
+</section>
+</section>
+<section id="before-you-begin" class="level1">
+<h1>Before you begin:</h1>
+<section id="install-software-required" class="level2">
+<h2 class="anchored" data-anchor-id="install-software-required">Install Software required:</h2>
+<ul>
+<li><p><a href="https://github.com/rambaut/figtree/releases">FigTree</a></p></li>
+<li><p><a href="https://www.r-project.org">R</a></p></li>
+<li><p><a href="https://rstudio.com/products/rstudio/download/">Rstudio</a> with packages</p></li>
+<li><p>Open the program RStudio. Open the file “DAISIE_setup.R” and run that code in Rstudio. This should install all required R packages (<strong>may take a while!</strong>).</p></li>
+</ul>
+</section>
+<section id="tutorial-files" class="level2">
+<h2 class="anchored" data-anchor-id="tutorial-files">Tutorial files</h2>
+<p>You will need to follow the instructions of the tutorials, which are in both in html format (.html, open on your internet browser) or in quarto format (.qmd, open in Rstudio). Both versions are exactly the same. The html is file easy to view and the quarto file is more interactive as you can run the scripts directly in Rstudio.</p>
+</section>
+<section id="sec-1.-daisieprep" class="level2">
+<h2 class="anchored" data-anchor-id="sec-1.-daisieprep">1. <a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd"><code>DAISIEprep</code></a></h2>
+</section>
+<section id="sec-2.-daisie" class="level2">
+<h2 class="anchored" data-anchor-id="sec-2.-daisie">2. <a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE_Galapagos.qmd"><code>DAISIE</code></a></h2>
+</section>
+<section id="load-the-insula-data-required" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-insula-data-required">Load the <em>Insula</em> data required</h2>
+<section id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-with-the-applying-these-techniques-to-the-insula-dataset." class="level3">
+<h3 class="anchored" data-anchor-id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-with-the-applying-these-techniques-to-the-insula-dataset.">After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the <em>Insula</em> dataset.</h3>
 <p>In the practical folder you will find all the relevant data:</p>
 <ul>
 <li><code>Insula.tre:</code> the phylogenetic tree of <em>Insula</em> (to be loaded into R for analyses, but also visualized using Figtree): note that the species have numbers instead of latin names (Spec 1, Spec 2, etc).</li>
@@ -165,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="0.Insula_frog_data/Figure_Insula_tip_states.png" class="img-fluid figure-img"></p>
+<p><img src="images/Figure_Insula_tip_states.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Phylogeny showing the geographical distribution of the extant species</figcaption>
 </figure>
 </div>
@@ -174,11 +187,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="0.Insula_frog_data/Figure_Insula_ancestral_state_reconstruction.png" class="img-fluid figure-img" width="534"></p>
+<p><img src="images/Figure_Insula_ancestral_state_reconstruction.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Ancestral area reconstruction</figcaption>
 </figure>
 </div>
-<p>In sum, you need to load the phylogeny into R, use <code>DAISIEprep</code> to extract the <code>DAISIE</code> datalist. Then, fit <code>DAISIE</code> to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the <em>Insula</em> tree, tables and figures provided. With these analyses you will be able to answer all the <a href="#sec-4.-questions">questions</a>.</p>
 <p><strong>Tips</strong>:</p>
 <p>For the DAISIE analyses use:</p>
 <p><u>Island age:</u> 40 million years</p>
