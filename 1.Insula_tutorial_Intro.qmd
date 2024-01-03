@@ -39,15 +39,15 @@ You will need to follow the instructions of the tutorials, which are in both in 
 
 ## 1. DAISIEprep {#sec-1.-daisieprep}
 
-[DAISIEprep tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd) 
+[DAISIEprep tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd)
 
-[DAISIEprep tutorial HTML](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.html) 
+[DAISIEprep tutorial HTML](2.DAISIEprep.html)
 
 ## 2. DAISIE {#sec-2.-daisie}
 
-[DAISIE tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.qmd) 
+[DAISIE tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.qmd)
 
-[DAISIE tutorial HTML](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.html) 
+[DAISIE tutorial HTML](3.DAISIE.html)
 
 #### After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the *Insula* dataset.
 
@@ -83,20 +83,21 @@ In sum, you need to load the phylogeny into R, use DAISIEprep to extract the DAI
 
 ### In the practical folder you will find all the relevant data:
 
--   `Insula.tre:` the phylogenetic tree of *Insula* (to be loaded into R for analyses, but also visualized using Figtree): note that the species have numbers instead of latin names (Spec 1, Spec 2, etc).
+-   [Insula.tre](data/Insula.tre) the phylogenetic tree of *Insula* (to be loaded into R for analyses, but also visualized using Figtree): note that the species have numbers instead of latin names (Spec 1, Spec 2, etc).
 
 ```{r}
 library(ape)
-Insula_tree<-read.nexus("/Users/Luis/Desktop/RUG_IslandBiology_MScCourse/Practicals/DAISIE_Insula_frogs/0.Insula_frog_data/Insula.tre")
+Insula_tree<-read.nexus("data/Insula.tre")
 plot(Insula_tree)
 ```
 
--   `Insula_checklist.xlsx:` A species checklist including the distribution, endemicity status as well as the species that are missing from the phylogeny but which should be considered in the DAISIE analyses.
--   `Figure_Insula_Tip_states.pdf:` A figure of the phylogeny with the tips coloured by the island where the species occurs.
+-   [Insula_checklist.xlsx](data/Insula_checklist.xlsx): A species checklist including the distribution, endemicity status as well as the species that are missing from the phylogeny but which should be considered in the DAISIE analyses.
+
+-   [Figure_Insula_Tip_states.pdf](data/Figure_Insula_Tip_states.pdf): A figure of the phylogeny with the tips coloured by the island where the species occurs.
 
 ![Phylogeny showing the geographical distribution of the extant species](images/Figure_Insula_tip_states.png)
 
--   `Figure_Insula_ancestral_state_reconstruction.pdf:` A figure of an ancestral range reconstruction for the genus.
+-   [Figure_Insula_ancestral_state_reconstruction.pdf](data/Figure_Insula_ancestral_state_reconstruction.pdf): A figure of an ancestral range reconstruction for the genus.
 
 ![Ancestral area reconstruction](images/Figure_Insula_ancestral_state_reconstruction.png)
 
@@ -110,5 +111,4 @@ For the DAISIE analyses use:
 
 Don't forget to add the missing species.
 
-**After the practical, a file with an example of how to run the *Insula* analyses will be provided.**
-
+**After the practical, a file with an example of how to run the *Insula* analyses will be provided, which can be used as a guideline in case you had difficulties completing the practical.**

@@ -7,11 +7,11 @@ author: Luis Valente
 
 ### Course: Island Biology 2024
 
-## 2 - Fitting DAISIE models using the Galápagos birds as example
+## 3 - Fitting DAISIE models using the Galápagos birds as example
 
 ![Phylogenies of Galápagos birds](images/Galapagos_picture.png)
 
-##### In this practical we are going to fit the `DAISIE` model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*). We will use software `DAISIE` to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated rates to see how species diversity has varied through time in the Galápagos.
+##### In this practical we are going to fit the DAISIE model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*). We will use software DAISIE to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated rates to see how species diversity has varied through time in the Galápagos.
 
 Prepare the R environment to run the practical. Empty workspace of existing previous objects.
 
@@ -31,36 +31,15 @@ library(DAISIE)
 library(ape)
 ```
 
-### 2.1 - Load, format and visualise Galapágos bird data
+### 3.1 - Load and visualise Galapágos bird data
 
-The dataset of Galápagos birds includes colonisation and branching times for a total of 27 species of terrestrial birds of the Galápagos islands, distributed across 8 lineages. Some of the lineages have only 1 species, whereas some have radiated (including the Darwin's finch radiation, 16 species). **Note**: the dataset we will use is slightly different from the example dataset that is included as data in the `DAISIE` R package.
+The dataset of Galápagos birds includes colonisation and branching times for a total of 27 species of terrestrial birds of the Galápagos islands, distributed across 8 lineages. Some of the lineages have only 1 species, e.g. the Galápagos dove *Zenaida*. Others have radiated, including the Darwin's finch radiation (16 species) and the mockingbirds *Mimus* radiation (4 species). **Note**: the dataset we will use is slightly different from the example dataset that is included as data in the DAISIE R package.
 
-#### Load Datatable
+#### Load Galápagos DAISIE datalist
 
 ```{r }
-galapagos_table<-read.table(file='/Users/luis/Desktop/IRIOMOTE/LECTURES:PRACTICALS:COURSES/RUG_Evolutionary_Processes_Mar2022/Galapagos_practical/BACK_UP_FILES/Galapagos_datatable.txt',header=T)
+load(file="data/galapagos_datalist.Rdata")
 ```
-
-#### View Galápagos datable
-
-```{r, eval = F }
-View(galapagos_table)
-```
-
-Each row in the table corresponds to a different colonisation event. The first element of the "branching times" column is the time of colonisation of that lineage. When there is more than one value in that column this indicates the branching times (speciation events within that lineage that have taken place on the island).
-
-#### Create DAISIE datalist from the datatable
-
-We will use the DAISIE function `DAISIE_dataprep` to create a datalist that can be used in subsequent DAISIE analyses. We will set an island age of 4 million years for the Galápagos archipelago and a mainland pool size of 1000.
-
-```{r}
-galapagos_datalist<-DAISIE_dataprep(
-        datatable = galapagos_table,
-        island_age = 4,
-        M = 1000)
-```
-
-As you can see, the age of the *Mimus* lineage is older than the age of 4 million years we have set for age of the Galápagos. The age of *Mimus* in the datatable is based on the stem age of the genus in the phylogeny, and we know that the stem age may be an overestimate for the colonisation time because there may have been extinctions along that branch that are no longer visible in the data. What `DAISIE_dataprep` does in this case is to set the age of *Mimus* as a maximum age, where the colonisation could have happened any time between the island age of 4 My and the present.
 
 #### View Galápagos datalist
 
@@ -70,19 +49,33 @@ Just type:
 galapagos_datalist
 ```
 
-View your Galápagos datalist by scrolling up and down in R. You can find detailed information using the R documentation file:
+View your Galápagos datalist by scrolling up and down in R. Or use function `View()`
+
+```{r, eval = F }
+View(galapagos_datalist)
+```
+
+You can find detailed information using the R documentation file:
 
 ```{r, results='hide'}
 ? Galapagos_datalist 
 ```
 
-Or to view just the *Mimus* colonisation:
+To view the top of the list
+
+```{r toplist}
+galapagos_datalist[[1]]
+```
+
+This element contains the island age as well as all the mainland species that do not have extant descendants on the island. These are important pieces of information for DAISIE.
+
+To view just the *Mimus* colonisation:
 
 ```{r mimus}
 galapagos_datalist[[4]]
 ```
 
-The first element of the `$branching_times` item is the island age, followed by the colonisation time and the branching times (if any). The `$stac` item is a code that tells DAISIE whether the lineage is endemic, non-endemic, and whether or not max-age should be used.
+The first element of the `$branching_times` item is the island age, followed by the colonisation time and the branching times (if any). The `$stac` item is a code that tells DAISIE whether the lineage is endemic, non-endemic, and whether or not a precise age or a maximum-age should be used.
 
 Or to view just the Darwin's finches lineage:
 
@@ -100,7 +93,7 @@ You can visualize the data in a different way using:
 DAISIE_plot_island(galapagos_datalist)
 ```
 
-The above plot shows the 8 colonisation events (independent lineages), the time of colonisation, number of species sampled in each lineage (n), number of missing species (m) and the times of cladogenetic speciation events (horizontal lines). The dashed horizontal line is the island age. Unfilled symbols indicate that the time of colonisation was set as "max-age", that is, the colonisation time could have happened any time between the time plotted and the present. This applies for instance to lineages with stem ages older than the island age, whose max-age is then set to be the age of the island (as was the cases of genus *Mimus*, whose stem age in the `galapagos_table` was older than the island age of 4 million years).
+The above plot shows the 8 colonisation events (independent lineages), the time of colonisation, number of species sampled in each lineage (n), number of missing species (m) and the times of cladogenetic speciation events (horizontal lines). The dashed horizontal line is the island age. Unfilled symbols indicate that the time of colonisation was set as "max-age" (not precise), that is, the colonisation time could have happened any time between the time plotted and the present. This applies for instance to lineages with stem ages older than the island age, whose age is then set to be the age of the island (as was the cases of genus *Mimus*, whose stem age is older than the island age of 4 million years).
 
 #### Plot age versus diversity
 
@@ -114,7 +107,7 @@ The above plot shows the number of species per lineage plotted against their col
 
 \
 
-### 2.2 -- Fitting DAISIE models
+### 3.2 -- Fitting DAISIE models
 
 We will now fit three different DAISIE models using maximum likelihood, using the function `DAISIE_ML`. The DAISIE function searches for the parameters that maximise the likelihood of the data given the specified model. We will then compare the likelihoods of the 3 different models to see which one is preferred
 
@@ -225,7 +218,7 @@ The model with the **lowest** AIC value is the preferred model. (In this case, M
 
 \
 
-### 2.3 - Simulate islands
+### 3.3 - Simulate islands
 
 Now let's use the ML parameters we estimated from the Galápagos bird data to simulate islands. Choose the parameters of the best model. We will simulate for 4 million years (time = 4). M is the mainland pool (keep it at 1000).
 
@@ -291,4 +284,4 @@ DAISIE_plot_sims(Azores_sims)
 How does the Azores plot differ from that of the Galápagos?
 
 \
-The end of part 2. Well done!
+The end of the DAISIE practical. Well done! Now you are ready to work on the [*Insula* assignment](1.Insula_tutorial_Intro.html#sec-insula).

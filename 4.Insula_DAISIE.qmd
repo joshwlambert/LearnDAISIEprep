@@ -5,7 +5,7 @@ editor: visual
 author: Luis Valente
 ---
 
-# Example of how to extract data for Hispaniola species from the *Insula* tree, add missing species, fit DAISIE models and run simulations.
+## Example of how to extract data for Hispaniola species from the *Insula* tree, add missing species, fit DAISIE models and run simulations.
 
 ### Load required packages
 
@@ -19,17 +19,18 @@ library(DAISIE)
 ### Load tree
 
 ```{r}
-Insula_tree<-read.nexus("/Users/Luis/Desktop/RUG_IslandBiology_MScCourse/Practicals/DAISIE_Insula_frogs/0.Insula_frog_data/Insula.tre")
+Insula_tree<-read.nexus("data/Insula.tre")
 ```
 
-Visualise tree
+Visualise tree (easier to use Figtree!)
 
 ```{r}
 plot(Insula_tree)
 ```
 
-## Prepare data using `DAISIEprep`
+## Prepare data using DAISIEprep
 
+Look in the [checklist](data/Insula_checklist.xlsx) to see which species occur on Hispaniola.
 Specify tips corresponding to Hispaniola species by specifying that they are endemic and/or non-endemic to the island:
 
 ```{r}

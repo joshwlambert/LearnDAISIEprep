@@ -133,12 +133,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-1.-daisieprep" class="level2">
 <h2 class="anchored" data-anchor-id="sec-1.-daisieprep">1. DAISIEprep</h2>
 <p><a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd">DAISIEprep tutorial quarto</a></p>
-<p><a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.html">DAISIEprep tutorial HTML</a></p>
+<p><a href="2.DAISIEprep.html">DAISIEprep tutorial HTML</a></p>
 </section>
 <section id="sec-2.-daisie" class="level2">
 <h2 class="anchored" data-anchor-id="sec-2.-daisie">2. DAISIE</h2>
 <p><a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.qmd">DAISIE tutorial quarto</a></p>
-<p><a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.html">DAISIE tutorial HTML</a></p>
+<p><a href="3.DAISIE.html">DAISIE tutorial HTML</a></p>
 <section id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-with-the-applying-these-techniques-to-the-insula-dataset." class="level4">
 <h4 class="anchored" data-anchor-id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-with-the-applying-these-techniques-to-the-insula-dataset.">After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the <em>Insula</em> dataset.</h4>
 </section>
@@ -164,19 +164,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="in-the-practical-folder-you-will-find-all-the-relevant-data" class="level3">
 <h3 class="anchored" data-anchor-id="in-the-practical-folder-you-will-find-all-the-relevant-data">In the practical folder you will find all the relevant data:</h3>
 <ul>
-<li><code>Insula.tre:</code> the phylogenetic tree of <em>Insula</em> (to be loaded into R for analyses, but also visualized using Figtree): note that the species have numbers instead of latin names (Spec 1, Spec 2, etc).</li>
+<li><a href="data/Insula.tre">Insula.tre</a> the phylogenetic tree of <em>Insula</em> (to be loaded into R for analyses, but also visualized using Figtree): note that the species have numbers instead of latin names (Spec 1, Spec 2, etc).</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Insula_tree<span class="ot">&lt;-</span><span class="fu">read.nexus</span>(<span class="st">"/Users/Luis/Desktop/RUG_IslandBiology_MScCourse/Practicals/DAISIE_Insula_frogs/0.Insula_frog_data/Insula.tre"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Insula_tree<span class="ot">&lt;-</span><span class="fu">read.nexus</span>(<span class="st">"data/Insula.tre"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Insula_tree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="1.Insula_tutorial_Intro_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <ul>
-<li><code>Insula_checklist.xlsx:</code> A species checklist including the distribution, endemicity status as well as the species that are missing from the phylogeny but which should be considered in the DAISIE analyses.</li>
-<li><code>Figure_Insula_Tip_states.pdf:</code> A figure of the phylogeny with the tips coloured by the island where the species occurs.</li>
+<li><p><a href="data/Insula_checklist.xlsx">Insula_checklist.xlsx</a>: A species checklist including the distribution, endemicity status as well as the species that are missing from the phylogeny but which should be considered in the DAISIE analyses.</p></li>
+<li><p><a href="data/Figure_Insula_Tip_states.pdf">Figure_Insula_Tip_states.pdf</a>: A figure of the phylogeny with the tips coloured by the island where the species occurs.</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <ul>
-<li><code>Figure_Insula_ancestral_state_reconstruction.pdf:</code> A figure of an ancestral range reconstruction for the genus.</li>
+<li><a href="data/Figure_Insula_ancestral_state_reconstruction.pdf">Figure_Insula_ancestral_state_reconstruction.pdf</a>: A figure of an ancestral range reconstruction for the genus.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><u>Island age:</u> 40 million years</p>
 <p><u>Mainland pool size</u>: 100 species</p>
 <p>Don’t forget to add the missing species.</p>
-<p><strong>After the practical, a file with an example of how to run the <em>Insula</em> analyses will be provided.</strong></p>
+<p><strong>After the practical, a file with an example of how to run the <em>Insula</em> analyses will be provided, which can be used as a guidelines in case you had difficulties completing the practical.</strong></p>
 </section>
 </section>
 </section>
