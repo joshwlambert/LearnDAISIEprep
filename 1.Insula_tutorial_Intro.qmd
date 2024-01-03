@@ -1,5 +1,5 @@
 ---
-title: "1.Insular tutorial Intro"
+title: "1.Insula tutorial Intro"
 format: html
 editor: visual
 author: Luis Valente
@@ -13,11 +13,11 @@ In this practical we will estimate rates of colonisation, speciation and extinct
 
 The practical is divided into 3 main parts:
 
-1.  [Learn how to use `DAISIEprep`](#sec-1.-daisieprep) to prepare and extract data.
+1.  [Learn how to use `DAISIEprep`](#sec-1.-daisieprep) to prepare and extract data (1-2 hours). `DAISIEprep` is an R package that allows users to format phylogenetic data for subsequent analyses in `DAISIE`.
 
-2.  [Learn how to use `DAISIE`](#sec-2.-daisie) to estimate parameters and simulate islands.
+2.  [Learn how to use `DAISIE`](#sec-2.-daisie) to estimate parameters and simulate islands (1-2 hours). DAISIE is an R package that allows fitting island biogeography models and simulating islands.
 
-3.  Apply the above approaches to a dataset of frogs from the Caribbean. Writing up this part is the **graded** **assignment**.
+3.  [Apply the above approaches to a dataset of frogs from the Caribbean](#sec-insula). Writing up this part is the **graded** **assignment**.
 
 **Before you start with the DAISIEprep and DAISIE tutorials, please read the introduction to the graded assignment below.**
 
@@ -73,11 +73,11 @@ You will need to follow the instructions of the tutorials, which are in both in 
 
 ## 2. [`DAISIE`](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE_Galapagos.qmd) {#sec-2.-daisie}
 
-## Load the *Insula* data required
+## 3. *Insula* assignment {#sec-insula}
 
 ### After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the *Insula* dataset.
 
-In the practical folder you will find all the relevant data:
+### In the practical folder you will find all the relevant data:
 
 -   `Insula.tre:` the phylogenetic tree of *Insula* (to be loaded into R for analyses, but also visualized using Figtree): note that the species have numbers instead of latin names (Spec 1, Spec 2, etc).
 

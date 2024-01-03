@@ -101,12 +101,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="in-this-tutorial-the-main-features-of-daisieprep-are-explained.-the-objective-is-to-first-identify-island-colonisation-events-from-time-calibrated-phylogenetic-trees-assign-an-island-endemicity-status-endemic-non-endemic-not-present-to-each-of-them-and-then-extract-times-of-colonisation-of-the-island-and-diversification-within-the-island." class="level2">
-<h2 class="anchored" data-anchor-id="in-this-tutorial-the-main-features-of-daisieprep-are-explained.-the-objective-is-to-first-identify-island-colonisation-events-from-time-calibrated-phylogenetic-trees-assign-an-island-endemicity-status-endemic-non-endemic-not-present-to-each-of-them-and-then-extract-times-of-colonisation-of-the-island-and-diversification-within-the-island.">In this tutorial, the main features of <code>DAISIEprep</code> are explained. The objective is to first identify island colonisation events from time-calibrated phylogenetic trees, assign an island endemicity status (endemic, non-endemic, not present) to each of them, and then extract times of colonisation of the island and diversification within the island.</h2>
-<section id="the-tutorial-is-divided-into-2-sections" class="level3">
-<h3 class="anchored" data-anchor-id="the-tutorial-is-divided-into-2-sections">The tutorial is divided into 2 sections:</h3>
+<section id="in-this-tutorial-the-main-features-of-daisieprep-are-explained.-daisieprep-is-an-r-package-that-facilitates-formatting-of-data-for-subsequent-use-in-daisie." class="level3">
+<h3 class="anchored" data-anchor-id="in-this-tutorial-the-main-features-of-daisieprep-are-explained.-daisieprep-is-an-r-package-that-facilitates-formatting-of-data-for-subsequent-use-in-daisie.">In this tutorial, the main features of <code>DAISIEprep</code> are explained. <code>DAISIEprep</code> is an R package that facilitates formatting of data for subsequent use in <code>DAISIE</code>.</h3>
+<section id="a-typical-daisieprep-pipeline-is-to-1-identify-island-colonisation-events-for-the-taxonomic-group-of-interest-from-time-calibrated-phylogenetic-trees-2-assign-an-island-endemicity-status-endemic-non-endemic-not-present-to-each-of-the-species-3-automatically-extract-times-of-colonisation-of-the-island-and-diversification-within-the-island-from-the-phylogenies-4-add-any-missing-species-5-format-data-for-daisie." class="level4">
+<h4 class="anchored" data-anchor-id="a-typical-daisieprep-pipeline-is-to-1-identify-island-colonisation-events-for-the-taxonomic-group-of-interest-from-time-calibrated-phylogenetic-trees-2-assign-an-island-endemicity-status-endemic-non-endemic-not-present-to-each-of-the-species-3-automatically-extract-times-of-colonisation-of-the-island-and-diversification-within-the-island-from-the-phylogenies-4-add-any-missing-species-5-format-data-for-daisie.">A typical <code>DAISIEprep</code> pipeline is to 1) identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees, 2) assign an island endemicity status (endemic, non-endemic, not present) to each of the species, 3) automatically extract times of colonisation of the island and diversification within the island from the phylogenies; 4) add any missing species, 5) format data for <code>DAISIE</code>.</h4>
+</section>
+<section id="the-tutorial-is-divided-into-2-sections" class="level4">
+<h4 class="anchored" data-anchor-id="the-tutorial-is-divided-into-2-sections">The tutorial is divided into 2 sections:</h4>
 <ol type="1">
-<li><p><strong>Single phylogeny example</strong> - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.</p></li>
+<li><p><strong>Phylogeny example</strong> - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.</p></li>
 <li><p><strong>Adding missing species</strong> - How to add missing species, lineages, etc, to your DAISIE data list.</p></li>
 </ol>
 <p>Load the required packages:</p>
@@ -134,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>phylo <span class="ot">&lt;-</span> ape<span class="sc">::</span><span class="fu">rcoal</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Important: <code>DAISIEprep</code> requires the tip labels (taxon names) in the phylogeny to be formatted as genus name and species name separated by an underscore (e.g.&nbsp;“Canis_lupus”).</strong> They can also optionally have tags appended after the species name (separated by underscore, e.g.&nbsp;“Canis_lupus_123”; “Canis_lupus_familiaris_123”). This is common if there are multiple tips in the phylogeny for a single species, when multiple populations or multiple subspecies have been sampled. Samples with the same Genus_species name on the tip will be considered to be of the same species, even if they have subsequent sampling or subspecies tags.</p>
+<p><strong>Important: <code>DAISIEprep</code> requires the tip labels (taxon names) in the phylogeny to be formatted as genus name and species name separated by an underscore (e.g.&nbsp;“Canis_lupus”, “Species_1”).</strong></p>
 <p>Here we add tip labels to the simulated phylogeny. In this case, all taxa sampled are different plant species from the same genus.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>phylo<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Plant_a"</span>, <span class="st">"Plant_b"</span>, <span class="st">"Plant_c"</span>, <span class="st">"Plant_d"</span>, <span class="st">"Plant_e"</span>,</span>
@@ -153,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now we have a phylogeny in the <code>phylo4</code> format to which we can easily append data.</p>
-<p>Specify tips corresponding to Hispaniola species by specifying that they are endemic and/or non-endemic to the island:</p>
+<p>Specify tips corresponding to species from you focal island by specifying that they are endemic and/or non-endemic to the island. In the example below, species Plant_h is found on the island but it not endemic, and species Plant_f and Plant_e are found on the island and are endemic to the island. All other species on the phylogeny are NOT present on the island.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>island_species <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tip_labels =</span> <span class="fu">c</span>(<span class="st">"Plant_h"</span>,</span>
@@ -162,14 +165,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">tip_endemicity_status =</span> <span class="fu">c</span>(<span class="st">"nonendemic"</span>,<span class="st">"endemic"</span>,<span class="st">"endemic"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Assign island endemicity status to all species in the dataset (including the non-Hispaniola species)</p>
+<p>Now that we know which species are present on the island, we can assign an endemicity status to all the species in the phylogeny.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>endemicity_status <span class="ot">&lt;-</span> <span class="fu">create_endemicity_status</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">phylo =</span> phylo,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_species =</span> island_species</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Add endemicity status to the phylogeny</p>
+<p>And append this information to the phylogeny object:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>phylod <span class="ot">&lt;-</span> phylobase<span class="sc">::</span><span class="fu">phylo4d</span>(phylo, endemicity_status)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -184,8 +187,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>As you can see, in the example phylogeny, there appear to be 2 separate colonisation events of the island - 1 which has led to species Plant_f and Plant_e and other that has led to the non-endemic species Plant_h.</p>
 <p>Now that we can see the tips that are present on the island, we can extract them to form our island community data set that can be used in the <code>DAISIE</code> R package to fit likelihood models of island colonisation and diversification.</p>
-<p>Before we extract species, we will first create an object to store all of the island colonists’ information. This uses the <code>island_tbl</code> class introduced in this package (<code>DAISIEprep</code>). The <code>island_tbl</code> is an S4 class. This <code>island_tbl</code> object can then easily be converted to a DAISIE data list using the function <code>create_daisie_data</code> (more information on this below).</p>
+<p>Before we extract species, we first create an object to store all of the island colonists’ information. This uses the <code>island_tbl</code> class introduced in this package (<code>DAISIEprep</code>). This <code>island_tbl</code> object can then easily be converted to a DAISIE data list using the function <code>create_daisie_data</code> (more information on this below).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">island_tbl</span>()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>island_tbl</span>
@@ -195,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [9] clade_type     </span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can see that this is a object containing an empty data frame. In order to fill this data frame with information on the island colonisation and diversification events we can run:</p>
+<p>We can see that this is an object containing an empty data frame. In order to fill this data frame with information on the island colonisation and diversification events we can run:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">extract_island_species</span>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">phylod =</span> phylod,</span>
@@ -208,10 +212,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    Plant_h nonendemic               0 0.1233674       FALSE              NA</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   min_age      species clade_type</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      NA Plant_e,....          1</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      NA      Plant_h          1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      NA      Plant_h          1</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>island_tbl_min<span class="ot">&lt;-</span>island_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The function <code>extract_island_species()</code> is the main function in <code>DAISIEprep</code> to extract data from the phylogeny. In the example above, we used the “min” extraction algorithm. The “min” algorithm extracts island community data with the assumptions of the DAISIE model (i.e.&nbsp;no back-colonisation from the island to the mainland), but we recommend using the “asr” algorithm when back-colonisation events are present in the data (for example, one species within a large endemic island radiation colonised another island or mainland). Each row in the <code>island_tbl</code> corresponds to a separate colonisation of the island. <strong>In this case, two colonist lineages were identified using the ‘min’ extraction algorithm, one endemic and another non-endemic.</strong></p>
-<p>However, if we do not want to use the “min” algorithm, and instead want to extract the most likely colonisations inferred in an ancestral state reconstruction, we need to know the probability of the ancestors of the island species being on the island to determine the time of colonisation. To do this we can fit one of many ancestral state reconstruction methods. Here we use maximum parsimony as it is a simple method that should prove reliable for reconstructing the ancestral species areas (i.e.&nbsp;on the island or not on the island) for most cases. First, we translate our extant species endemicity status to a numeric representation of whether that species is on the island.</p>
+<p>The function <code>extract_island_species()</code> is the main function in <code>DAISIEprep</code> to extract data from the phylogeny. In the example above, we used the “min” extraction algorithm. The “min” algorithm extracts island community data assuming no back-colonisation from the island to the mainland. Each row in the <code>island_tbl</code> corresponds to a separate colonisation of the island. <strong>In this case, two colonist lineages were correctly identified using the ‘min’ extraction algorithm, one endemic and another non-endemic. Each row in the table corresponds to one colonisation event, and</strong></p>
+<p>However, if back-colonisation is frequent (for example, one species within a large endemic island radiation colonised another island or mainland), we recommend using the “asr” algorithm, which extracts the most likely colonisations inferred in an ancestral area reconstruction. To use the “asr” algorithm, we first need to know the probability of the ancestors of the island species being present on the island to determine the time of colonisation. To do this, we can fit one of many ancestral state reconstruction methods. Here we use maximum parsimony, as it is a simple method that should prove reliable for reconstructing the ancestral species areas (i.e.&nbsp;on the island or not on the island) for most cases. First, we translate our extant species endemicity status to a numeric representation of whether that species is on the island.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>phylod <span class="ot">&lt;-</span> <span class="fu">add_asr_node_states</span>(<span class="at">phylod =</span> phylod, <span class="at">asr_method =</span> <span class="st">"parsimony"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -227,20 +232,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><br>
-<br>
-</p>
-<p>Sidenote: if you are wondering what the probabilities are at each node and whether this should influence your decision to pick a preference for island or mainland when the likelihoods for each state are equal, we can plot the probabilities at the nodes to visualise the ancestral state reconstruction using <code>plot_phylod(phylod = phylod, node_pies = TRUE)</code>.</p>
-<p><br>
-</p>
-<p>Now we can extract island colonisation and diversification times from the phylogeny using the reconstructed ancestral states of island presence/absence.</p>
+Sidenote: if you are wondering what the probabilities are at each node and whether this should influence your decision to pick a preference for island or mainland when the likelihoods for each state are equal, we can plot the probabilities at the nodes to visualise the ancestral state reconstruction using <code>plot_phylod(phylod = phylod, node_pies = TRUE)</code>.</p>
+<p>Now we can extract island colonisation and diversification times from the phylogeny with asr using the reconstructed ancestral states of island presence/absence.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">extract_island_species</span>(</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>island_tbl_asr <span class="ot">&lt;-</span> <span class="fu">extract_island_species</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">phylod =</span> phylod,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">extraction_method =</span> <span class="st">"asr"</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>island_tbl</span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>island_tbl_asr</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Class:  Island_tbl </span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   clade_name     status missing_species  col_time col_max_age branching_times</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    Plant_e    endemic               0 0.2344023       FALSE    0.154371....</span></span>
@@ -249,75 +250,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      NA Plant_e,....          1</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      NA      Plant_h          1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>As you can see, in this case using the <code>asr</code> algorithm we find a single colonisation of the island</strong>, as can be seen by the fact that the <code>island_tbl</code> only has one row.</p>
-<p><br>
+<p>By comparing <code>island_tbl_min</code> and <code>island_tbl_asr</code> you can see the differences in the 2 extraction methods.<br>
 </p>
-<p>Now that we have the <code>island_tbl</code> we can convert this to the DAISIE data list to be used by the DAISIE inference model.</p>
-<p>To convert to the DAISIE data list (i.e.&nbsp;the input data of the DAISIE inference model) we use <code>create_daisie_data()</code>, providing the <code>island_tbl</code> as input. We also need to specify:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(island_tbl_min,island_tbl_asr)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Attributes: &lt; Component \"island_tbl\": Component \"col_time\": Mean relative difference: 0.21709 &gt;"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this case, the results very similar between “asr” and “min”, except that colonisation time of one the lineages is older using “asr”.</p>
+<p>For the purposes of this practical, we will proceed with the results from “asr” <code>(island_tbl_asr</code>). For convenience, let’s rename the object to <code>island_tbl</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>island_tbl<span class="ot">&lt;-</span>island_tbl_asr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can visualize the contents of the island_tbl object to try and figure out what they mean.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(island_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For example, the code below shows you the names of the species included in each lineage:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>island_tbl<span class="sc">@</span>island_tbl<span class="sc">$</span>species</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_e" "Plant_f"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_h"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have the <code>island_tbl</code> we can convert this to the DAISIE data list to be used by the DAISIE inference model. To convert to the DAISIE data list (i.e.&nbsp;the input data of the DAISIE inference model) we use <code>create_daisie_data()</code>, providing the <code>island_tbl</code> as input. We also need to specify:</p>
 <ul>
 <li>The age of the island or archipelago. Here we use an island age of twelve million years (<code>island_age = 12</code>).</li>
 <li>Whether the colonisation times extracted from the phylogenetic data should be considered precise (<code>precise_col_time = TRUE</code>). We will not discuss the details of this here, but briefly by setting this to <code>TRUE</code> the data will tell the DAISIE model that the colonisation times are known without error. Setting <code>precise_col_time = FALSE</code> will change tell the DAISIE model that the colonisation time is uncertain and should interpret this as the upper limit to the time of colonisation and integrate over the uncertainty between this point and either the present time or to the first branching point (either speciation or divergence into subspecies).</li>
 <li>The number of species in the mainland source pool. Here we set it to 100 (<code>num_mainland_species = 100</code>). This will be used to calculate the number of species that could have potentially colonised the island but have not. When we refer to the mainland pool, this does not necessarily have to be a continent, it could be a different island if the source of species immigrating to an island is largely from another nearby island (a possible example of this could be Madagascar being the source of species colonising Comoros). This information is used by the DAISIE model to calculate the colonisation rate of the island.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">create_daisie_data</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> island_tbl,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_age =</span> <span class="dv">12</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_mainland_species =</span> <span class="dv">100</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">precise_col_time =</span> <span class="cn">TRUE</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">create_daisie_data</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> island_tbl,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_age =</span> <span class="dv">12</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_mainland_species =</span> <span class="dv">100</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">precise_col_time =</span> <span class="cn">TRUE</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Below we show two elements of the DAISIE data list produced. The first element <code>data_list[[1]]</code> in every DAISIE data list is the island community metadata, containing the island age and the number of species in the mainland pool that did not leave descendants on the island at the present day. This is important information for DAISIE inference, as it is possible some mainland species colonised the island but went extinct leaving no trace of their island presence.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data_list[[<span class="dv">1</span>]]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $island_age</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $not_present</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 98</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_list[[<span class="dv">1</span>]]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $island_age</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $not_present</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 98</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next is the first element containing information on island colonists (every element <code>data_list[[x]]</code> in the list after the metadata contains information on individual island colonists). This contains the name of the colonist, the number of missing species, and the branching times, which is a vector containing the age of the island, the colonisation time and the times of any cladogenesis events. Confusingly, it may be that the branching times vector contains no branching times: when there are only two numbers in the vector these are the island age followed by the colonisation time. Then there is the stac, which stands for status of colonist. This is a number which tells the DAISIE model how to identify the endemicity and colonisation uncertainty of the island colonist (<a href="https://cran.r-project.org/package=DAISIE/vignettes/stac_key.html">these are explained here if you are interested</a>). Lastly, the type1or2 defines which macroevolutionary regime an island colonist is in. By macroevolutionary regime we mean the set of rates of colonisation, speciation and extinction for that colonist. Most applications will assume all island clades have the same regime and thus all are assigned type 1. However, if there is <strong>a priori</strong> expectation that one clade significantly different from the rest, e.g.&nbsp;the Galápagos finches amongst the other terrestrial birds of the Galápagos archipelago this clade can be set to type 2.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data_list[[<span class="dv">2</span>]]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $colonist_name</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_e"</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $branching_times</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12.0000000  0.2344023  0.1543711</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stac</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $missing_species</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $type1or2</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data_list[[<span class="dv">2</span>]]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $colonist_name</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_e"</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $branching_times</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12.0000000  0.2344023  0.1543711</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $stac</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $missing_species</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $type1or2</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This data list is now ready to be used in the DAISIE maximum likelihood inference model from the R package <code>DAISIE</code>. But let’s learn how to add missing species (species not sampled) to this datalist.</p>
+<p>This data list is now ready to be used in the DAISIE maximum likelihood inference model from the R package <code>DAISIE</code>. But let’s learn how to add missing species (species not sampled in the phylogeny) to this datalist.</p>
 </section>
 </section>
 <section id="adding-missing-species" class="level2">
 <h2 class="anchored" data-anchor-id="adding-missing-species">2. Adding missing species</h2>
-<p>It is often the case that phylogenetic data is not available for some island species or even entire lineages present in the island community. But we can still include these species in our DAISIE analyses. Furthermore, even in the cases where a dated phylogeny does exist, it may not be open-source and available to use for the extraction. In the latter cases, it may be possible to know the stem age or crown age if reported in the literature with the published phylogeny. This section is about the tools that <code>DAISIEprep</code> provides in order to handle missing data, and generally to handle species that are missing and need to be input into the data manually.</p>
+<p>It is often the case that phylogenetic data is not available for some island species or even for entire lineages present in the island community. But we can still include these species in our <code>DAISIE</code> analyses using <code>DAISIEprep</code>. This section is about the tools that <code>DAISIEprep</code> provides in order to handle missing data, and generally to handle species that are missing and need to be input into the data manually.</p>
 <p>For this section, as with the previous section, the core data structure we are going to work with is the <code>island_tbl</code>. We will use the <code>island_tbl</code> for the example plant dataset produced in the last section.</p>
 <section id="adding-missing-species-to-an-island-clade-that-has-been-sampled-in-the-phylogeny" class="level3">
 <h3 class="anchored" data-anchor-id="adding-missing-species-to-an-island-clade-that-has-been-sampled-in-the-phylogeny">2.1 Adding missing species to an island clade that has been sampled in the phylogeny</h3>
-<p>This option is for cases in which a clade has been sampled in the phylogeny, and at least 1 colonisation or 1 branching time is available, but 1 or more species were not sampled. For this example, we imagine that 2 species have not been sampled, and that we want to add them as missing species to the Galápagos finch clade that is sampled in the phylogeny. The finches have the clade name “C_fus” in the <code>island_tbl</code> (third row). To assign two missing species to this clade we use following code:</p>
+<p>This option is for cases in which a clade has been sampled in the phylogeny, and at least 1 colonisation or 1 branching time is available in the datalist, but 1 or more species from that clade were not sampled. For this example, we imagine that 2 species have not been sampled, and that we want to add them as missing species to the lineage containing species Plant_e that is sampled in the phylogeny. To assign two missing species to this clade we use following code:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_missing_species</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># num_missing_species equals total species missing</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_missing_species =</span> <span class="dv">2</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># name of a sampled species you want to "add" the missing to</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it can be any in the clade</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">species_to_add_to =</span> <span class="st">"C_fus"</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_missing_species</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># num_missing_species equals total species missing</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_missing_species =</span> <span class="dv">2</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># name of a sampled species you want to "add" the missing to</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it can be any in the clade</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">species_to_add_to =</span> <span class="st">"Plant_e"</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The argument <code>species_name</code> uses a representative sampled species from that island clade to work out which colonist in the <code>island_tbl</code> to assign the specified number of missing species (<code>num_missing_species</code>) to. In this case we used the species in the clade name, however, this could also have been any sampled species from the clade, which include:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>island_tbl<span class="sc">@</span>island_tbl<span class="sc">$</span>species[[<span class="dv">1</span>]]</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_e" "Plant_f"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>island_tbl<span class="sc">@</span>island_tbl<span class="sc">$</span>species[[<span class="dv">1</span>]]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Plant_e" "Plant_f"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With the new missing species added to the <code>island_tbl</code> we can repeat the conversion steps above using <code>create_daisie_data()</code> to produce data accepted by the DAISIE model.</p>
 </section>
@@ -329,48 +350,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Example for adding lineage with 1 species:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Bird_e"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clade with just 1 species, missing_species = 0</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because adding the lineage already counts as 1</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">0</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="st">"Bird_e"</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Bird_e"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clade with just 1 species, missing_species = 0</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because adding the lineage already counts as 1</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">0</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="st">"Bird_e"</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example for adding lineage with 5 species:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Bird_f"</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the total species is 5 and all are missing</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># but we add missing_species = 4 because</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adding the lineage already counts as 1</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">4</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Bird_f"</span>, <span class="st">"Bird_g"</span>, <span class="st">"Bird_h"</span>,</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Bird_i"</span>, <span class="st">"Bird_j"</span>)</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Bird_f"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the total species is 5 and all are missing</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># but we add missing_species = 4 because</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adding the lineage already counts as 1</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">4</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Bird_f"</span>, <span class="st">"Bird_g"</span>, <span class="st">"Bird_h"</span>,</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Bird_i"</span>, <span class="st">"Bird_j"</span>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With the new missing species added to the <code>island_tbl</code> we can repeat the conversion steps above using <code>create_daisie_data()</code> to produce data accepted by the DAISIE model.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">create_daisie_data</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> island_tbl,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_age =</span> <span class="dv">4</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_mainland_species =</span> <span class="dv">100</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">precise_col_time =</span> <span class="cn">TRUE</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">create_daisie_data</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> island_tbl,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_age =</span> <span class="dv">4</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_mainland_species =</span> <span class="dv">100</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">precise_col_time =</span> <span class="cn">TRUE</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

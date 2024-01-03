@@ -99,7 +99,7 @@ island_tbl_asr
 Compare 2 options:
 
 ```{r}
-identical(island_tbl_min,island_tbl_asr)
+all.equal(island_tbl_min,island_tbl_asr)
 ```
 
 As you can see, the results of the 2 extractions (min and asr) are exactly the same in this case, so we can use either for the subsequent analyses.
