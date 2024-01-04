@@ -5,9 +5,11 @@ editor: visual
 author: Luis Valente
 ---
 
-# Island Biology 2024
+# Course Island Biology 2024
 
-# Evolutionary island biogeography using DAISIE
+## Evolutionary island biogeography using DAISIE
+
+![](images/Figure_Insula_ancestral_state_reconstruction.png){fig-align="center" width="297"}
 
 In this practical we will estimate rates of colonisation, speciation and extinction for an (imaginary) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
 

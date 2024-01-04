@@ -5,9 +5,9 @@ editor: visual
 author: Luis Valente
 ---
 
-### Course: Island Biology 2024
+# Course Island Biology 2024
 
-## 3 - Fitting DAISIE models using the Galápagos birds as example
+## Part 3 - Fitting DAISIE models using the Galápagos birds as example
 
 ![Phylogenies of Galápagos birds](images/Galapagos_picture.png)
 

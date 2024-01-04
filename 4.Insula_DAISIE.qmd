@@ -30,8 +30,7 @@ plot(Insula_tree)
 
 ## Prepare data using DAISIEprep
 
-Look in the [checklist](data/Insula_checklist.xlsx) to see which species occur on Hispaniola.
-Specify tips corresponding to Hispaniola species by specifying that they are endemic and/or non-endemic to the island:
+Look in the [checklist](data/Insula_checklist.xlsx) to see which species occur on Hispaniola. Specify tips corresponding to Hispaniola species by specifying that they are endemic and/or non-endemic to the island:
 
 ```{r}
 island_species <- data.frame(

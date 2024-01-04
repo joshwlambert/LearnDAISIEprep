@@ -5,17 +5,21 @@ editor: visual
 author: Luis Valente
 ---
 
+# Course Island Biology 2024
+
+## Part 2 - DAISIEprep
+
 ### In this tutorial, the main features of DAISIEprep are explained. DAISIEprep is an R package that facilitates formatting of data for subsequent use in DAISIE.
 
-#### A typical DAISIEprep pipeline is to 1) identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees, 2) assign an island endemicity status (endemic, non-endemic, not present) to each of the species, 3) automatically extract times of colonisation of the island and diversification within the island from the phylogenies; 4) add any missing species, 5) format data for DAISIE.
+![DAISIEprep R package logo](images/DAISIEprep_logo.png){fig-align="center"}
+
+#### A typical DAISIEprep pipeline is as follows: 1) identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees, 2) assign an island endemicity status (endemic, non-endemic, not present) to each of the species, 3) automatically extract times of colonisation of the island and diversification within the island from the phylogenies; 4) add any missing species, 5) format data for DAISIE.
 
 #### The tutorial is divided into 2 sections:
 
 1.  **Phylogeny example** - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
 
 2.  **Adding missing species** - How to add missing species, lineages, etc, to your DAISIE data list.
-
-\
 
 #### First load the required packages:
 
