@@ -5,7 +5,7 @@ editor: visual
 author: Luis Valente
 ---
 
-# Course Island Biology 2024
+# Course Island Biology
 
 ## Part 2 - DAISIEprep
 
