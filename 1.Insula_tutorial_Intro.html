@@ -8,7 +8,7 @@
 
 <meta name="author" content="Luis Valente">
 
-<title>DAISIE practical tutorial</title>
+<title>1. Insula practical tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DAISIE practical tutorial</h1>
+<h1 class="title">1. Insula practical tutorial</h1>
 </div>
 
 
@@ -110,12 +110,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/Figure_Insula_ancestral_state_reconstruction.png" class="img-fluid figure-img" width="297"></p>
 </figure>
 </div>
-<p>In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.</p>
+<p>In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of beetles found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.</p>
 <p>The practical is divided into 3 main parts:</p>
 <ol type="1">
 <li><p><a href="#sec-1.-daisieprep">Learn how to use DAISIEprep</a> to prepare and extract data (1-2 hours). DAISIEprep is an R package that allows users to format phylogenetic data for subsequent analyses in DAISIE.</p></li>
 <li><p><a href="#sec-2.-daisie">Learn how to use DAISIE</a> to estimate parameters and simulate islands (1-2 hours). DAISIE is an R package that allows fitting island biogeography models and simulating islands.</p></li>
-<li><p><a href="#sec-insula">Apply the above approaches to a dataset of frogs from the Caribbean</a>. Writing up this part is the graded assignment.</p></li>
+<li><p><a href="#sec-insula">Apply the above approaches to a dataset of beetles from the Caribbean</a>. Writing up this part is the graded assignment.</p></li>
 </ol>
 <p><strong>Before you start with the DAISIEprep and DAISIE tutorials, please read the introduction to the graded assignment below.</strong></p>
 </section>
@@ -148,19 +148,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-insula" class="level2">
 <h2 class="anchored" data-anchor-id="sec-insula">3. <em>Insula</em> assignment</h2>
-<p>The frog genus <em>Insula</em> (imaginary genus, does not exist in reality), is a large genus of frogs of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.</p>
-<p>One of the most diverse islands for the genus <em>Insula</em> is Hispaniola, a large Caribbean island with a complex geological history. It is thought that Hispaniola has a continental origin, but has been isolated from other landmasses for approximately 40 million years. The mainland pool of closely related species of frogs in the continent (i.e.&nbsp;species that could have colonised the islands) has been estimated to be approximately 100 species. More than 15 species of <em>Insula</em> are thought to be endemic to Hispaniola, with a few species being only recently described or discovered. However, the evolutionary island biogeography of <em>Insula</em> on Hispaniola remains unknown.</p>
+<p>The beetle genus <em>Insula</em> (imaginary genus, does not exist in reality), is a large genus of beetles of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.</p>
+<p>One of the most diverse islands for the genus <em>Insula</em> is Jamaica, a large Caribbean island with a complex geological history. It is thought that Jamaica has a continental origin, but has been isolated from other landmasses for approximately 40 million years. The mainland pool of closely related species of beetles in the continent (i.e.&nbsp;species that could have colonised the islands) has been estimated to be approximately 100 species. More than 15 species of <em>Insula</em> are thought to be endemic to Jamaica, with a few species being only recently described or discovered. However, the evolutionary island biogeography of <em>Insula</em> on Jamaica remains unknown.</p>
 <p>A very well-sampled time-calibrated phylogeny for the genus has recently been published, covering all the island where <em>Insula</em> occurs. A few species have been recently discovered and were not sampled in the phylogeny. There is no evidence of recently extinct species. The authors of the study performed an ancestral range reconstruction, so it is possible to infer the ancestral areas and number of colonisation events.</p>
-<p>Making use of the knowledge you gathered from DAISIEprep and DAISIE, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Hispaniola and fit DAISIE to the data.</p>
+<p>Making use of the knowledge you gathered from DAISIEprep and DAISIE, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Jamaica and fit DAISIE to the data.</p>
 <section id="sec-4.-questions" class="level4">
 <h4 class="anchored" data-anchor-id="sec-4.-questions">The aim is to be able to answer the following questions:</h4>
 <p>A. How many times has <em>Insula</em> colonised the Caribbean islands?</p>
-<p>B. How many times has <em>Insula</em> colonised Hispaniola?</p>
-<p>C. How many radiations have occured on Hispaniola?</p>
-<p>D. What are the rates of colonisation, speciation and extinction for <em>Insula</em> in Hispaniola?</p>
-<p>E. Is there evidence for diversity-dependence in the <em>Insula</em> species of Hispaniola?</p>
-<p>F. Is there evidence for equilibrium dynamics on the island of Hispaniola?</p>
-<p>G. How has the diversity of <em>Insula</em> on Hispaniola changed through time (according to DAISIE simulations)?</p>
+<p>B. How many times has <em>Insula</em> colonised Jamaica?</p>
+<p>C. How many radiations have occured on Jamaica?</p>
+<p>D. What are the rates of colonisation, speciation and extinction for <em>Insula</em> in Jamaica?</p>
+<p>E. Is there evidence for diversity-dependence in the <em>Insula</em> species of Jamaica?</p>
+<p>F. Is there evidence for equilibrium dynamics on the island of Jamaica?</p>
+<p>G. How has the diversity of <em>Insula</em> on Jamaica changed through time (according to DAISIE simulations)?</p>
 <p><strong>Written assignment:</strong></p>
 <ul>
 <li><p><strong>Follow the self-guided tutorials of the computer practical and run analyses using DAISIE to answer all of the above questions in an individually written report.</strong></p></li>

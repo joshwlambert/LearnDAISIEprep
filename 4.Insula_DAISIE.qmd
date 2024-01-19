@@ -5,7 +5,7 @@ editor: visual
 author: Luis Valente
 ---
 
-## Example of how to extract data for Hispaniola species from the *Insula* tree, add missing species, fit DAISIE models and run simulations.
+## Example of how to extract data for Jamaica species from the *Insula* tree, add missing species, fit DAISIE models and run simulations.
 
 ### Load required packages
 
@@ -30,7 +30,7 @@ plot(Insula_tree)
 
 ## Prepare data using DAISIEprep
 
-Look in the [checklist](data/Insula_checklist.xlsx) to see which species occur on Hispaniola. Specify tips corresponding to Hispaniola species by specifying that they are endemic and/or non-endemic to the island:
+Look in the [checklist](data/Insula_checklist.xlsx) to see which species occur on Jamaica. Specify tips corresponding to Jamaica species by specifying that they are endemic and/or non-endemic to the island:
 
 ```{r}
 island_species <- data.frame(
@@ -53,7 +53,7 @@ island_species <- data.frame(
   tip_endemicity_status = c(rep("endemic",14),"nonendemic"))
 ```
 
-Assign island endemicity status to all species in the dataset (including the non-Hispaniola species)
+Assign island endemicity status to all species in the dataset (including the non-Jamaican species)
 
 ```{r}
 endemicity_status <- create_endemicity_status(
@@ -240,4 +240,4 @@ Plot simulations
 DAISIE_plot_sims(Insula_sims)
 ```
 
-It looks like *Insula* diversity in the island of Hispaniola is at a dynamic equilibrium.
+It looks like *Insula* diversity in the island of Jamaica is at a dynamic equilibrium.

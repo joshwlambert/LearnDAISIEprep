@@ -11,7 +11,7 @@ author: Luis Valente
 
 ![](images/Figure_Insula_ancestral_state_reconstruction.png){fig-align="center" width="297"}
 
-In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
+In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of beetles found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
 
 The practical is divided into 3 main parts:
 
@@ -19,7 +19,7 @@ The practical is divided into 3 main parts:
 
 2.  [Learn how to use DAISIE](#sec-2.-daisie) to estimate parameters and simulate islands (1-2 hours). DAISIE is an R package that allows fitting island biogeography models and simulating islands.
 
-3.  [Apply the above approaches to a dataset of frogs from the Caribbean](#sec-insula). Writing up this part is the graded assignment.
+3.  [Apply the above approaches to a dataset of beetles from the Caribbean](#sec-insula). Writing up this part is the graded assignment.
 
 **Before you start with the DAISIEprep and DAISIE tutorials, please read the introduction to the graded assignment below.**
 
@@ -51,29 +51,29 @@ You will need to follow the instructions of the tutorials, available in HTML for
 
 ## 3. *Insula* assignment {#sec-insula}
 
-The frog genus *Insula* (imaginary genus, does not exist in reality), is a large genus of frogs of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.
+The beetle genus *Insula* (imaginary genus, does not exist in reality), is a large genus of beetles of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.
 
-One of the most diverse islands for the genus *Insula* is Hispaniola, a large Caribbean island with a complex geological history. It is thought that Hispaniola has a continental origin, but has been isolated from other landmasses for approximately 40 million years. The mainland pool of closely related species of frogs in the continent (i.e. species that could have colonised the islands) has been estimated to be approximately 100 species. More than 15 species of *Insula* are thought to be endemic to Hispaniola, with a few species being only recently described or discovered. However, the evolutionary island biogeography of *Insula* on Hispaniola remains unknown.
+One of the most diverse islands for the genus *Insula* is Jamaica, a large Caribbean island with a complex geological history. It is thought that Jamaica has a continental origin, but has been isolated from other landmasses for approximately 40 million years. The mainland pool of closely related species of beetles in the continent (i.e. species that could have colonised the islands) has been estimated to be approximately 100 species. More than 15 species of *Insula* are thought to be endemic to Jamaica, with a few species being only recently described or discovered. However, the evolutionary island biogeography of *Insula* on Jamaica remains unknown.
 
 A very well-sampled time-calibrated phylogeny for the genus has recently been published, covering all the island where *Insula* occurs. A few species have been recently discovered and were not sampled in the phylogeny. There is no evidence of recently extinct species. The authors of the study performed an ancestral range reconstruction, so it is possible to infer the ancestral areas and number of colonisation events.
 
-Making use of the knowledge you gathered from DAISIEprep and DAISIE, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Hispaniola and fit DAISIE to the data.
+Making use of the knowledge you gathered from DAISIEprep and DAISIE, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Jamaica and fit DAISIE to the data.
 
 #### The aim is to be able to answer the following questions: {#sec-4.-questions}
 
 A. How many times has *Insula* colonised the Caribbean islands?
 
-B. How many times has *Insula* colonised Hispaniola?
+B. How many times has *Insula* colonised Jamaica?
 
-C. How many radiations have occured on Hispaniola?
+C. How many radiations have occured on Jamaica?
 
-D. What are the rates of colonisation, speciation and extinction for *Insula* in Hispaniola?
+D. What are the rates of colonisation, speciation and extinction for *Insula* in Jamaica?
 
-E. Is there evidence for diversity-dependence in the *Insula* species of Hispaniola?
+E. Is there evidence for diversity-dependence in the *Insula* species of Jamaica?
 
-F. Is there evidence for equilibrium dynamics on the island of Hispaniola?
+F. Is there evidence for equilibrium dynamics on the island of Jamaica?
 
-G. How has the diversity of *Insula* on Hispaniola changed through time (according to DAISIE simulations)?
+G. How has the diversity of *Insula* on Jamaica changed through time (according to DAISIE simulations)?
 
 **Written assignment:**
 
