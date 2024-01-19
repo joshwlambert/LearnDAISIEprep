@@ -116,11 +116,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="a-typical-daisieprep-pipeline-is-as-follows-1-identify-island-colonisation-events-for-the-taxonomic-group-of-interest-from-time-calibrated-phylogenetic-trees-2-assign-an-island-endemicity-status-endemic-non-endemic-not-present-to-each-of-the-species-3-automatically-extract-times-of-colonisation-of-the-island-and-diversification-within-the-island-from-the-phylogenies-4-add-any-missing-species-5-format-data-for-daisie." class="level4">
 <h4 class="anchored" data-anchor-id="a-typical-daisieprep-pipeline-is-as-follows-1-identify-island-colonisation-events-for-the-taxonomic-group-of-interest-from-time-calibrated-phylogenetic-trees-2-assign-an-island-endemicity-status-endemic-non-endemic-not-present-to-each-of-the-species-3-automatically-extract-times-of-colonisation-of-the-island-and-diversification-within-the-island-from-the-phylogenies-4-add-any-missing-species-5-format-data-for-daisie.">A typical DAISIEprep pipeline is as follows: 1) identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees, 2) assign an island endemicity status (endemic, non-endemic, not present) to each of the species, 3) automatically extract times of colonisation of the island and diversification within the island from the phylogenies; 4) add any missing species, 5) format data for DAISIE.</h4>
 </section>
-<section id="the-tutorial-is-divided-into-2-sections" class="level4">
-<h4 class="anchored" data-anchor-id="the-tutorial-is-divided-into-2-sections">The tutorial is divided into 2 sections:</h4>
+<section id="the-daisieprep-tutorial-is-divided-into-2-sections" class="level4">
+<h4 class="anchored" data-anchor-id="the-daisieprep-tutorial-is-divided-into-2-sections">The DAISIEprep tutorial is divided into 2 sections:</h4>
 <ol type="1">
 <li><p><strong>Phylogeny example</strong> - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.</p></li>
-<li><p><strong>Adding missing species</strong> - How to add missing species, lineages, etc, to your DAISIE data list.</p></li>
+<li><p><strong>Adding missing species</strong> - Learn how to add missing species, lineages, etc, to your DAISIE data list.</p></li>
 </ol>
 </section>
 <section id="first-load-the-required-packages" class="level4">
@@ -150,13 +150,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>phylo <span class="ot">&lt;-</span> ape<span class="sc">::</span><span class="fu">rcoal</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Important: DAISIEprep requires the tip labels (taxon names) in the phylogeny to be formatted as genus name and species name separated by an underscore (e.g.&nbsp;“Canis_lupus”, “Species_1”).</strong></p>
-<p>Here we add tip labels to the simulated phylogeny. In this case, all taxa sampled are different plant species from the same genus.</p>
+<p><strong>Important:</strong> DAISIEprep requires the tip labels (taxon names) in the phylogeny to be formatted as genus name and species name separated by an underscore (e.g.&nbsp;“Canis_lupus”, “Species_1”).</p>
+<p>Here we add tip labels (representing our species) to the simulated phylogeny. In this case, all taxa sampled are different plant species from the same genus.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>phylo<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Plant_a"</span>, <span class="st">"Plant_b"</span>, <span class="st">"Plant_c"</span>, <span class="st">"Plant_d"</span>, <span class="st">"Plant_e"</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Plant_f"</span>, <span class="st">"Plant_g"</span>, <span class="st">"Plant_h"</span>, <span class="st">"Plant_i"</span>, <span class="st">"Plant_j"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then we convert the phylogeny to a phylo4 class defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.</p>
+<p>Then we convert the phylogeny to a phylo4 class, defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>phylo <span class="ot">&lt;-</span> phylobase<span class="sc">::</span><span class="fu">phylo4</span>(phylo)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>phylobase<span class="sc">::</span><span class="fu">plot</span>(phylo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now we have a phylogeny in the phylo4 format to which we can easily append data.</p>
-<p>Specify tips corresponding to species from you focal island by specifying that they are endemic and/or non-endemic to the island. In the example below, species Plant_h is found on the island but it not endemic, and species Plant_f and Plant_e are found on the island and are endemic to the island. All other species on the phylogeny are NOT present on the island.</p>
+<p>Specify tips corresponding to species from your focal island by specifying that they are endemic and/or non-endemic to the island. In the example below, species Plant_h is found on the island but it not endemic, and species Plant_f and Plant_e are found on the island and are endemic to the island. All other species on the phylogeny are NOT present on the island.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>island_species <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tip_labels =</span> <span class="fu">c</span>(<span class="st">"Plant_h"</span>,</span>
@@ -200,7 +200,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>As you can see, in the example phylogeny, there appear to be 2 separate colonisation events of the island - 1 which has led to species Plant_f and Plant_e and other that has led to the non-endemic species Plant_h.</p>
+<p>As you can see, in the example phylogeny, there appear to be 2 separate colonisation events of the island - one which has led to species Plant_f and Plant_e and other that has led to the non-endemic species Plant_h.</p>
 <p>Now that we can see the tips that are present on the island, we can extract them to form our island community data set that can be used in the DAISIE R package to fit likelihood models of island colonisation and diversification.</p>
 <p>Before we extract species, we first create an object to store all of the island colonists’ information. This uses the <code>island_tbl</code> class introduced in this package (DAISIEprep). This <code>island_tbl</code> object can then easily be converted to a DAISIE data list using the function <code>create_daisie_data</code> (more information on this below).</p>
 <div class="cell" data-layout-align="center">
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      NA      Plant_h          1</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>island_tbl_min<span class="ot">&lt;-</span>island_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The function <code>extract_island_species()</code> is the main function in DAISIEprep to extract data from the phylogeny. In the example above, we used the “min” extraction algorithm. The “min” algorithm extracts island community data assuming no back-colonisation from the island to the mainland. Each row in the <code>island_tbl</code> corresponds to a separate colonisation of the island. <strong>In this case, two colonist lineages were correctly identified using the ‘min’ extraction algorithm, one endemic and another non-endemic. Each row in the table corresponds to one colonisation event, and</strong></p>
+<p>The function <code>extract_island_species()</code> is the main function in DAISIEprep to extract data from the phylogeny. In the example above, we used the “min” extraction algorithm. The “min” algorithm extracts island community data assuming no back-colonisation from the island to the mainland. Each row in the <code>island_tbl</code> corresponds to a separate colonisation of the island. <strong>In this case, two colonist lineages were correctly identified using the ‘min’ extraction algorithm, one endemic and another non-endemic. Each row in the table corresponds to one colonisation event.</strong></p>
 <p>However, if back-colonisation is frequent (for example, one species within a large endemic island radiation colonised another island or mainland), we recommend using the “asr” algorithm, which extracts the most likely colonisations inferred in an ancestral area reconstruction. To use the “asr” algorithm, we first need to know the probability of the ancestors of the island species being present on the island to determine the time of colonisation. To do this, we can fit one of many ancestral state reconstruction methods. Here we use the “mk” model (which uses a continuous-time markov model to reconstruct ancestral states), as it is a simple method that should prove reliable for reconstructing the ancestral species areas (i.e.&nbsp;on the island or not on the island) for most cases. First, we translate our extant species endemicity status to a numeric representation of whether that species is on the island.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>phylod <span class="ot">&lt;-</span> <span class="fu">add_asr_node_states</span>(<span class="at">phylod =</span> phylod, <span class="at">asr_method =</span> <span class="st">"mk"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

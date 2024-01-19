@@ -1,5 +1,5 @@
 ---
-title: "1.Insula tutorial Intro"
+title: "1. Insula practical tutorial"
 format: html
 editor: visual
 author: Luis Valente
@@ -11,7 +11,7 @@ author: Luis Valente
 
 ![](images/Figure_Insula_ancestral_state_reconstruction.png){fig-align="center" width="297"}
 
-In this practical we will estimate rates of colonisation, speciation and extinction for an (imaginary) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
+In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
 
 The practical is divided into 3 main parts:
 
@@ -27,31 +27,27 @@ The practical is divided into 3 main parts:
 
 ## Install Software required:
 
--   [FigTree](https://github.com/rambaut/figtree/releases)
+-   Install: [FigTree](https://github.com/rambaut/figtree/releases)
 
--   [R](https://www.r-project.org)
+-   Install [R](https://www.r-project.org)
 
--   [Rstudio](https://rstudio.com/products/rstudio/download/) with packages
+-   Install [Rstudio](https://rstudio.com/products/rstudio/download/)
 
--   Open the program RStudio. Open the file "DAISIE_setup.R" and run that code in Rstudio. This should install all required R packages (**may take a while!**).
+-   Open the program RStudio. Open the file [0_Install_packages](0.Install_packages.html) and run that code in Rstudio. This should install all required R packages (**may take a while!**).
 
 ## Tutorial files
 
-You will need to follow the instructions of the tutorials, which are in both in HTML format (.html, open on your internet browser) or in quarto format (.qmd, open in Rstudio). Both versions are exactly the same. The HTML is file easy to view and the quarto file is more interactive as you can run the scripts directly in Rstudio.
+You will need to follow the instructions of the tutorials, available in HTML format, which you can open on a browser
 
 ## 1. DAISIEprep {#sec-1.-daisieprep}
 
-[DAISIEprep tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd)
-
-[DAISIEprep tutorial HTML](2.DAISIEprep.html)
+[DAISIEprep tutorial](2.DAISIEprep.html)
 
 ## 2. DAISIE {#sec-2.-daisie}
 
-[DAISIE tutorial quarto](https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.qmd)
+[DAISIE tutorial](3.DAISIE.html)
 
-[DAISIE tutorial HTML](3.DAISIE.html)
-
-#### After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the *Insula* dataset.
+#### After you have finished the DAISIEprep and DAISIE practicals, you can begin applying these techniques to the *Insula* dataset.
 
 ## 3. *Insula* assignment {#sec-insula}
 
@@ -79,7 +75,19 @@ F. Is there evidence for equilibrium dynamics on the island of Hispaniola?
 
 G. How has the diversity of *Insula* on Hispaniola changed through time (according to DAISIE simulations)?
 
-**Assignment: run analyses using DAISIE to answer all of the above questions in an individually written report (Word/Google Doc, maximum 3 pages, minimum font size 11) where you briefly describe the methodology used for the analyses of *Insula*, your main results, and limitations of the analyses. Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 3 page limit. Do not include code in the assignment (unless you want to point out something specific with the script). Focus on the interpretation of the results from a biological perspective.**
+**Written assignment:**
+
+-   **Follow the self-guided tutorials of the computer practical and run analyses using DAISIE to answer all of the above questions in an individually written report.**
+
+-   **In your report, briefly describe the methodology used for the analyses of Insula, your main results, and limitations of the analyses.**
+
+-   **Format: .doc and .pdf, 2-3 pages, Calibri font (or similar), minimum font size 10.**
+
+-   **Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 2-3 page limit.**
+
+-   **Do not include code in the assignment (unless you want to point out something specific with the script).**
+
+-   **Focus on the interpretation of the results from a biological perspective.**
 
 In sum, you need to load the phylogeny into R, use DAISIEprep to extract the DAISIE datalist. Then, fit DAISIE to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the *Insula* tree, tables and figures provided. With these analyses you will be able to answer all the [questions](#sec-4.-questions).
 

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Luis Valente">
 
-<title>1.Insula tutorial Intro</title>
+<title>DAISIE practical tutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">1.Insula tutorial Intro</h1>
+<h1 class="title">DAISIE practical tutorial</h1>
 </div>
 
 
@@ -110,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/Figure_Insula_ancestral_state_reconstruction.png" class="img-fluid figure-img" width="297"></p>
 </figure>
 </div>
-<p>In this practical we will estimate rates of colonisation, speciation and extinction for an (imaginary) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.</p>
+<p>In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of frogs found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.</p>
 <p>The practical is divided into 3 main parts:</p>
 <ol type="1">
 <li><p><a href="#sec-1.-daisieprep">Learn how to use DAISIEprep</a> to prepare and extract data (1-2 hours). DAISIEprep is an R package that allows users to format phylogenetic data for subsequent analyses in DAISIE.</p></li>
@@ -125,27 +125,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="install-software-required" class="level2">
 <h2 class="anchored" data-anchor-id="install-software-required">Install Software required:</h2>
 <ul>
-<li><p><a href="https://github.com/rambaut/figtree/releases">FigTree</a></p></li>
-<li><p><a href="https://www.r-project.org">R</a></p></li>
-<li><p><a href="https://rstudio.com/products/rstudio/download/">Rstudio</a> with packages</p></li>
-<li><p>Open the program RStudio. Open the file “DAISIE_setup.R” and run that code in Rstudio. This should install all required R packages (<strong>may take a while!</strong>).</p></li>
+<li><p>Install: <a href="https://github.com/rambaut/figtree/releases">FigTree</a></p></li>
+<li><p>Install <a href="https://www.r-project.org">R</a></p></li>
+<li><p>Install <a href="https://rstudio.com/products/rstudio/download/">Rstudio</a></p></li>
+<li><p>Open the program RStudio. Open the file <a href="0.Install_packages.html">0_Install_packages</a> and run that code in Rstudio. This should install all required R packages (<strong>may take a while!</strong>).</p></li>
 </ul>
 </section>
 <section id="tutorial-files" class="level2">
 <h2 class="anchored" data-anchor-id="tutorial-files">Tutorial files</h2>
-<p>You will need to follow the instructions of the tutorials, which are in both in HTML format (.html, open on your internet browser) or in quarto format (.qmd, open in Rstudio). Both versions are exactly the same. The HTML is file easy to view and the quarto file is more interactive as you can run the scripts directly in Rstudio.</p>
+<p>You will need to follow the instructions of the tutorials, available in HTML format, which you can open on a browser</p>
 </section>
 <section id="sec-1.-daisieprep" class="level2">
 <h2 class="anchored" data-anchor-id="sec-1.-daisieprep">1. DAISIEprep</h2>
-<p><a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/2.DAISIEprep.qmd">DAISIEprep tutorial quarto</a></p>
-<p><a href="2.DAISIEprep.html">DAISIEprep tutorial HTML</a></p>
+<p><a href="2.DAISIEprep.html">DAISIEprep tutorial</a></p>
 </section>
 <section id="sec-2.-daisie" class="level2">
 <h2 class="anchored" data-anchor-id="sec-2.-daisie">2. DAISIE</h2>
-<p><a href="https://github.com/joshwlambert/LearnDAISIEprep/blob/main/3.DAISIE.qmd">DAISIE tutorial quarto</a></p>
-<p><a href="3.DAISIE.html">DAISIE tutorial HTML</a></p>
-<section id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-with-the-applying-these-techniques-to-the-insula-dataset." class="level4">
-<h4 class="anchored" data-anchor-id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-with-the-applying-these-techniques-to-the-insula-dataset.">After you have finished the DAISIEprep and DAISIE practicals, you can begin with the applying these techniques to the <em>Insula</em> dataset.</h4>
+<p><a href="3.DAISIE.html">DAISIE tutorial</a></p>
+<section id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-applying-these-techniques-to-the-insula-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="after-you-have-finished-the-daisieprep-and-daisie-practicals-you-can-begin-applying-these-techniques-to-the-insula-dataset.">After you have finished the DAISIEprep and DAISIE practicals, you can begin applying these techniques to the <em>Insula</em> dataset.</h4>
 </section>
 </section>
 <section id="sec-insula" class="level2">
@@ -163,7 +161,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>E. Is there evidence for diversity-dependence in the <em>Insula</em> species of Hispaniola?</p>
 <p>F. Is there evidence for equilibrium dynamics on the island of Hispaniola?</p>
 <p>G. How has the diversity of <em>Insula</em> on Hispaniola changed through time (according to DAISIE simulations)?</p>
-<p><strong>Assignment: run analyses using DAISIE to answer all of the above questions in an individually written report (Word/Google Doc, maximum 3 pages, minimum font size 11) where you briefly describe the methodology used for the analyses of <em>Insula</em>, your main results, and limitations of the analyses. Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 3 page limit. Do not include code in the assignment (unless you want to point out something specific with the script). Focus on the interpretation of the results from a biological perspective.</strong></p>
+<p><strong>Written assignment:</strong></p>
+<ul>
+<li><p><strong>Follow the self-guided tutorials of the computer practical and run analyses using DAISIE to answer all of the above questions in an individually written report.</strong></p></li>
+<li><p><strong>In your report, briefly describe the methodology used for the analyses of Insula, your main results, and limitations of the analyses.</strong></p></li>
+<li><p><strong>Format: .doc and .pdf, 2-3 pages, Calibri font (or similar), minimum font size 10.</strong></p></li>
+<li><p><strong>Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 2-3 page limit.</strong></p></li>
+<li><p><strong>Do not include code in the assignment (unless you want to point out something specific with the script).</strong></p></li>
+<li><p><strong>Focus on the interpretation of the results from a biological perspective.</strong></p></li>
+</ul>
 <p>In sum, you need to load the phylogeny into R, use DAISIEprep to extract the DAISIE datalist. Then, fit DAISIE to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the <em>Insula</em> tree, tables and figures provided. With these analyses you will be able to answer all the <a href="#sec-4.-questions">questions</a>.</p>
 </section>
 <section id="in-the-practical-folder-you-will-find-all-the-relevant-data" class="level3">

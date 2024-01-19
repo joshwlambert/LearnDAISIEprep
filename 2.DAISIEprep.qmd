@@ -15,11 +15,11 @@ author: Luis Valente
 
 #### A typical DAISIEprep pipeline is as follows: 1) identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees, 2) assign an island endemicity status (endemic, non-endemic, not present) to each of the species, 3) automatically extract times of colonisation of the island and diversification within the island from the phylogenies; 4) add any missing species, 5) format data for DAISIE.
 
-#### The tutorial is divided into 2 sections:
+#### The DAISIEprep tutorial is divided into 2 sections:
 
 1.  **Phylogeny example** - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
 
-2.  **Adding missing species** - How to add missing species, lineages, etc, to your DAISIE data list.
+2.  **Adding missing species** - Learn how to add missing species, lineages, etc, to your DAISIE data list.
 
 #### First load the required packages:
 
@@ -58,16 +58,16 @@ set.seed(
 phylo <- ape::rcoal(10)
 ```
 
-**Important: DAISIEprep requires the tip labels (taxon names) in the phylogeny to be formatted as genus name and species name separated by an underscore (e.g. "Canis_lupus", "Species_1").**
+**Important:** DAISIEprep requires the tip labels (taxon names) in the phylogeny to be formatted as genus name and species name separated by an underscore (e.g. "Canis_lupus", "Species_1").
 
-Here we add tip labels to the simulated phylogeny. In this case, all taxa sampled are different plant species from the same genus.
+Here we add tip labels (representing our species) to the simulated phylogeny. In this case, all taxa sampled are different plant species from the same genus.
 
 ```{r}
 phylo$tip.label <- c("Plant_a", "Plant_b", "Plant_c", "Plant_d", "Plant_e",
                      "Plant_f", "Plant_g", "Plant_h", "Plant_i", "Plant_j")
 ```
 
-Then we convert the phylogeny to a phylo4 class defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.
+Then we convert the phylogeny to a phylo4 class, defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.
 
 ```{r convert phylo to phylo4}
 phylo <- phylobase::phylo4(phylo)
@@ -76,7 +76,7 @@ phylobase::plot(phylo)
 
 Now we have a phylogeny in the phylo4 format to which we can easily append data.
 
-Specify tips corresponding to species from you focal island by specifying that they are endemic and/or non-endemic to the island. In the example below, species Plant_h is found on the island but it not endemic, and species Plant_f and Plant_e are found on the island and are endemic to the island. All other species on the phylogeny are NOT present on the island.
+Specify tips corresponding to species from your focal island by specifying that they are endemic and/or non-endemic to the island. In the example below, species Plant_h is found on the island but it not endemic, and species Plant_f and Plant_e are found on the island and are endemic to the island. All other species on the phylogeny are NOT present on the island.
 
 ```{r}
 island_species <- data.frame(
@@ -108,7 +108,7 @@ We can now visualise our phylogeny with the island endemicity statuses plotted a
 plot_phylod(phylod = phylod)
 ```
 
-As you can see, in the example phylogeny, there appear to be 2 separate colonisation events of the island - 1 which has led to species Plant_f and Plant_e and other that has led to the non-endemic species Plant_h.
+As you can see, in the example phylogeny, there appear to be 2 separate colonisation events of the island - one which has led to species Plant_f and Plant_e and other that has led to the non-endemic species Plant_h.
 
 Now that we can see the tips that are present on the island, we can extract them to form our island community data set that can be used in the DAISIE R package to fit likelihood models of island colonisation and diversification.
 
@@ -130,7 +130,7 @@ island_tbl
 island_tbl_min<-island_tbl
 ```
 
-The function `extract_island_species()` is the main function in DAISIEprep to extract data from the phylogeny. In the example above, we used the "min" extraction algorithm. The "min" algorithm extracts island community data assuming no back-colonisation from the island to the mainland. Each row in the `island_tbl` corresponds to a separate colonisation of the island. **In this case, two colonist lineages were correctly identified using the 'min' extraction algorithm, one endemic and another non-endemic. Each row in the table corresponds to one colonisation event, and**
+The function `extract_island_species()` is the main function in DAISIEprep to extract data from the phylogeny. In the example above, we used the "min" extraction algorithm. The "min" algorithm extracts island community data assuming no back-colonisation from the island to the mainland. Each row in the `island_tbl` corresponds to a separate colonisation of the island. **In this case, two colonist lineages were correctly identified using the 'min' extraction algorithm, one endemic and another non-endemic. Each row in the table corresponds to one colonisation event.**
 
 However, if back-colonisation is frequent (for example, one species within a large endemic island radiation colonised another island or mainland), we recommend using the "asr" algorithm, which extracts the most likely colonisations inferred in an ancestral area reconstruction. To use the "asr" algorithm, we first need to know the probability of the ancestors of the island species being present on the island to determine the time of colonisation. To do this, we can fit one of many ancestral state reconstruction methods. Here we use the "mk" model (which uses a continuous-time markov model to reconstruct ancestral states), as it is a simple method that should prove reliable for reconstructing the ancestral species areas (i.e. on the island or not on the island) for most cases. First, we translate our extant species endemicity status to a numeric representation of whether that species is on the island.
 

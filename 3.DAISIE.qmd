@@ -49,6 +49,8 @@ Just type:
 galapagos_datalist
 ```
 
+**This datalist is of the same format that DAISIEprep produces (e.g., same format as the `data_list` object that you just produced in the DAISIEprep tutorial).**
+
 View your Galápagos datalist by scrolling up and down in R. Or use function `View()`
 
 ```{r, eval = F }
@@ -103,7 +105,7 @@ To visualise the diversity of each lineage according to their age:
 DAISIE_plot_age_diversity(galapagos_datalist)
 ```
 
-The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage - Darwin's finches - stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages. One of the lineages, *Mimus*, is not plotted, because it's age is set as max-age.\
+The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage - Darwin's finches - stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages. One of the lineages, *Mimus*, is not plotted, because it's age is set as max-age, that is why the number of species is 23 (27-4 species=23).\
 
 \
 
