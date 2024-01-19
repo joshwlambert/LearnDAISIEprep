@@ -121,11 +121,11 @@ We will fit the 3 different DAISIE models to the phylogenetic data contained in 
 
 The first model (M1) we will fit is a full DAISIE model with 5 parameters. The parameters in DAISIE are always placed in this order:
 
-1.  Cladogenesis (lambda_c)
-2.  Extinction (mu)
-3.  Carrying capacity (K)
-4.  Colonisation (gamma)
-5.  Anagenesis (lambda_a)
+1.  Cladogenesis rate (lambda_c) (unit: cladogenesis events per island lineage per time unit)
+2.  Extinction rate (mu) (unit: extinction events per island lineage per time unit)
+3.  Carrying capacity (K) (unit: number of species)
+4.  Colonisation rate (gamma) (unit: colonisation events per mainland lineage per time unit)
+5.  Anagenesis rate (lambda_a) (unit: anagenesis events per island lineage per time unit)
 
 Important settings of the `DAISIE_ML` function:
 

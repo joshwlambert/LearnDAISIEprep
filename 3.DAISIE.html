@@ -223,7 +223,7 @@ $type1or2
 <p><img src="3.DAISIE_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage - Darwin’s finches - stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages. One of the lineages, <em>Mimus</em>, is not plotted, because it’s age is set as max-age.<br>
+<p>The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage - Darwin’s finches - stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages. One of the lineages, <em>Mimus</em>, is not plotted, because it’s age is set as max-age, that is why the number of species is 23 (27-4 species=23).<br>
 </p>
 <p><br>
 </p>
@@ -239,11 +239,11 @@ $type1or2
 <h4 class="anchored" data-anchor-id="fit-a-full-daisie-model-m1">Fit a full DAISIE model (M1)</h4>
 <p>The first model (M1) we will fit is a full DAISIE model with 5 parameters. The parameters in DAISIE are always placed in this order:</p>
 <ol type="1">
-<li>Cladogenesis (lambda_c)</li>
-<li>Extinction (mu)</li>
-<li>Carrying capacity (K)</li>
-<li>Colonisation (gamma)</li>
-<li>Anagenesis (lambda_a)</li>
+<li>Cladogenesis rate (lambda_c) (unit: cladogenesis events per island lineage per time unit)</li>
+<li>Extinction rate (mu) (unit: extinction events per island lineage per time unit)</li>
+<li>Carrying capacity (K) (unit: number of species)</li>
+<li>Colonisation rate (gamma) (unit: colonisation events per mainland lineage per time unit)</li>
+<li>Anagenesis rate (lambda_a) (unit: anagenesis events per island lineage per time unit)</li>
 </ol>
 <p>Important settings of the <code>DAISIE_ML</code> function:</p>
 <ul>

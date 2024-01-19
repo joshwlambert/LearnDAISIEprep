@@ -230,6 +230,7 @@ Insula_sims<-DAISIE_sim(
   M=1000,
   pars=as.numeric(M3[1:5]),
   replicates= 100,
+  verbose = 1,
   plot_sims = FALSE)
 ```
 
