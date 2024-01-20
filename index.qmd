@@ -1,5 +1,6 @@
 ---
 title: "Welcome"
+author: Luis Valente, Joshua W. Lambert
 ---
 
 Welcome to the LearnDAISIEprep website. Here you will find material to learn
