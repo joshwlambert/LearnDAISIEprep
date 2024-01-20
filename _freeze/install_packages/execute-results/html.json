@@ -1,0 +1,14 @@
+{
+  "hash": "5d7bed6138c40e5ba711c2bcedd79576",
+  "result": {
+    "markdown": "---\ntitle: \"Install packages\"\nauthor: Luis Valente\n---\n\n\n## Open and run this script in Rstudio\n\n### Install required packages\n\n\n::: {.cell}\n\n```{.r .cell-code}\ninstall.packages('DAISIE',dependencies=T)\ninstall.packages('ape',dependencies=T)\ninstall.packages('DAISIEprep',dependencies=T)\n```\n:::\n\n\nCheck if packages load correctly\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(DAISIE)\nlibrary(ape)\nlibrary(DAISIEprep)\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
