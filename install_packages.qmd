@@ -8,9 +8,9 @@ author: Luis Valente
 ### Install required packages
 
 ```{r install, eval=F}
-install.packages('DAISIE',dependencies=T)
-install.packages('ape',dependencies=T)
-install.packages('DAISIEprep',dependencies=T)
+install.packages('DAISIE',dependencies = TRUE)
+install.packages('ape',dependencies = TRUE)
+install.packages('DAISIEprep',dependencies = TRUE)
 ```
 
 Check if packages load correctly
