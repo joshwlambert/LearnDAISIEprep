@@ -1,0 +1,18 @@
+project:
+  type: book
+
+book:
+  title: "LearnDAISIEprep"
+  chapters:
+    - index.qmd
+    - install_packages.qmd
+    - insula_tutorial_intro.qmd
+    - DAISIEprep.qmd
+    - DAISIE.qmd
+    - insula_DAISIE.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
