@@ -11,7 +11,7 @@
     "href": "install_packages.html#open-and-run-this-script-in-rstudio",
     "title": "2  Install packages",
     "section": "2.1 Open and run this script in Rstudio",
-    "text": "2.1 Open and run this script in Rstudio\n\n2.1.1 Install required packages\n\ninstall.packages('DAISIE',dependencies=T)\ninstall.packages('ape',dependencies=T)\ninstall.packages('DAISIEprep',dependencies=T)\n\nCheck if packages load correctly\n\nlibrary(DAISIE)\nlibrary(ape)\nlibrary(DAISIEprep)"
+    "text": "2.1 Open and run this script in Rstudio\n\n2.1.1 Install required packages\n\ninstall.packages('DAISIE',dependencies = TRUE)\ninstall.packages('ape',dependencies = TRUE)\ninstall.packages('DAISIEprep',dependencies = TRUE)\n\nCheck if packages load correctly\n\nlibrary(DAISIE)\nlibrary(ape)\nlibrary(DAISIEprep)"
   },
   {
     "objectID": "insula_tutorial_intro.html",
