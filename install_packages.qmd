@@ -1,7 +1,5 @@
 ---
 title: "Install packages"
-format: html
-editor: visual
 author: Luis Valente
 ---
 
