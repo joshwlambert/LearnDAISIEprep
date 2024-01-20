@@ -1,5 +1,5 @@
 ---
-title: "3. DAISIE"
+title: "DAISIE"
 format: html
 editor: visual
 author: Luis Valente

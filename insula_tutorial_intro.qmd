@@ -1,5 +1,5 @@
 ---
-title: "1. Insula practical tutorial"
+title: "Insula practical tutorial"
 format: html
 editor: visual
 author: Luis Valente
