@@ -1,0 +1,10 @@
+---
+title: "Welcome"
+---
+
+Welcome to the LearnDAISIEprep website. Here you will find material to learn
+how to use the DAISIE ecosystem of R package to analyse the ecology and
+evolution of island communities. These tools have been developed to answer
+research questions in island biogeography and macroevolutionary science and 
+can be powerful tools when applied appropriately.
+
