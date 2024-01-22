@@ -138,7 +138,7 @@ Create DAISIE datalist
 ```{r}
 insula_data_list <- create_daisie_data(
   data = island_tbl,
-  island_age = 4,
+  island_age = 5,
   num_mainland_species = 1000,
   precise_col_time = TRUE
 )

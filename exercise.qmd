@@ -8,6 +8,7 @@ editor: visual
 After you have finished the DAISIEprep and DAISIE practicals, you can begin applying these techniques to the *Insula* dataset.
 
 ## Questions to answer in your report {#sec-questions}
+
 The aim is to be able to answer the following questions:
 
 A.  How many times has *Insula* colonised the Caribbean islands?
@@ -18,7 +19,7 @@ E.  Is there evidence for diversity-dependence in the *Insula* species of Jamaic
 F.  Is there evidence for equilibrium dynamics on the island of Jamaica?
 G.  How has the diversity of *Insula* on Jamaica changed through time (according to DAISIE simulations)?
 
-In sum, you need to load the phylogeny into R, use DAISIEprep to extract the DAISIE datalist. Then, fit DAISIE to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the *Insula* tree, tables and figures provided. With these analyses you will be able to answer all the [questions](#sec-questions) 
+In sum, you need to load the phylogeny into R, use DAISIEprep to extract the DAISIE datalist. Then, fit DAISIE to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the *Insula* tree, tables and figures provided. With these analyses you will be able to answer all the [questions](#sec-questions)
 
 You can find all the relevant data here:
 
@@ -44,9 +45,9 @@ plot(Insula_tree)
 
 For the DAISIE analyses use:
 
-[Island age:]{.underline} 40 million years
+[Island age:]{.underline} 5 million years
 
-[Mainland pool size]{.underline}: 100 species
+[Mainland pool size]{.underline}: 1000 species
 
 Don't forget to add the missing species.
 
