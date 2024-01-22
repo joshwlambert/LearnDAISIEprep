@@ -20,5 +20,4 @@ format:
     theme:
       light: cosmo
       dark: darkly
-    css: styles.css
     toc: true
