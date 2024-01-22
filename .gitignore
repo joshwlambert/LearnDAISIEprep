@@ -4,3 +4,8 @@
 .Ruserdata
 /.quarto/
 .DS_Store
+^_book$
+^DAISIE_cache$
+^DAISIE_files$
+^answers_cache$
+^answers_files$
