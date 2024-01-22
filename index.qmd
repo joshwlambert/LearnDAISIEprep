@@ -3,9 +3,8 @@ title: "Welcome"
 author: Luis Valente, Joshua W. Lambert
 ---
 
-Welcome to the LearnDAISIEprep website. Here you will find material to learn
-how to use the DAISIE ecosystem of R package to analyse the ecology and
-evolution of island communities. These tools have been developed to answer
-research questions in island biogeography and macroevolutionary science and 
-can be powerful tools when applied appropriately.
+Welcome to the DAISIE computer practical of the Island Biology course. Here you will find the material to learn how to use the DAISIE ecosystem of R packages to analyse the ecology and evolution of island communities. These tools have been developed to answer research questions in island biogeography and macroevolution. We will apply them to a case study of a group of beetles from the Caribbean islands.
+
+![](images/Figure_Insula_ancestral_state_reconstruction.png){fig-align="center" width="400"}
+
 

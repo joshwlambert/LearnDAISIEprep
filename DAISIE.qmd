@@ -3,33 +3,40 @@ title: "DAISIE"
 author: Luis Valente
 ---
 
-# Course Island Biology
-
-## Part 3 - Fitting DAISIE models using the Galápagos birds as example
+## Fitting DAISIE models using the Galápagos birds as example {#sec-daisie}
 
 ![Phylogenies of Galápagos birds](images/Galapagos_picture.png)
 
-##### In this practical we are going to fit the DAISIE model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*). We will use software DAISIE to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated rates to see how species diversity has varied through time in the Galápagos.
+In this practical we are going to fit the DAISIE model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*). We will use software DAISIE to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated rates to see how species diversity has varied through time in the Galápagos.
 
-Prepare the R environment to run the practical. Empty workspace of existing previous objects.
+
+### Prepare the R environment
+
+Empty workspace of existing previous objects, just in case.
 
 ```{r}
 rm(list=ls())
 ```
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
+
+### Load the required packages:
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 5,
+  fig.width = 7
+)
 ```
 
-Load required packages [DAISIE](https://cran.r-project.org/web/packages/DAISIE/index.html) and [ape](https://cran.r-project.org/web/packages/ape/ape.pdf)
-
-```{r}
+```{r setup, warning=FALSE,message=FALSE}
 library(DAISIE)
 library(ape)
 ```
 
-### 3.1 - Load and visualise Galapágos bird data
+### Load and visualise Galapágos bird data
 
 The dataset of Galápagos birds includes colonisation and branching times for a total of 27 species of terrestrial birds of the Galápagos islands, distributed across 8 lineages. Some of the lineages have only 1 species, e.g. the Galápagos dove *Zenaida*. Others have radiated, including the Darwin's finch radiation (16 species) and the mockingbirds *Mimus* radiation (4 species). **Note**: the dataset we will use is slightly different from the example dataset that is included as data in the DAISIE R package.
 
@@ -107,7 +114,7 @@ The above plot shows the number of species per lineage plotted against their col
 
 \
 
-### 3.2 -- Fitting DAISIE models
+### Fitting DAISIE models
 
 We will now fit three different DAISIE models using maximum likelihood, using the function `DAISIE_ML`. The DAISIE function searches for the parameters that maximise the likelihood of the data given the specified model. We will then compare the likelihoods of the 3 different models to see which one is preferred
 
@@ -218,7 +225,7 @@ The model with the **lowest** AIC value is the preferred model. (In this case, M
 
 \
 
-### 3.3 - Simulate islands
+### Simulate islands
 
 Now let's use the ML parameters we estimated from the Galápagos bird data to simulate islands. Choose the parameters of the best model. We will simulate for 4 million years (time = 4). M is the mainland pool (keep it at 1000).
 
@@ -284,4 +291,5 @@ DAISIE_plot_sims(Azores_sims)
 How does the Azores plot differ from that of the Galápagos?
 
 \
-The end of the DAISIE practical. Well done! Now you are ready to work on the [*Insula* assignment](1.Insula_tutorial_Intro.html#sec-insula).
+The end of the DAISIE practical. Well done! Now you are ready to work on the 
+*Insula* exercise

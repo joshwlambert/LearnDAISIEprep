@@ -1,0 +1,22 @@
+---
+title: "Introduction"
+author: Luis Valente
+---
+
+## Evolutionary island biogeography using DAISIE {#sec-introduction}
+
+In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of beetles found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
+
+![](images/beetle4-01.png){width="66"}![](images/beetle1-01.png){width="147"}![](images/beetle3-01.png){width="57"}![](images/beetle2-01.png){width="70"}
+
+![Beetles (Phylopic); Caribbean Islands (Google Earth)](images/Caribbean_Google_Earth.png)
+
+The practical is divided into 4 main parts (please follow them in this order):
+
+1.  [Read the instructions of the graded assignment](#sec-assignment).
+
+2.  [Learn how to use DAISIEprep](#sec-daisieprep) to prepare and extract data (1-2 hours). DAISIEprep is an R package that allows users to format phylogenetic data for subsequent analyses in DAISIE.
+
+3.  [Learn how to use DAISIE](#sec-daisie) to estimate parameters and simulate islands (1-2 hours). DAISIE is an R package that allows fitting island biogeography models and simulating islands.
+
+4.  [Apply the above approaches to a dataset of beetles from the Caribbean](#sec-exercise). Writing up this part is the graded assignment.

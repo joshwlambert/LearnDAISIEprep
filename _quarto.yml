@@ -5,13 +5,15 @@ execute:
   freeze: auto
 
 book:
-  title: "LearnDAISIEprep"
+  title: "Island Biology DAISIE Practical"
   chapters:
     - index.qmd
-    - install_packages.qmd
-    - insula_tutorial_intro.qmd
+    - installation.qmd
+    - introduction.qmd
+    - assignment.qmd
     - DAISIEprep.qmd
     - DAISIE.qmd
+    - exercise.qmd
 
 format:
   html:

@@ -1,15 +1,11 @@
 ---
-title: "4.Insula_DAISIE"
-format: html
-editor: visual
+title: "Solution"
 author: Luis Valente
 ---
 
-
-## Example of how to extract data for Jamaica species from the *Insula* tree, add missing species, fit DAISIE models and run simulations.
+## Example of how to extract data for Jamaica species from the *Insula* tree, add missing species, fit DAISIE models and run simulations. {#sec-answers}
 
 ### Load required packages
-
 
 ```{r}
 rm(list=ls())
@@ -18,27 +14,21 @@ library(DAISIEprep)
 library(DAISIE)
 ```
 
-
 ### Load tree
-
 
 ```{r}
 Insula_tree<-read.nexus("data/Insula.tre")
 ```
 
-
 Visualise tree (easier to use Figtree!)
-
 
 ```{r}
 plot(Insula_tree)
 ```
 
-
 ## Prepare data using DAISIEprep
 
 Look in the [checklist](data/Insula_checklist.xlsx) to see which species occur on Jamaica. Specify tips corresponding to Jamaica species by specifying that they are endemic and/or non-endemic to the island:
-
 
 ```{r}
 island_species <- data.frame(
@@ -61,9 +51,7 @@ island_species <- data.frame(
   tip_endemicity_status = c(rep("endemic",14),"nonendemic"))
 ```
 
-
 Assign island endemicity status to all species in the dataset (including the non-Jamaican species)
-
 
 ```{r}
 endemicity_status <- create_endemicity_status(
@@ -72,25 +60,19 @@ endemicity_status <- create_endemicity_status(
 )
 ```
 
-
 Add endemicity status to the phylogeny
-
 
 ```{r}
 phylod <- phylobase::phylo4d(Insula_tree, endemicity_status)
 ```
 
-
 Visualize this on the tree
-
 
 ```{r}
 plot_phylod(phylod = phylod)
 ```
 
-
 Extract data from the phylogeny using the min algorithm
-
 
 ```{r}
 island_tbl_min <- extract_island_species(
@@ -100,9 +82,7 @@ island_tbl_min <- extract_island_species(
 island_tbl_min
 ```
 
-
 Extract data from the phylogeny using the ancestral state algorithm
-
 
 ```{r}
 phylod <- add_asr_node_states(phylod = phylod, asr_method = "mk")
@@ -114,21 +94,17 @@ island_tbl_asr <- extract_island_species(
 island_tbl_asr
 ```
 
-
 Compare 2 options:
-
 
 ```{r}
 all.equal(island_tbl_min,island_tbl_asr)
 ```
-
 
 As you can see, the results of the 2 extractions (min and asr) are exactly the same in this case, so we can use either for the subsequent analyses.
 
 ### Add missing species
 
 Add missing species "Spec_51", which is not closely related to any species
-
 
 ```{r}
 island_tbl<-island_tbl_min
@@ -146,9 +122,7 @@ island_tbl <- add_island_colonist(
 )
 ```
 
-
 Add missing species Spec_52, closely related to Spec_42
-
 
 ```{r}
 island_tbl <- add_missing_species(
@@ -159,9 +133,7 @@ island_tbl <- add_missing_species(
 
 ```
 
-
 Create DAISIE datalist
-
 
 ```{r}
 insula_data_list <- create_daisie_data(
@@ -173,11 +145,9 @@ insula_data_list <- create_daisie_data(
 
 ```
 
-
 ## Fit DAISIE models to data
 
 Fit model with 5 parameters
-
 
 ```{r M1, message=FALSE, warning=FALSE, cache=TRUE}
 
@@ -192,9 +162,7 @@ M1<-DAISIE_ML(
 M1
 ```
 
-
 Fit model with no carrying capacity
-
 
 ```{r M2, message=FALSE, warning=FALSE, cache=TRUE}
 
@@ -209,9 +177,7 @@ M2<-DAISIE_ML(
 M2
 ```
 
-
 Fit model with no anagenesis
-
 
 ```{r M3, message=FALSE, warning=FALSE, cache=TRUE}
 M3<-DAISIE_ML(
@@ -225,18 +191,14 @@ M3<-DAISIE_ML(
 M3
 ```
 
-
 Save model results in a table
-
 
 ```{r}
 model_results<-rbind(M1,M2,M3)
 model_results
 ```
 
-
 Create AIC function for model comparison
-
 
 ```{r}
 
@@ -246,9 +208,7 @@ AIC_compare<- function(LogLik,k){
 }
 ```
 
-
 Compute AIC for all the models
-
 
 ```{r}
 AICs<-AIC_compare(c(M1$loglik ,M2$loglik, M3$loglik),c(M1$df,M2$df,M3$df))
@@ -256,13 +216,11 @@ names(AICs)<-c('M1','M2','M3')
 AICs
 ```
 
-
 In this case, the preferred model is M3.
 
 ## Simulate islands based on parameters from preferred model
 
 Run simulations
-
 
 ```{r Simulations, message=FALSE, warning=FALSE, cache=TRUE}
 Insula_sims<-DAISIE_sim(
@@ -274,14 +232,10 @@ Insula_sims<-DAISIE_sim(
   plot_sims = FALSE)
 ```
 
-
 Plot simulations
-
 
 ```{r}
 DAISIE_plot_sims(Insula_sims)
 ```
 
-
 It looks like *Insula* diversity in the island of Jamaica is at a dynamic equilibrium.
-

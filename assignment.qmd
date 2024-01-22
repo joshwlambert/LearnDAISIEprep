@@ -1,0 +1,30 @@
+---
+title: "Assignment Instructions"
+editor: visual
+---
+
+## Case study: *Insula* beetles from Jamaica {#sec-assignment}
+
+The beetle genus *Insula* (imaginary genus, does not exist in reality), is a large genus of beetles of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.
+
+One of the most diverse islands for the genus *Insula* is Jamaica, a large Caribbean island with a complex geological history. It is thought that Jamaica has a continental origin, but has been isolated from other landmasses for approximately 40 million years. The mainland pool of closely related species of beetles in the continent (i.e. species that could have colonised the islands) has been estimated to be approximately 100 species. More than 15 species of *Insula* are thought to be endemic to Jamaica, with a few species being only recently described or discovered. However, the evolutionary island biogeography of *Insula* on Jamaica remains unknown.
+
+A very well-sampled time-calibrated phylogeny for the genus has recently been published, covering all the island where *Insula* occurs. A few species have been recently discovered and were not sampled in the phylogeny. There is no evidence of recently extinct species. The authors of the study performed an ancestral range reconstruction, so it is possible to infer the ancestral areas and number of colonisation events.
+
+Making use of the knowledge you gathered from DAISIEprep and DAISIE, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Jamaica and fit DAISIE to the data.
+
+## Instructions of written assignment
+
+Write a 3-page report of the computer practical.
+
+-   Follow the self-guided tutorials of the computer practical and run analyses using DAISIE to answer all of the required [questions](#sec-questions) in an individually written report.
+
+-   In your report, briefly describe the methodology used for the analyses of Insula, your main results, and limitations of the analyses.
+
+-   Format: .doc and .pdf, 2-3 pages, Calibri font (or similar), minimum font size 10.
+
+-   Include any tables and figures that you think could be relevant (be creative!), as long as they are well explained (including legends) and keep within the 2-3 page limit.
+
+-   Do not include code in the assignment (unless you want to point out something specific with the script).
+
+**Focus on the interpretation of the results from a biological perspective.**

@@ -1,25 +1,33 @@
 ---
-title: "DAISIEprep"
-author: Luis Valente
+title: "DAISIEprep" 
+author: Luis Valente, Joshua W. Lambert, Lizzie Roeble
 ---
 
-# Course Island Biology
+## Using DAISIEprep pack to extract and format data {#sec-daisieprep}
 
-## Part 2 - DAISIEprep
+In this tutorial, the main features of DAISIEprep are explained. DAISIEprep (Lambert et al. 2023) is an R package that facilitates formatting of data for subsequent use in DAISIE.
 
-### In this tutorial, the main features of DAISIEprep are explained. DAISIEprep is an R package that facilitates formatting of data for subsequent use in DAISIE.
+![](images/DAISIEprep_logo.png){fig-align="center"}
 
-![DAISIEprep R package logo](images/DAISIEprep_logo.png){fig-align="center"}
+A typical DAISIEprep pipeline is as follows: 
 
-#### A typical DAISIEprep pipeline is as follows: 1) identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees, 2) assign an island endemicity status (endemic, non-endemic, not present) to each of the species, 3) automatically extract times of colonisation of the island and diversification within the island from the phylogenies; 4) add any missing species, 5) format data for DAISIE.
+1.  Identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees
+2.  Assign an island endemicity status (endemic, non-endemic, not present) to each of the species
+3.  Automatically extract times of colonisation of the island and diversification within the island from the phylogenies
+4.  Add any missing species
+5.  Format data for DAISIE.
 
-#### The DAISIEprep tutorial is divided into 2 sections:
+The DAISIEprep tutorial is divided into 2 sections:
 
-1.  **Phylogeny example** - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
+[Single Phylogeny example] - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
 
-2.  **Adding missing species** - Learn how to add missing species, lineages, etc, to your DAISIE data list.
+[Adding missing species] - Learn how to add missing species, lineages, etc, to your DAISIE data list.
 
-#### First load the required packages:
+## Single Phylogeny Example
+
+In this section we demonstrate a simple example of extracting and formatting data from a single phylogeny. We use a simulated phylogeny, which facilitates explaining how the data is structured.
+
+### Load the required packages:
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -34,17 +42,11 @@ knitr::opts_chunk$set(
 ```{r setup, warning=FALSE,message=FALSE}
 library(DAISIEprep)
 library(ape)
-library(phylobase)
-library(ggtree)
-library(ggimage)
-library(castor)
 ```
 
-## 2.1. Single Phylogeny Example
+### Simulate example phylogeny
 
-#### In this section we demonstrate a simple example of extracting and formatting data from a single phylogeny. We use a simulated phylogeny, which facilitates explaining how the data is structured.
-
-First we simulate a phylogeny using the package ape.
+We now simulate a phylogeny using the package ape.
 
 ```{r simulate phylogeny}
 set.seed(
@@ -73,6 +75,8 @@ phylobase::plot(phylo)
 ```
 
 Now we have a phylogeny in the phylo4 format to which we can easily append data.
+
+### Add distribution information to the tips of the tree
 
 Specify tips corresponding to species from your focal island by specifying that they are endemic and/or non-endemic to the island. In the example below, species Plant_h is found on the island but it not endemic, and species Plant_f and Plant_e are found on the island and are endemic to the island. All other species on the phylogeny are NOT present on the island.
 
@@ -107,6 +111,8 @@ plot_phylod(phylod = phylod)
 ```
 
 As you can see, in the example phylogeny, there appear to be 2 separate colonisation events of the island - one which has led to species Plant_f and Plant_e and other that has led to the non-endemic species Plant_h.
+
+### Extract data using DAISIEprep
 
 Now that we can see the tips that are present on the island, we can extract them to form our island community data set that can be used in the DAISIE R package to fit likelihood models of island colonisation and diversification.
 
@@ -182,6 +188,8 @@ For example, the code below shows you the names of the species included in each 
 island_tbl@island_tbl$species
 ```
 
+### Convert to data object to be used in DAISIE
+
 Now that we have the `island_tbl` we can convert this to the DAISIE data list to be used by the DAISIE inference model. To convert to the DAISIE data list (i.e. the input data of the DAISIE inference model) we use `create_daisie_data()`, providing the `island_tbl` as input. We also need to specify:
 
 -   The age of the island or archipelago. Here we use an island age of twelve million years (`island_age = 12`).
@@ -211,13 +219,13 @@ data_list[[2]]
 
 This data list is now ready to be used in the DAISIE maximum likelihood inference model from the R package DAISIE. But let's learn how to add missing species (species not sampled in the phylogeny) to this datalist.
 
-## 2.2. Adding missing species
+## Adding missing species
 
 It is often the case that phylogenetic data is not available for some island species or even for entire lineages present in the island community. But we can still include these species in our DAISIE analyses using DAISIEprep. This section is about the tools that DAISIEprep provides in order to handle missing data, and generally to handle species that are missing and need to be input into the data manually.
 
 For this section, as with the previous section, the core data structure we are going to work with is the `island_tbl`. We will use the `island_tbl` for the example plant dataset produced in the last section.
 
-### 2.2.1 Adding missing species to an island clade that has been sampled in the phylogeny
+### Adding missing species to an island clade that has been sampled in the phylogeny
 
 This option is for cases in which a clade has been sampled in the phylogeny, and at least 1 colonisation or 1 branching time is available in the datalist, but 1 or more species from that clade were not sampled. For this example, we imagine that 2 species have not been sampled, and that we want to add them as missing species to the lineage containing species "Plant_e" that is sampled in the phylogeny. To assign two missing species to this clade we use the function `add_missing_species()` The argument `species_to_add_to` uses a representative sampled species from that island clade to work out which colonist in the `island_tbl` to assign the specified number of missing species (`num_missing_species`) to. You can find out which species are already sampled in each lineage using:
 
@@ -255,7 +263,7 @@ data_list <- create_daisie_data(
 )
 ```
 
-### 2.2.2 Adding an entire lineage when a phylogeny is not available for the lineage.
+### Adding an entire lineage when a phylogeny is not available for the lineage.
 
 For cases when the missing species belong to a lineage that has not been sampled in the phylogeny. Assuming we did not have any phylogenetic data or colonisation time estimate for the island clade, we can insert species as missing and specify them as a separate lineage. Because not colonisation and branching times are known for this lineage, when this lineage later gets processed by the DAISIE inference model it will be assumed it colonised the island any time between the island's formation and the present.
 
