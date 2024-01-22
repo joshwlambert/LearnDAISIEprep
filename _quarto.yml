@@ -12,7 +12,6 @@ book:
     - insula_tutorial_intro.qmd
     - DAISIEprep.qmd
     - DAISIE.qmd
-    - insula_DAISIE.qmd
 
 format:
   html:
