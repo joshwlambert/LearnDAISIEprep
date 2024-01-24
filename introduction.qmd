@@ -7,10 +7,6 @@ author: Luis Valente
 
 In this practical we will estimate rates of colonisation, speciation and extinction for a (hypothetical) genus of beetles found in the Caribbean. We will then use these estimated rates to simulate how the number of species has changed through time in this taxonomic group. The practical will use mainly the R packages DAISIE and DAISIEprep. We will learn how to interpret and prepare data for analyses using DAISIE, how to fit DAISIE models to phylogenetic data, and how to simulate phylogenies of island communities.
 
-![](images/beetle4-01.png){width="66"}![](images/beetle1-01.png){width="147"}![](images/beetle3-01.png){width="57"}![](images/beetle2-01.png){width="70"}
-
-![Beetles (Phylopic); Caribbean Islands (Google Earth)](images/Caribbean_Google_Earth.png)
-
 The practical is divided into 4 main parts (please follow them in this order):
 
 1.  [Read the instructions of the graded assignment](#sec-assignment).

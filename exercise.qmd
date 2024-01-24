@@ -3,7 +3,7 @@ title: "Insula beetles exercise"
 editor: visual
 ---
 
-## Insula beetles excercise {#sec-exercise}
+## *Insula* beetles excercise {#sec-exercise}
 
 After you have finished the DAISIEprep and DAISIE practicals, you can begin applying these techniques to the *Insula* dataset.
 
@@ -13,7 +13,7 @@ The aim is to be able to answer the following questions:
 
 A.  How many times has *Insula* colonised the Caribbean islands?
 B.  How many times has *Insula* colonised Jamaica?
-C.  How many radiations have occured on Jamaica?
+C.  How many radiations have occurred on Jamaica?
 D.  What are the rates of colonisation, speciation and extinction for *Insula* in Jamaica?
 E.  Is there evidence for diversity-dependence in the *Insula* species of Jamaica?
 F.  Is there evidence for equilibrium dynamics on the island of Jamaica?

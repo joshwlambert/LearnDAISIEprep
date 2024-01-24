@@ -7,7 +7,9 @@ author: Luis Valente
 
 ![Phylogenies of Galápagos birds](images/Galapagos_picture.png)
 
-In this practical we are going to fit the DAISIE model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*). We will use software DAISIE to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated rates to see how species diversity has varied through time in the Galápagos.
+In this part of the practical, we will learn how to use DAISIE. As a demonstraction, we are going to fit the DAISIE model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*).
+We will use software DAISIE to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated
+rates to see how species diversity has varied through time in the Galápagos.
 
 
 ### Prepare the R environment

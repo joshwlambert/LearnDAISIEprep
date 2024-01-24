@@ -8,6 +8,10 @@ editor: visual
 
 The beetle genus *Insula* (imaginary genus, does not exist in reality), is a large genus of beetles of approximately 50 species, distributed in Central America and the Caribbean islands. The majority of the species in the genus are endemic to islands, and it is thought to be a great example of colonisation and diversification on islands. The species of the genus occur in forests, shrublands or freshwater habitats. They are good swimmers but cannot survive in sea water.
 
+![](images/beetle4-01.png){width="66"}![](images/beetle1-01.png){width="147"}![](images/beetle3-01.png){width="57"}![](images/beetle2-01.png){width="70"}
+
+![Beetles (Phylopic); Caribbean Islands (Google Earth)](images/Caribbean_Google_Earth.png)
+
 One of the most diverse islands for the genus *Insula* is Jamaica, a mid-size Caribbean island with a complex geological history. It is thought that Jamaica has a continental origin, but has been isolated from other landmasses for approximately 5 million years. The mainland pool of closely related species of beetles in the continent (i.e. species that could have colonised the islands) has been estimated to be approximately 1000 species. More than 15 species of *Insula* are thought to be endemic to Jamaica, with a few species being only recently described or discovered. However, the evolutionary island biogeography of *Insula* on Jamaica remains unknown.
 
 A very well-sampled time-calibrated phylogeny for the genus has recently been published, covering all the island where *Insula* occurs. A few species have been recently discovered and were not sampled in the phylogeny. There is no evidence of recently extinct species. The authors of the study performed an ancestral range reconstruction, so it is possible to infer the ancestral areas and number of colonisation events.

@@ -5,7 +5,7 @@ author: Luis Valente, Joshua W. Lambert, Lizzie Roeble
 
 ## Using DAISIEprep pack to extract and format data {#sec-daisieprep}
 
-In this tutorial, the main features of DAISIEprep are explained. DAISIEprep (Lambert et al. 2023) is an R package that facilitates formatting of data for subsequent use in DAISIE.
+In this part of the practical, the main features of DAISIEprep are explained. DAISIEprep (Lambert et al. 2023) is an R package that facilitates formatting of data for subsequent use in DAISIE.
 
 ![](images/DAISIEprep_logo.png){fig-align="center"}
 
