@@ -126,12 +126,11 @@ island_tbl
 We can see that this is an object containing an empty data frame. In order to fill this data frame with information on the island colonisation and diversification events we can run:
 
 ```{r extract island data}
-island_tbl <- extract_island_species(
+island_tbl_min <- extract_island_species(
   phylod = phylod,
   extraction_method = "min"
 )
-island_tbl
-island_tbl_min<-island_tbl
+island_tbl_min
 ```
 
 The function `extract_island_species()` is the main function in DAISIEprep to extract data from the phylogeny. In the example above, we used the "min" extraction algorithm. The "min" algorithm extracts island community data assuming no back-colonisation from the island to the mainland. Each row in the `island_tbl` corresponds to a separate colonisation of the island. **In this case, two colonist lineages were correctly identified using the 'min' extraction algorithm, one endemic and another non-endemic. Each row in the table corresponds to one colonisation event.**
