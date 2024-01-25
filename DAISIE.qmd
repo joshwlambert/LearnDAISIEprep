@@ -7,10 +7,7 @@ author: Luis Valente
 
 ![Phylogenies of Galápagos birds](images/Galapagos_picture.png)
 
-In this part of the practical, we will learn how to use DAISIE. As a demonstraction, we are going to fit the DAISIE model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*).
-We will use software DAISIE to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated
-rates to see how species diversity has varied through time in the Galápagos.
-
+In this part of the practical, we will learn how to use DAISIE. As a demonstraction, we are going to fit the DAISIE model to phylogenetic data for species of native land birds of the Galápagos islands (data from Valente, Phillimore and Etienne 2015 *Ecology Letters*; and Valente et al 2020 *Nature*). We will use software DAISIE to estimate rates of speciation, colonisation and extinction in the Galápagos. We will simulate islands with these estimated rates to see how species diversity has varied through time in the Galápagos.
 
 ### Prepare the R environment
 
@@ -19,7 +16,6 @@ Empty workspace of existing previous objects, just in case.
 ```{r}
 rm(list=ls())
 ```
-
 
 ### Load the required packages:
 
@@ -40,11 +36,21 @@ library(ape)
 
 ### Load and visualise Galapágos bird data
 
-The dataset of Galápagos birds includes colonisation and branching times for a total of 27 species of terrestrial birds of the Galápagos islands, distributed across 8 lineages. Some of the lineages have only 1 species, e.g. the Galápagos dove *Zenaida*. Others have radiated, including the Darwin's finch radiation (16 species) and the mockingbirds *Mimus* radiation (4 species). **Note**: the dataset we will use is slightly different from the example dataset that is included as data in the DAISIE R package.
+The [dataset](data/galapagos_datalist.Rdata) of Galápagos birds includes colonisation and branching times for a total of 27 species of terrestrial birds of the Galápagos islands, distributed across 8 lineages. Some of the lineages have only 1 species, e.g. the Galápagos dove *Zenaida*. Others have radiated, including the Darwin's finch radiation (16 species) and the mockingbirds *Mimus* radiation (4 species). **Note**: the dataset we will use is slightly different from the example dataset that is included as data in the DAISIE R package.
 
 #### Load Galápagos DAISIE datalist
 
-```{r }
+**Download the Galápagos dataset file: [galapagos_datalist.Rdata](data/galapagos_datalist.Rdata)**
+
+Store it locally.
+
+Load it into R, by setting the path to the location of the file on your computer:
+
+```{r , eval=F}
+load(file="PATH_TO_YOUR_DATALIST_FILE")
+```
+
+```{r , echo = F}
 load(file="data/galapagos_datalist.Rdata")
 ```
 
@@ -293,5 +299,4 @@ DAISIE_plot_sims(Azores_sims)
 How does the Azores plot differ from that of the Galápagos?
 
 \
-The end of the DAISIE practical. Well done! Now you are ready to work on the 
-*Insula* exercise
+The end of the DAISIE practical. Well done! Now you are ready to work on the *Insula* exercise

@@ -9,7 +9,7 @@ In this part of the practical, the main features of DAISIEprep are explained. DA
 
 ![](images/DAISIEprep_logo.png){fig-align="center"}
 
-A typical DAISIEprep pipeline is as follows: 
+A typical DAISIEprep pipeline is as follows:
 
 1.  Identify island colonisation events for the taxonomic group of interest from time-calibrated phylogenetic trees
 2.  Assign an island endemicity status (endemic, non-endemic, not present) to each of the species
@@ -17,11 +17,13 @@ A typical DAISIEprep pipeline is as follows:
 4.  Add any missing species
 5.  Format data for DAISIE.
 
-The DAISIEprep tutorial is divided into 2 sections:
+The DAISIEprep tutorial is divided into the following sections:
 
-[Single Phylogeny example] - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
+- [Single Phylogeny example] - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
 
-[Adding missing species] - Learn how to add missing species, lineages, etc, to your DAISIE data list.
+- [Adding missing species] - Learn how to add missing species, lineages, etc, to your DAISIE data list.
+
+- [Prepare object for analyses in DAISIE]
 
 ## Single Phylogeny Example
 
@@ -187,37 +189,6 @@ For example, the code below shows you the names of the species included in each 
 island_tbl@island_tbl$species
 ```
 
-### Convert to data object to be used in DAISIE
-
-Now that we have the `island_tbl` we can convert this to the DAISIE data list to be used by the DAISIE inference model. To convert to the DAISIE data list (i.e. the input data of the DAISIE inference model) we use `create_daisie_data()`, providing the `island_tbl` as input. We also need to specify:
-
--   The age of the island or archipelago. Here we use an island age of twelve million years (`island_age = 12`).
--   Whether the colonisation times extracted from the phylogenetic data should be considered precise (`precise_col_time = TRUE`). We will not discuss the details of this here, but briefly by setting this to `TRUE` the data will tell the DAISIE model that the colonisation times are known without error. Setting `precise_col_time = FALSE` will change tell the DAISIE model that the colonisation time is uncertain and should interpret this as the upper limit to the time of colonisation and integrate over the uncertainty between this point and either the present time or to the first branching point (either speciation or divergence into subspecies).
--   The number of species in the mainland source pool. Here we set it to 100 (`num_mainland_species = 100`). This will be used to calculate the number of species that could have potentially colonised the island but have not. When we refer to the mainland pool, this does not necessarily have to be a continent, it could be a different island if the source of species immigrating to an island is largely from another nearby island (a possible example of this could be Madagascar being the source of species colonising Comoros). This information is used by the DAISIE model to calculate the colonisation rate of the island.
-
-```{r}
-data_list <- create_daisie_data(
-  data = island_tbl,
-  island_age = 12,
-  num_mainland_species = 100,
-  precise_col_time = TRUE
-)
-```
-
-Below we show two elements of the DAISIE data list produced. The first element `data_list[[1]]` in every DAISIE data list is the island community metadata, containing the island age and the number of species in the mainland pool that did not leave descendants on the island at the present day. This is important information for DAISIE inference, as it is possible some mainland species colonised the island but went extinct leaving no trace of their island presence.
-
-```{r}
-data_list[[1]]
-```
-
-Next is the first element containing information on island colonists (every element `data_list[[x]]` in the list after the metadata contains information on individual island colonists). This contains the name of the colonist, the number of missing species, and the branching times, which is a vector containing the age of the island, the colonisation time and the times of any cladogenesis events. Confusingly, it may be that the branching times vector contains no branching times: when there are only two numbers in the vector these are the island age followed by the colonisation time. Then there is the stac, which stands for status of colonist. This is a number which tells the DAISIE model how to identify the endemicity and colonisation uncertainty of the island colonist ([these are explained here if you are interested](https://cran.r-project.org/package=DAISIE/vignettes/stac_key.html)). Lastly, the type1or2 defines which macroevolutionary regime an island colonist is in. By macroevolutionary regime we mean the set of rates of colonisation, speciation and extinction for that colonist. Most applications will assume all island clades have the same regime and thus all are assigned type 1. However, if there is **a priori** expectation that one clade significantly different from the rest, e.g. the Galápagos finches amongst the other terrestrial birds of the Galápagos archipelago this clade can be set to type 2.
-
-```{r}
-data_list[[2]]
-```
-
-This data list is now ready to be used in the DAISIE maximum likelihood inference model from the R package DAISIE. But let's learn how to add missing species (species not sampled in the phylogeny) to this datalist.
-
 ## Adding missing species
 
 It is often the case that phylogenetic data is not available for some island species or even for entire lineages present in the island community. But we can still include these species in our DAISIE analyses using DAISIEprep. This section is about the tools that DAISIEprep provides in order to handle missing data, and generally to handle species that are missing and need to be input into the data manually.
@@ -318,7 +289,15 @@ island_tbl <- add_island_colonist(
 )
 ```
 
-With the new missing species added to the `island_tbl` we can repeat the conversion steps above using `create_daisie_data()` to produce data accepted by the DAISIE model.
+## Prepare object for analyses in DAISIE
+
+**Convert to data object to be used in DAISIE**
+
+Now that we have the `island_tbl` we can convert this to the DAISIE data list to be used by the DAISIE inference model. To convert to the DAISIE data list (i.e. the input data of the DAISIE inference model) we use `create_daisie_data()`, providing the `island_tbl` as input. We also need to specify:
+
+-   The age of the island or archipelago. Here we use an island age of twelve million years (`island_age = 12`).
+-   Whether the colonisation times extracted from the phylogenetic data should be considered precise (`precise_col_time = TRUE`). We will not discuss the details of this here, but briefly by setting this to `TRUE` the data will tell the DAISIE model that the colonisation times are known without error. Setting `precise_col_time = FALSE` will change tell the DAISIE model that the colonisation time is uncertain and should interpret this as the upper limit to the time of colonisation and integrate over the uncertainty between this point and either the present time or to the first branching point (either speciation or divergence into subspecies).
+-   The number of species in the mainland source pool. Here we set it to 100 (`num_mainland_species = 100`). This will be used to calculate the number of species that could have potentially colonised the island but have not. When we refer to the mainland pool, this does not necessarily have to be a continent, it could be a different island if the source of species immigrating to an island is largely from another nearby island (a possible example of this could be Madagascar being the source of species colonising Comoros). This information is used by the DAISIE model to calculate the colonisation rate of the island.
 
 ```{r}
 data_list <- create_daisie_data(
@@ -328,5 +307,19 @@ data_list <- create_daisie_data(
   precise_col_time = TRUE
 )
 ```
+
+Below we show two elements of the DAISIE data list produced. The first element `data_list[[1]]` in every DAISIE data list is the island community metadata, containing the island age and the number of species in the mainland pool that did not leave descendants on the island at the present day. This is important information for DAISIE inference, as it is possible some mainland species colonised the island but went extinct leaving no trace of their island presence.
+
+```{r}
+data_list[[1]]
+```
+
+Next is the first element containing information on island colonists (every element `data_list[[x]]` in the list after the metadata contains information on individual island colonists). This contains the name of the colonist, the number of missing species, and the branching times, which is a vector containing the age of the island, the colonisation time and the times of any cladogenesis events. Confusingly, it may be that the branching times vector contains no branching times: when there are only two numbers in the vector these are the island age followed by the colonisation time. Then there is the stac, which stands for status of colonist. This is a number which tells the DAISIE model how to identify the endemicity and colonisation uncertainty of the island colonist ([these are explained here if you are interested](https://cran.r-project.org/package=DAISIE/vignettes/stac_key.html)). Lastly, the type1or2 defines which macroevolutionary regime an island colonist is in. By macroevolutionary regime we mean the set of rates of colonisation, speciation and extinction for that colonist. Most applications will assume all island clades have the same regime and thus all are assigned type 1. However, if there is **a priori** expectation that one clade significantly different from the rest, e.g. the Galápagos finches amongst the other terrestrial birds of the Galápagos archipelago this clade can be set to type 2.
+
+```{r}
+data_list[[2]]
+```
+
+This `datalist` is now ready to be used in the DAISIE maximum likelihood inference model from the R package DAISIE.
 
 End of the DAISIEprep tutorial!
