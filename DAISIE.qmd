@@ -118,7 +118,7 @@ To visualise the diversity of each lineage according to their age:
 DAISIE_plot_age_diversity(galapagos_datalist)
 ```
 
-The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage - Darwin's finches - stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages. One of the lineages, *Mimus*, is not plotted, because it's age is set as max-age, that is why the number of species is 23 (27-4 species=23).\
+The above plot shows the number of species per lineage plotted against their colonisation time. You can see that one lineage stands out, it is not the oldest lineage, but it has 16 species, many more than the other lineages (there is no label, but it corresponds to the Darwin's finches). One of the lineages, *Mimus*, is not plotted, because it's age is set as max-age, that is why the number of species is 23 (27-4 species=23).\
 
 \
 
@@ -262,7 +262,7 @@ Play with different parameter settings in `DAISIE_sim` (e.g. changing extinction
 
 #### Comparison with bird data from the Azores islands
 
-Now let's brielfy compare with simulatiosn for a completely different dataset, of birds from the Azores archipelago (Atlantic Ocean). Load datatable containing Azores bird data from Valente et al 2017 (*Current Biology*)
+Now let's briefly compare with simulations for a completely different dataset, of birds from the Azores archipelago (Atlantic Ocean). Load datatable containing Azores bird data from Valente et al 2017 (*Current Biology*)
 
 ```{r}
 data(Macaronesia_datalist)
