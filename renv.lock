@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.2.3",
+    "Version": "4.3.2",
     "Repositories": [
       {
         "Name": "BioCsoft",
@@ -29,7 +29,7 @@
     ]
   },
   "Bioconductor": {
-    "Version": "3.16"
+    "Version": "3.18"
   },
   "Packages": {
     "BH": {
@@ -51,12 +51,13 @@
     },
     "BiocVersion": {
       "Package": "BiocVersion",
-      "Version": "3.16.0",
+      "Version": "3.18.1",
       "Source": "Bioconductor",
+      "Repository": "Bioconductor 3.18",
       "Requirements": [
         "R"
       ],
-      "Hash": "44c5824508b9a10e52dbb505c34fa880"
+      "Hash": "2ecaed86684f5fae76ed5530f9d29c4a"
     },
     "DAISIE": {
       "Package": "DAISIE",
@@ -139,7 +140,7 @@
     },
     "MASS": {
       "Package": "MASS",
-      "Version": "7.3-60.0.1",
+      "Version": "7.3-60",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -150,13 +151,13 @@
         "stats",
         "utils"
       ],
-      "Hash": "b765b28387acc8ec9e9c1530713cb19c"
+      "Hash": "a56a6365b3fa73293ea8d084be0d9bb0"
     },
     "Matrix": {
       "Package": "Matrix",
       "Version": "1.6-5",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "grDevices",
@@ -779,7 +780,7 @@
     },
     "ggtree": {
       "Package": "ggtree",
-      "Version": "3.6.2",
+      "Version": "3.10.0",
       "Source": "Bioconductor",
       "Requirements": [
         "R",
@@ -802,7 +803,7 @@
         "utils",
         "yulab.utils"
       ],
-      "Hash": "87f158a81a3fe875f084692ce5544be6"
+      "Hash": "f009cfa13d3884c01cc6300443e397eb"
     },
     "glue": {
       "Package": "glue",
@@ -994,7 +995,7 @@
       "Package": "lattice",
       "Version": "0.22-5",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "grDevices",
@@ -1141,7 +1142,7 @@
       "Package": "nlme",
       "Version": "3.1-164",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R",
         "graphics",
@@ -1684,8 +1685,14 @@
     },
     "treeio": {
       "Package": "treeio",
-      "Version": "1.22.0",
-      "Source": "Bioconductor",
+      "Version": "1.27.0.002",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "GuangchuangYu",
+      "RemoteRepo": "treeio",
+      "RemoteRef": "devel",
+      "RemoteSha": "c58405e2b3959e9e0dff9696a7de01f86fdae6c1",
       "Requirements": [
         "R",
         "ape",
@@ -1694,11 +1701,13 @@
         "magrittr",
         "methods",
         "rlang",
+        "stats",
         "tibble",
         "tidytree",
-        "utils"
+        "utils",
+        "yulab.utils"
       ],
-      "Hash": "79eb206300fb5e5feea1f508a8166eba"
+      "Hash": "c78faf4b992fe20f9f85e66d0af2ba36"
     },
     "utf8": {
       "Package": "utf8",
