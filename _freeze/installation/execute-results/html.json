@@ -1,7 +1,7 @@
 {
-  "hash": "6ef1c6648b68dd6e16915c212cb8ced9",
+  "hash": "27b6a7f327bf5d62bc944b56d6520d30",
   "result": {
-    "markdown": "---\ntitle: \"Installation\"\nauthor: Luis Valente\n---\n\n\n## Install required software:\n\n-   [R](https://www.r-project.org)\n\n-   [Rstudio](https://posit.co)\n\n-   [Figtree](https://github.com/rambaut/figtree/releases)\n\n## Install required R packages\n\nOpen and run this script in Rstudio. This should install all required R packages (**may take a while!**).\n\n\n::: {.cell}\n\n```{.r .cell-code}\ninstall.packages('DAISIE',dependencies = TRUE)\ninstall.packages('DAISIEprep',dependencies = TRUE)\ninstall.packages('ape',dependencies = TRUE)\n```\n:::\n\n\nCheck if packages load correctly\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(DAISIE)\nlibrary(ape)\nlibrary(DAISIEprep)\n```\n:::\n",
+    "markdown": "---\ntitle: \"Installation\"\nauthor: Luis Valente\n---\n\n\n## Install required software:\n\n-   [R](https://www.r-project.org)\n\n-   [Rstudio](https://posit.co)\n\n-   [Figtree](https://github.com/rambaut/figtree/releases)\n\n## Install required R packages\n\nOpen and run this script in Rstudio. This should install all required R packages (**may take a while!**).\n\n\n::: {.cell}\n\n```{.r .cell-code}\ninstall.packages('DAISIE',dependencies = TRUE)\ninstall.packages('DAISIEprep',dependencies = TRUE)\ninstall.packages('ape',dependencies = TRUE)\n```\n:::\n\n\n**If you run into problems with 'ggtree' package.** Make sure you have the latest version of R, then use:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nif (!requireNamespace(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\nBiocManager::install(\"ggtree\")\n```\n:::\n\n\nCheck if packages load correctly\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(DAISIE)\nlibrary(ape)\nlibrary(DAISIEprep)\n```\n:::\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

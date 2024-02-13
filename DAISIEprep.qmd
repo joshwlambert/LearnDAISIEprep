@@ -150,7 +150,7 @@ plot_phylod(phylod = phylod)
 ```
 
 \
-Sidenote: if you are wondering what the probabilities are at each node and whether this should influence your decision to pick a preference for island or mainland when the likelihoods for each state are equal, we can plot the probabilities at the nodes to visualise the ancestral state reconstruction using `plot_phylod(phylod = phylod, node_pies = TRUE)`.
+Sidenote (optional): if you are wondering what the probabilities are at each node and whether this should influence your decision to pick a preference for island or mainland when the likelihoods for each state are equal, we can plot the probabilities at the nodes to visualise the ancestral state reconstruction using `plot_phylod(phylod = phylod, node_pies = TRUE)`.
 
 Now we can extract island colonisation and diversification times from the phylogeny with asr using the reconstructed ancestral states of island presence/absence.
 
@@ -235,7 +235,7 @@ data_list <- create_daisie_data(
 
 ### Adding an entire lineage when a phylogeny is not available for the lineage.
 
-For cases when the missing species belong to a lineage that has not been sampled in the phylogeny. Assuming we did not have any phylogenetic data or colonisation time estimate for the island clade, we can insert species as missing and specify them as a separate lineage. Because not colonisation and branching times are known for this lineage, when this lineage later gets processed by the DAISIE inference model it will be assumed it colonised the island any time between the island's formation and the present.
+For cases when the missing species belong to a lineage that has not been sampled in the phylogeny. Assuming we did not have any phylogenetic data or colonisation time estimate for the island clade, we can insert species as missing and specify them as a separate lineage. Because no colonisation and branching times are known for this lineage, when this lineage later gets processed by the DAISIE inference model it will be assumed it colonised the island any time between the island's formation and the present.
 
 The input needed are:
 
