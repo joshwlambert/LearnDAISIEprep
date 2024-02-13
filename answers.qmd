@@ -1,5 +1,5 @@
 ---
-title: "Solution"
+title: "Answers"
 author: Luis Valente
 ---
 
@@ -122,6 +122,8 @@ island_tbl <- add_island_colonist(
 )
 ```
 
+**An alternative** is to set the colonisation time to be younger than the mainland clade it is related to, by setting `col_time` to the age you choose and setting `col_max_age=TRUE` to tell DAISIE that is a maximum age for colonisation.
+
 Add missing species Spec_52, closely related to Spec_42
 
 ```{r}
@@ -177,7 +179,7 @@ M2<-DAISIE_ML(
 M2
 ```
 
-Fit model with no anagenesis
+Fit model with no anagenesis (optional)
 
 ```{r M3, message=FALSE, warning=FALSE, cache=TRUE}
 M3<-DAISIE_ML(

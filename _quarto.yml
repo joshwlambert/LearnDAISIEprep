@@ -14,6 +14,7 @@ book:
     - DAISIEprep.qmd
     - DAISIE.qmd
     - exercise.qmd
+    - answers.qmd
 
 format:
   html:

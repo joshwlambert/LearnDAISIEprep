@@ -21,6 +21,14 @@ install.packages('DAISIEprep',dependencies = TRUE)
 install.packages('ape',dependencies = TRUE)
 ```
 
+**If you run into problems with 'ggtree' package.** Make sure you have the latest version of R, then use:
+
+```{r installgg, eval=F}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("ggtree")
+```
+
 Check if packages load correctly
 
 ```{r load, eval=F}
