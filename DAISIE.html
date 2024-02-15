@@ -400,17 +400,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>parsfix</code> and <code>idparsfix</code> are set to NULL because we are not fixing any parameters this time.</p></li>
 </ul>
 <p><strong>The code below takes a while to run.</strong></p>
-<div class="cell" data-layout-align="center" data-hash="DAISIE_cache/html/ML_DAISIE_M1_9eb4703f5545cea53974e8fe74693e00">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_ML</span>(</span>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>M1_results <span class="ot">&lt;-</span> <span class="fu">DAISIE_ML</span>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datalist =</span> galapagos_datalist,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,<span class="fl">1.1</span>,<span class="dv">20</span>,<span class="fl">0.009</span>,<span class="fl">1.1</span>),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ddmodel =</span> <span class="dv">11</span>,</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">idparsopt =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">parsfix =</span> <span class="cn">NULL</span>,</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">idparsfix =</span> <span class="cn">NULL</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   lambda_c       mu       K       gamma     lambda_a    loglik df conv</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1.258226 1.136924 9968506 0.004957378 1.251793e-06 -84.78145  5    0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The output gives the ML parameters values, the loglikelihood, and the number of parameters (df).<br>
 </p>
@@ -419,17 +417,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="6.1.4.2" class="anchored" data-anchor-id="fit-model-with-no-carrying-capacity-m2"><span class="header-section-number">6.1.4.2</span> Fit model with no carrying-capacity (M2)</h4>
 <p>As you can see above, the value of K in M1 is very high (hundreds of thousands of species). This suggest that there may be no upper bound to diversity (so K is in fact infinite). So let’s try a model without K as a free parameter.</p>
 <p>The second model (M2) is just like M1, but we will fix K to be infinite. In comparison to M1, we now remove the 3rd parameter (carrying capacity) from the <code>initparsopt</code> and <code>idparsopt</code> settings. So we now have only parameters 1,2,4 and 5. We fix the parameter number 3 to <code>Inf</code> (carrying capacity K fixed to infinite):</p>
-<div class="cell" data-layout-align="center" data-hash="DAISIE_cache/html/ML_DAISIE_M2_f93d819a0a592bae2d30b65da2b0bb1d">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_ML</span>(</span>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>M2_results <span class="ot">&lt;-</span> <span class="fu">DAISIE_ML</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datalist =</span> galapagos_datalist,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,<span class="fl">1.1</span>,<span class="fl">0.009</span>,<span class="fl">1.1</span>),</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">idparsopt =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>),</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parsfix =</span> <span class="cn">Inf</span>,</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">idparsfix =</span> <span class="dv">3</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ddmodel=</span><span class="dv">0</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   lambda_c       mu   K      gamma     lambda_a    loglik df conv</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1.264389 1.149378 Inf 0.00505558 1.662578e-05 -84.78088  4    0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ddmodel =</span> <span class="dv">0</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br>
 </p>
@@ -438,17 +434,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="6.1.4.3" class="anchored" data-anchor-id="fit-model-with-no-carrying-capacity-and-no-anagenesis-m3"><span class="header-section-number">6.1.4.3</span> Fit model with no carrying capacity AND no anagenesis (M3)</h4>
 <p>Now, it appears that the parameter of anagenesis is close to 0 in M2 (see above). Perhaps a model without anagenesis will perform well.</p>
 <p>The third model (M3) is like M2, but with no carrying-capacity and no anagenesis. This time we switch off the 3rd and 5th parameters (carrying-capacity and anagenesis). We fix the 3rd parameter (K) to infinite; and the 5th parameter (anagenesis) to zero:</p>
-<div class="cell" data-layout-align="center" data-hash="DAISIE_cache/html/ML_DAISIE_M3_8ab5814e7f8402e370f8cc211d94afb5">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DAISIE_ML</span>(</span>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>M3_results <span class="ot">&lt;-</span> <span class="fu">DAISIE_ML</span>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datalist =</span> galapagos_datalist,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initparsopt =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,<span class="fl">1.1</span>,<span class="fl">0.009</span>),</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">idparsopt =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parsfix =</span> <span class="fu">c</span>(<span class="cn">Inf</span>,<span class="dv">0</span>),</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">idparsfix =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>),</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ddmodel=</span><span class="dv">0</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   lambda_c       mu   K       gamma lambda_a    loglik df conv</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1.263034 1.146225 Inf 0.005040353        0 -84.78082  3    0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ddmodel =</span> <span class="dv">0</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br>
 </p>
@@ -460,17 +454,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Create new function to compute AIC values base on the likelihood values and number of parameters for each model.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>AIC_compare<span class="ot">&lt;-</span> <span class="cf">function</span>(LogLik,k){</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  aic <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">*</span>k)<span class="sc">-</span>(<span class="dv">2</span><span class="sc">*</span>LogLik)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>AIC_compare <span class="ot">&lt;-</span> <span class="cf">function</span>(LogLik,k){</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  aic <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">*</span> k) <span class="sc">-</span> (<span class="dv">2</span> <span class="sc">*</span> LogLik)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(aic)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Fill in the values from your data in this format:</p>
 <p><code>AIC_compare(c(likelihood_M1,likelihood_M2,likelihood_M3), c(n_parameters_M1,n_parameters_M2,n_parameters_M3))</code>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>AICs<span class="ot">&lt;-</span><span class="fu">AIC_compare</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">84.78145</span> ,<span class="sc">-</span><span class="fl">84.78088</span>, <span class="sc">-</span><span class="fl">84.78082</span>),<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(AICs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">'M1'</span>,<span class="st">'M2'</span>,<span class="st">'M3'</span>)</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>AICs <span class="ot">&lt;-</span> <span class="fu">AIC_compare</span>(<span class="at">LogLik =</span> <span class="fu">c</span>(M1_results<span class="sc">$</span>loglik,M2_results<span class="sc">$</span>loglik,M3_results<span class="sc">$</span>loglik),</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">k =</span> <span class="fu">c</span>(M1_results<span class="sc">$</span>df,M2_results<span class="sc">$</span>df,M3_results<span class="sc">$</span>df))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(AICs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'M1'</span>,<span class="st">'M2'</span>,<span class="st">'M3'</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>AICs</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       M1       M2       M3 </span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 179.5629 177.5618 175.5616</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -485,12 +479,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now let’s use the ML parameters we estimated from the Galápagos bird data to simulate islands. Choose the parameters of the best model. We will simulate for 4 million years (time = 4). M is the mainland pool (keep it at 1000).</p>
 <section id="simulate-islands-with-the-parameters-estimated-from-the-best-model-for-the-galápagos-bird-data-takes-a-while-to-run-you-can-reduce-number-of-replicates-if-you-want" class="level4" data-number="6.1.5.1">
 <h4 data-number="6.1.5.1" class="anchored" data-anchor-id="simulate-islands-with-the-parameters-estimated-from-the-best-model-for-the-galápagos-bird-data-takes-a-while-to-run-you-can-reduce-number-of-replicates-if-you-want"><span class="header-section-number">6.1.5.1</span> Simulate islands with the parameters estimated from the best model for the Galápagos bird data (takes a while to run, you can reduce number of replicates if you want)</h4>
-<div class="cell" data-layout-align="center" data-hash="DAISIE_cache/html/DAISIE_sim_a72e1df60291d4a58285413d4b8da095">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Galapagos_sims<span class="ot">&lt;-</span><span class="fu">DAISIE_sim</span>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time=</span><span class="dv">4</span>,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">M=</span><span class="dv">1000</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pars=</span><span class="fu">c</span>(<span class="fl">1.26</span>, <span class="fl">1.146</span>, <span class="cn">Inf</span>, <span class="fl">0.005</span>,<span class="dv">0</span>),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates=</span> <span class="dv">100</span>,</span>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Galapagos_sims <span class="ot">&lt;-</span> <span class="fu">DAISIE_sim</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="dv">4</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">M =</span> <span class="dv">1000</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pars =</span> <span class="fu">c</span>(<span class="fl">1.26</span>, <span class="fl">1.146</span>, <span class="cn">Inf</span>, <span class="fl">0.005</span>,<span class="dv">0</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> <span class="dv">100</span>,</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot_sims =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -518,7 +512,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now let’s briefly compare with simulations for a completely different dataset, of birds from the Azores archipelago (Atlantic Ocean). Load datatable containing Azores bird data from Valente et al 2017 (<em>Current Biology</em>)</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Macaronesia_datalist)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Azores<span class="ot">&lt;-</span>Macaronesia_datalist[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Azores <span class="ot">&lt;-</span> Macaronesia_datalist[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="visualise-azores-data" class="level5" data-number="6.1.5.4.1">
 <h5 data-number="6.1.5.4.1" class="anchored" data-anchor-id="visualise-azores-data"><span class="header-section-number">6.1.5.4.1</span> Visualise Azores data</h5>
@@ -536,13 +530,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="simulate-azores-with-pre-identified-ml-parameters" class="level5" data-number="6.1.5.4.2">
 <h5 data-number="6.1.5.4.2" class="anchored" data-anchor-id="simulate-azores-with-pre-identified-ml-parameters"><span class="header-section-number">6.1.5.4.2</span> Simulate Azores with pre-identified ML parameters</h5>
-<div class="cell" data-layout-align="center" data-hash="DAISIE_cache/html/DAISIE_sim_Azores_b105bcf16127a120f9ce0641c19374c9">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Azores_sims<span class="ot">&lt;-</span><span class="fu">DAISIE_sim</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time=</span><span class="fl">6.3</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">M=</span><span class="dv">300</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pars=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.053151832</span>,<span class="cn">Inf</span>,<span class="fl">0.052148979</span>,<span class="fl">0.512939011</span>),</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates=</span> <span class="dv">100</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot_sims=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Azores_sims <span class="ot">&lt;-</span> <span class="fu">DAISIE_sim</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="fl">6.3</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">M =</span> <span class="dv">300</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pars =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">1.053151832</span>,<span class="cn">Inf</span>,<span class="fl">0.052148979</span>,<span class="fl">0.512939011</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">replicates =</span> <span class="dv">100</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot_sims =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br>
 </p>
