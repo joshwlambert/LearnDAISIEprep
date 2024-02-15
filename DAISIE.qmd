@@ -159,6 +159,7 @@ M1_results <- DAISIE_ML(
   parsfix = NULL,
   idparsfix = NULL
 )
+M1_results
 ```
 
 The output gives the ML parameters values, the loglikelihood, and the number of parameters (df).\
@@ -178,6 +179,7 @@ M2_results <- DAISIE_ML(
   idparsfix = 3,
   ddmodel = 0
 )
+M2_results
 ```
 
 \
@@ -197,6 +199,7 @@ M3_results <- DAISIE_ML(
   idparsfix = c(3,5),
   ddmodel = 0
 )
+M3_results
 ```
 
 \
