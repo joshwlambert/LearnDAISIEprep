@@ -250,7 +250,7 @@ Galapagos_sims <- DAISIE_sim(
 
 #### Plot the species-through-time plots resulting from the simulations
 
-```{r, echo=TRUE}
+```{r, echo = TRUE}
 DAISIE_plot_sims(Galapagos_sims)
 ```
 
