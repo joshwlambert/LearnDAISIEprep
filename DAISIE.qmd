@@ -150,8 +150,8 @@ Important settings of the `DAISIE_ML` function:
 
 **The code below takes a while to run.**
 
-```{r ML_DAISIE_M1, warning=TRUE, cache= TRUE}
-DAISIE_ML(
+```{r ML_DAISIE_M1, warning = TRUE, cache = TRUE}
+M1_results <- DAISIE_ML(
   datalist = galapagos_datalist,
   initparsopt = c(1.5,1.1,20,0.009,1.1),
   ddmodel = 11,
@@ -169,14 +169,14 @@ As you can see above, the value of K in M1 is very high (hundreds of thousands o
 
 The second model (M2) is just like M1, but we will fix K to be infinite. In comparison to M1, we now remove the 3rd parameter (carrying capacity) from the `initparsopt` and `idparsopt` settings. So we now have only parameters 1,2,4 and 5. We fix the parameter number 3 to `Inf` (carrying capacity K fixed to infinite):
 
-```{r ML_DAISIE_M2, warning=TRUE, cache = TRUE}
-DAISIE_ML(
+```{r ML_DAISIE_M2, warning = TRUE, cache = TRUE}
+M2_results <- DAISIE_ML(
   datalist = galapagos_datalist,
   initparsopt = c(1.5,1.1,0.009,1.1),
   idparsopt = c(1,2,4,5),
   parsfix = Inf,
   idparsfix = 3,
-  ddmodel=0
+  ddmodel = 0
 )
 ```
 
@@ -188,14 +188,14 @@ Now, it appears that the parameter of anagenesis is close to 0 in M2 (see above)
 
 The third model (M3) is like M2, but with no carrying-capacity and no anagenesis. This time we switch off the 3rd and 5th parameters (carrying-capacity and anagenesis). We fix the 3rd parameter (K) to infinite; and the 5th parameter (anagenesis) to zero:
 
-```{r ML_DAISIE_M3, warning=TRUE, cache = TRUE}
-DAISIE_ML(
+```{r ML_DAISIE_M3, warning = TRUE, cache = TRUE}
+M3_results <- DAISIE_ML(
   datalist = galapagos_datalist,
   initparsopt = c(1.5,1.1,0.009),
   idparsopt = c(1,2,4),
   parsfix = c(Inf,0),
   idparsfix = c(3,5),
-  ddmodel=0
+  ddmodel = 0
 )
 ```
 
@@ -209,10 +209,10 @@ A more proper way to compare the models is using AIC (or other information crite
 
 Create new function to compute AIC values base on the likelihood values and number of parameters for each model.
 
-```{r AICfunction, warning=TRUE}
+```{r AICfunction, warning = TRUE}
 
-AIC_compare<- function(LogLik,k){
-  aic <- (2*k)-(2*LogLik)
+AIC_compare <- function(LogLik,k){
+  aic <- (2 * k) - (2 * LogLik)
   return(aic)
 }
 ```
@@ -222,9 +222,9 @@ Fill in the values from your data in this format:
 `AIC_compare(c(likelihood_M1,likelihood_M2,likelihood_M3), c(n_parameters_M1,n_parameters_M2,n_parameters_M3))`.
 
 ```{r AICcompare, warning=TRUE}
-AICs<-AIC_compare(c(-84.78145 ,-84.78088, -84.78082),c(5,4,3))
-
-names(AICs)<-c('M1','M2','M3')
+AICs <- AIC_compare(LogLik = c(M1_results$loglik,M2_results$loglik,M3_results$loglik),
+                    k = c(M1_results$df,M2_results$df,M3_results$df))
+names(AICs) <- c('M1','M2','M3')
 AICs
 
 ```
@@ -240,11 +240,11 @@ Now let's use the ML parameters we estimated from the Galápagos bird data to si
 #### Simulate islands with the parameters estimated from the best model for the Galápagos bird data (takes a while to run, you can reduce number of replicates if you want)
 
 ```{r DAISIE_sim, message=FALSE, warning=FALSE, cache=TRUE}
-Galapagos_sims<-DAISIE_sim(
-  time=4,
-  M=1000,
-  pars=c(1.26, 1.146, Inf, 0.005,0),
-  replicates= 100,
+Galapagos_sims <- DAISIE_sim(
+  time = 4,
+  M = 1000,
+  pars = c(1.26, 1.146, Inf, 0.005,0),
+  replicates = 100,
   plot_sims = FALSE)
 ```
 
@@ -266,12 +266,12 @@ Now let's briefly compare with simulations for a completely different dataset, o
 
 ```{r}
 data(Macaronesia_datalist)
-Azores<-Macaronesia_datalist[[1]]
+Azores <- Macaronesia_datalist[[1]]
 ```
 
 ##### Visualise Azores data
 
-```{r, echo=TRUE}
+```{r, echo = TRUE}
 DAISIE_plot_island(Azores)
 ```
 
@@ -280,19 +280,19 @@ Three of the species are extinct and only known from fossils.
 ##### Simulate Azores with pre-identified ML parameters
 
 ```{r DAISIE_sim_Azores, message=FALSE, warning=FALSE, cache=TRUE}
-Azores_sims<-DAISIE_sim(
-  time=6.3,
-  M=300,
-  pars=c(0,1.053151832,Inf,0.052148979,0.512939011),
-  replicates= 100,
-  plot_sims=FALSE)
+Azores_sims <- DAISIE_sim(
+  time = 6.3,
+  M = 300,
+  pars = c(0,1.053151832,Inf,0.052148979,0.512939011),
+  replicates = 100,
+  plot_sims = FALSE)
 ```
 
 \
 
 ##### Plot the species-through-time plot for the Azores from the resulting from the simulations
 
-```{r, echo=TRUE}
+```{r, echo = TRUE}
 DAISIE_plot_sims(Azores_sims)
 ```
 
