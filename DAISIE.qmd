@@ -14,7 +14,7 @@ In this part of the practical, we will learn how to use DAISIE. As a demonstract
 Empty workspace of existing previous objects, just in case.
 
 ```{r}
-rm(list=ls())
+rm(list = ls())
 ```
 
 ### Load the required packages:
@@ -47,11 +47,11 @@ Store it locally.
 Load it into R, by setting the path to the location of the file on your computer:
 
 ```{r , eval=F}
-load(file="PATH_TO_YOUR_DATALIST_FILE")
+load(file = "PATH_TO_YOUR_DATALIST_FILE")
 ```
 
 ```{r , echo = F}
-load(file="data/galapagos_datalist.Rdata")
+load(file = "data/galapagos_datalist.Rdata")
 ```
 
 #### View Galápagos datalist
