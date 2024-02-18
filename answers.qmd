@@ -8,7 +8,7 @@ author: Luis Valente
 ### Load required packages
 
 ```{r}
-rm(list=ls())
+rm(list = ls())
 library(ape)
 library(DAISIEprep)
 library(DAISIE)
@@ -17,7 +17,7 @@ library(DAISIE)
 ### Load tree
 
 ```{r}
-Insula_tree<-read.nexus("data/Insula.tre")
+Insula_tree <- read.nexus("data/Insula.tre")
 ```
 
 Visualise tree (easier to use Figtree!)
@@ -107,7 +107,7 @@ As you can see, the results of the 2 extractions (min and asr) are exactly the s
 Add missing species "Spec_51", which is not closely related to any species
 
 ```{r}
-island_tbl<-island_tbl_min
+island_tbl <- island_tbl_min
 island_tbl <- add_island_colonist(
   island_tbl = island_tbl,
   clade_name = "Spec_51",
@@ -153,7 +153,7 @@ Fit model with 5 parameters
 
 ```{r M1, message=FALSE, warning=FALSE, cache=TRUE}
 
-M1<-DAISIE_ML(
+M1 <- DAISIE_ML(
   datalist = insula_data_list,
   initparsopt = c(1.5,1.1,20,0.009,1.1),
   ddmodel = 11,
@@ -168,7 +168,7 @@ Fit model with no carrying capacity
 
 ```{r M2, message=FALSE, warning=FALSE, cache=TRUE}
 
-M2<-DAISIE_ML(
+M2 <- DAISIE_ML(
   datalist = insula_data_list,
   initparsopt = c(1.5,1.1,0.009,1.1),
   idparsopt = c(1,2,4,5),
@@ -182,7 +182,7 @@ M2
 Fit model with no anagenesis (optional)
 
 ```{r M3, message=FALSE, warning=FALSE, cache=TRUE}
-M3<-DAISIE_ML(
+M3 <- DAISIE_ML(
   datalist = insula_data_list,
   initparsopt = c(1.5,1.1,0.009),
   idparsopt = c(1,2,4),
@@ -196,7 +196,7 @@ M3
 Save model results in a table
 
 ```{r}
-model_results<-rbind(M1,M2,M3)
+model_results <- rbind(M1,M2,M3)
 model_results
 ```
 
@@ -204,8 +204,8 @@ Create AIC function for model comparison
 
 ```{r}
 
-AIC_compare<- function(LogLik,k){
-  aic <- (2*k)-(2*LogLik)
+AIC_compare <- function(LogLik,k){
+  aic <- (2 * k) - (2 * LogLik)
   return(aic)
 }
 ```
@@ -213,8 +213,8 @@ AIC_compare<- function(LogLik,k){
 Compute AIC for all the models
 
 ```{r}
-AICs<-AIC_compare(c(M1$loglik ,M2$loglik, M3$loglik),c(M1$df,M2$df,M3$df))
-names(AICs)<-c('M1','M2','M3')
+AICs <- AIC_compare(c(M1$loglik,M2$loglik,M3$loglik),c(M1$df,M2$df,M3$df))
+names(AICs) <- c('M1','M2','M3')
 AICs
 ```
 
@@ -225,11 +225,11 @@ In this case, the preferred model is M3.
 Run simulations
 
 ```{r Simulations, message=FALSE, warning=FALSE, cache=TRUE}
-Insula_sims<-DAISIE_sim(
-  time=4,
-  M=1000,
-  pars=as.numeric(M3[1:5]),
-  replicates= 100,
+Insula_sims <- DAISIE_sim(
+  time = 4,
+  M = 1000,
+  pars = as.numeric(M3[1:5]),
+  replicates = 100,
   verbose = 1,
   plot_sims = FALSE)
 ```
