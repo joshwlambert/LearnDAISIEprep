@@ -7,7 +7,7 @@ author: Luis Valente
 
 -   [R](https://www.r-project.org)
 
--   [Rstudio](https://posit.co)
+-   [Rstudio](https://posit.co/download/rstudio-desktop/)
 
 -   [Figtree](https://github.com/rambaut/figtree/releases)
 
