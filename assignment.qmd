@@ -16,7 +16,7 @@ One of the most diverse islands for the genus *Insula* is Jamaica, a mid-size Ca
 
 A very well-sampled time-calibrated phylogeny for the genus has recently been published, covering all the island where *Insula* occurs. A few species have been recently discovered and were not sampled in the phylogeny. There is no evidence of recently extinct species. The authors of the study performed an ancestral range reconstruction, so it is possible to infer the ancestral areas and number of colonisation events.
 
-Making use of the knowledge you gathered from DAISIEprep and DAISIE, in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Jamaica and fit DAISIE to the data.
+Making use of the knowledge you gathered from DAISIEprep and DAISIE (next steps in this practical), in combination with the phylogenetic tree and the species checklist provided, you can extract data for the island of Jamaica and fit DAISIE to the data.
 
 ## Instructions of written assignment
 
