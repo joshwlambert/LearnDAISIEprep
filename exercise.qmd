@@ -18,6 +18,7 @@ D.  What are the rates of colonisation, speciation and extinction for *Insula* i
 E.  Is there evidence for diversity-dependence in the *Insula* species of Jamaica?
 F.  Is there evidence for equilibrium dynamics on the island of Jamaica?
 G.  How has the diversity of *Insula* on Jamaica changed through time (according to DAISIE simulations)?
+H.  Modify one or two parameters of your choice and run simulations again under those parameters. How does this affect the simulations? Describe.
 
 In sum, you need to load the phylogeny into R, use DAISIEprep to extract the DAISIE datalist. Then, fit DAISIE to that datalist to estimate parameters (extinction, colonisation, speciation, carrying capacity, and simulate islands), and to simulate islands. Make use of the DAISIEprep and DAISIE tutorials as well as the *Insula* tree, tables and figures provided. With these analyses you will be able to answer all the [questions](#sec-questions)
 
