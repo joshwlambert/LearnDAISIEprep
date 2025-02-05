@@ -19,11 +19,11 @@ A typical DAISIEprep pipeline is as follows:
 
 The DAISIEprep tutorial is divided into the following sections:
 
-- [Single Phylogeny example] - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
+-   [Single Phylogeny example] - Using a simulated phylogeny including island and non-island species, learn how to extract and format island data for running DAISIE.
 
-- [Adding missing species] - Learn how to add missing species, lineages, etc, to your DAISIE data list.
+-   [Adding missing species] - Learn how to add missing species, lineages, etc, to your DAISIE data list.
 
-- [Prepare object for analyses in DAISIE]
+-   [Prepare object for analyses in DAISIE]
 
 ## Single Phylogeny Example
 
@@ -69,7 +69,11 @@ phylo$tip.label <- c("Plant_a", "Plant_b", "Plant_c", "Plant_d", "Plant_e",
                      "Plant_f", "Plant_g", "Plant_h", "Plant_i", "Plant_j")
 ```
 
-Then we convert the phylogeny to a phylo4 class, defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.
+### Format phylogeny
+
+**In the *Insula* exercise you don't need to simulate a tree or create tip labels, because you will use an existing tree provided (Insula.tre). So you can skip the steps above, and just start from here after loading your tree file.**
+
+After loading (or simulating) the tree, we convert the phylogeny to a phylo4 class, defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.
 
 ```{r convert phylo to phylo4}
 phylo <- phylobase::phylo4(phylo)
@@ -211,7 +215,7 @@ island_tbl <- add_missing_species(
   # num_missing_species equals total species missing
   num_missing_species = 2,
   # name of a sampled species you want to "add" the missing to
-  # it can be any in the clade
+  # it can be any species in the clade
   species_to_add_to = "Plant_e"
 )
 ```
@@ -254,6 +258,7 @@ Example for adding lineage with 1 species:
 ```{r}
 island_tbl <- add_island_colonist(
   island_tbl = island_tbl,
+  ## clade name can be any name you choose
   clade_name = "Plant_y",
   status = "endemic",
   # clade with just 1 species, missing_species = 0
@@ -264,6 +269,7 @@ island_tbl <- add_island_colonist(
   branching_times = NA_real_,
   min_age = NA_real_,
   clade_type = 1,
+  ## add names of the species to add
   species = "Plant_a"
 )
 ```
@@ -273,6 +279,7 @@ Example for adding lineage with 5 species ("Plant_a", "Plant_b", "Plant_c", "Pla
 ```{r}
 island_tbl <- add_island_colonist(
   island_tbl = island_tbl,
+  ## clade name can be any name you choose
   clade_name = "Plant_radiation",
   status = "endemic",
   # the total species is 5 and all are missing
@@ -284,6 +291,7 @@ island_tbl <- add_island_colonist(
   branching_times = NA_real_,
   min_age = NA_real_,
   clade_type = 1,
+  ## add names of the species to add
   species = c("Plant_a", "Plant_b", "Plant_c",
               "Plant_d", "Plant_e")
 )

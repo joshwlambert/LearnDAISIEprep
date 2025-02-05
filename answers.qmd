@@ -5,6 +5,8 @@ author: Luis Valente
 
 ## Example of how to extract data for Jamaica species from the *Insula* tree, add missing species, fit DAISIE models and run simulations. {#sec-answers}
 
+**A lot of the analyses here could be done in different ways, these are just options of how the exercise could be done.**
+
 ### Load required packages
 
 ```{r}
@@ -241,3 +243,5 @@ DAISIE_plot_sims(Insula_sims)
 ```
 
 It looks like *Insula* diversity in the island of Jamaica is at a dynamic equilibrium.
+
+To answer the last question, play around with different parameter settings in the simulation code. Be creative.
