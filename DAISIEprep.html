@@ -188,6 +188,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Insula beetles exercise</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./answers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Answers</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -203,8 +209,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#load-the-required-packages" id="toc-load-the-required-packages" class="nav-link" data-scroll-target="#load-the-required-packages"><span class="header-section-number">5.2.1</span> Load the required packages:</a></li>
   <li><a href="#simulate-example-phylogeny" id="toc-simulate-example-phylogeny" class="nav-link" data-scroll-target="#simulate-example-phylogeny"><span class="header-section-number">5.2.2</span> Simulate example phylogeny</a></li>
-  <li><a href="#add-distribution-information-to-the-tips-of-the-tree" id="toc-add-distribution-information-to-the-tips-of-the-tree" class="nav-link" data-scroll-target="#add-distribution-information-to-the-tips-of-the-tree"><span class="header-section-number">5.2.3</span> Add distribution information to the tips of the tree</a></li>
-  <li><a href="#extract-data-using-daisieprep" id="toc-extract-data-using-daisieprep" class="nav-link" data-scroll-target="#extract-data-using-daisieprep"><span class="header-section-number">5.2.4</span> Extract data using DAISIEprep</a></li>
+  <li><a href="#format-phylogeny" id="toc-format-phylogeny" class="nav-link" data-scroll-target="#format-phylogeny"><span class="header-section-number">5.2.3</span> Format phylogeny</a></li>
+  <li><a href="#add-distribution-information-to-the-tips-of-the-tree" id="toc-add-distribution-information-to-the-tips-of-the-tree" class="nav-link" data-scroll-target="#add-distribution-information-to-the-tips-of-the-tree"><span class="header-section-number">5.2.4</span> Add distribution information to the tips of the tree</a></li>
+  <li><a href="#extract-data-using-daisieprep" id="toc-extract-data-using-daisieprep" class="nav-link" data-scroll-target="#extract-data-using-daisieprep"><span class="header-section-number">5.2.5</span> Extract data using DAISIEprep</a></li>
   </ul></li>
   <li><a href="#adding-missing-species" id="toc-adding-missing-species" class="nav-link" data-scroll-target="#adding-missing-species"><span class="header-section-number">5.3</span> Adding missing species</a>
   <ul class="collapse">
@@ -294,7 +301,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>phylo<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Plant_a"</span>, <span class="st">"Plant_b"</span>, <span class="st">"Plant_c"</span>, <span class="st">"Plant_d"</span>, <span class="st">"Plant_e"</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Plant_f"</span>, <span class="st">"Plant_g"</span>, <span class="st">"Plant_h"</span>, <span class="st">"Plant_i"</span>, <span class="st">"Plant_j"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Then we convert the phylogeny to a phylo4 class, defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.</p>
+</section>
+<section id="format-phylogeny" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="format-phylogeny"><span class="header-section-number">5.2.3</span> Format phylogeny</h3>
+<p><strong>In the <em>Insula</em> exercise you don’t need to simulate a tree or create tip labels, because you will use an existing tree provided (Insula.tre). So you can skip the steps above, and just start from here after loading your tree file.</strong></p>
+<p>After loading (or simulating) the tree, we convert the phylogeny to a phylo4 class, defined in the package phylobase. This allows users to easily work with data for each tip in the phylogeny, for example whether they are endemic to the island or not.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>phylo <span class="ot">&lt;-</span> phylobase<span class="sc">::</span><span class="fu">phylo4</span>(phylo)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>phylobase<span class="sc">::</span><span class="fu">plot</span>(phylo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -308,8 +319,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now we have a phylogeny in the phylo4 format to which we can easily append data.</p>
 </section>
-<section id="add-distribution-information-to-the-tips-of-the-tree" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="add-distribution-information-to-the-tips-of-the-tree"><span class="header-section-number">5.2.3</span> Add distribution information to the tips of the tree</h3>
+<section id="add-distribution-information-to-the-tips-of-the-tree" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="add-distribution-information-to-the-tips-of-the-tree"><span class="header-section-number">5.2.4</span> Add distribution information to the tips of the tree</h3>
 <p>Specify tips corresponding to species from your focal island by specifying that they are endemic and/or non-endemic to the island. In the example below, species Plant_h is found on the island but it not endemic, and species Plant_f and Plant_e are found on the island and are endemic to the island. All other species on the phylogeny are NOT present on the island.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>island_species <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
@@ -343,8 +354,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see, in the example phylogeny, there appear to be 2 separate colonisation events of the island - one which has led to species Plant_f and Plant_e and other that has led to the non-endemic species Plant_h.</p>
 </section>
-<section id="extract-data-using-daisieprep" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="extract-data-using-daisieprep"><span class="header-section-number">5.2.4</span> Extract data using DAISIEprep</h3>
+<section id="extract-data-using-daisieprep" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="extract-data-using-daisieprep"><span class="header-section-number">5.2.5</span> Extract data using DAISIEprep</h3>
 <p>Now that we can see the tips that are present on the island, we can extract them to form our island community data set that can be used in the DAISIE R package to fit likelihood models of island colonisation and diversification.</p>
 <p>Before we extract species, we first create an object to store all of the island colonists’ information. This uses the <code>island_tbl</code> class introduced in this package (DAISIEprep). This <code>island_tbl</code> object can then easily be converted to a DAISIE data list using the function <code>create_daisie_data</code> (more information on this below).</p>
 <div class="cell" data-layout-align="center">
@@ -453,7 +464,7 @@ Sidenote (optional): if you are wondering what the probabilities are at each nod
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># num_missing_species equals total species missing</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_missing_species =</span> <span class="dv">2</span>,</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># name of a sampled species you want to "add" the missing to</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it can be any in the clade</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># it can be any species in the clade</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">species_to_add_to =</span> <span class="st">"Plant_e"</span></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -487,37 +498,41 @@ Sidenote (optional): if you are wondering what the probabilities are at each nod
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Plant_y"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clade with just 1 species, missing_species = 0</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because adding the lineage already counts as 1</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">0</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="st">"Plant_a"</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## clade name can be any name you choose</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Plant_y"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clade with just 1 species, missing_species = 0</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because adding the lineage already counts as 1</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">0</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="do">## add names of the species to add</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="st">"Plant_a"</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example for adding lineage with 5 species (“Plant_a”, “Plant_b”, “Plant_c”, “Plant_d”, “Plant_e”) to a lineage called “Plant_radiation”</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>island_tbl <span class="ot">&lt;-</span> <span class="fu">add_island_colonist</span>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">island_tbl =</span> island_tbl,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Plant_radiation"</span>,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the total species is 5 and all are missing</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># but we add missing_species = 4 because</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adding the lineage already counts as 1</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">4</span>,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Plant_a"</span>, <span class="st">"Plant_b"</span>, <span class="st">"Plant_c"</span>,</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Plant_d"</span>, <span class="st">"Plant_e"</span>)</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## clade name can be any name you choose</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_name =</span> <span class="st">"Plant_radiation"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"endemic"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the total species is 5 and all are missing</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># but we add missing_species = 4 because</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adding the lineage already counts as 1</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing_species =</span> <span class="dv">4</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_max_age =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">branching_times =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_age =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">clade_type =</span> <span class="dv">1</span>,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="do">## add names of the species to add</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Plant_a"</span>, <span class="st">"Plant_b"</span>, <span class="st">"Plant_c"</span>,</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Plant_d"</span>, <span class="st">"Plant_e"</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
