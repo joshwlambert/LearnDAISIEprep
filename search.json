@@ -224,7 +224,7 @@
     "href": "answers.html#simulate-islands-based-on-parameters-from-preferred-model",
     "title": "8  Answers",
     "section": "8.4 Simulate islands based on parameters from preferred model",
-    "text": "8.4 Simulate islands based on parameters from preferred model\nRun simulations\n\nInsula_sims &lt;- DAISIE_sim(\n  time = 4,\n  M = 1000,\n  pars = as.numeric(M3[1:5]),\n  replicates = 100,\n  verbose = 1,\n  plot_sims = FALSE)\n\nPlot simulations\n\nDAISIE_plot_sims(Insula_sims)\n\n\n\n\n\n\n\n\nIt looks like Insula diversity in the island of Jamaica is at a dynamic equilibrium.\nTo answer the last question, play around with different parameter settings in the simulation code. Be creative.",
+    "text": "8.4 Simulate islands based on parameters from preferred model\nRun simulations\n\nInsula_sims &lt;- DAISIE_sim(\n  time = 5,\n  M = 1000,\n  pars = as.numeric(M3[1:5]),\n  replicates = 100,\n  verbose = 1,\n  plot_sims = FALSE)\n\nPlot simulations\n\nDAISIE_plot_sims(Insula_sims)\n\n\n\n\n\n\n\n\nIt looks like Insula diversity in the island of Jamaica is at a dynamic equilibrium.\nTo answer the last question, play around with different parameter settings in the simulation code. Be creative.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Answers</span>"
     ]
