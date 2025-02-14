@@ -228,7 +228,7 @@ Run simulations
 
 ```{r Simulations, message=FALSE, warning=FALSE, cache=TRUE}
 Insula_sims <- DAISIE_sim(
-  time = 4,
+  time = 5,
   M = 1000,
   pars = as.numeric(M3[1:5]),
   replicates = 100,
